@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgcuec4h6uevm"]
+
+[ext_resource type="Script" path="res://Scenes/Component/ExperienceVialDropComponent.cs" id="1_wktb3"]
+
+[node name="ExperienceVialDropComponent" type="Node"]
+script = ExtResource("1_wktb3")

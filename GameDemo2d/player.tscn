@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://ra6tvg3rc138"]
+
+[ext_resource type="Texture2D" uid="uid://c3mvremp31opk" path="res://art/playerGrey_up1.png" id="1_0vdhw"]
+[ext_resource type="Script" path="res://player.gd" id="1_usap1"]
+[ext_resource type="Texture2D" uid="uid://dt8s0fe3hdnxo" path="res://art/playerGrey_up2.png" id="2_nrfq5"]
+[ext_resource type="Texture2D" uid="uid://chm82senykvbl" path="res://art/playerGrey_walk1.png" id="3_l3eob"]
+[ext_resource type="Texture2D" uid="uid://dnjmeuh7vaqe3" path="res://art/playerGrey_walk2.png" id="4_ryhis"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vdvm0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0vdhw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_nrfq5")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_l3eob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ryhis")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s8num"]
+radius = 27.0
+height = 68.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dfikq"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+gravity = Vector3(-98, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_min = 100.0
+linear_accel_max = 100.0
+scale_min = 0.3
+scale_max = 0.5
+color = Color(0.964706, 0.87451, 0.772549, 1)
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_usap1")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_vdvm0")
+animation = &"up"
+frame_progress = 0.865199
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_s8num")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = -1
+scale = Vector2(0.3, 0.3)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_dfikq")
+texture = ExtResource("1_0vdhw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

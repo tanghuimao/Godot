@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bllxqvf5w02ja"]
+
+[ext_resource type="Script" path="res://script/State/StateMachine.cs" id="1_q6exj"]
+[ext_resource type="Script" path="res://script/Enemy.cs" id="1_qfbxj"]
+[ext_resource type="Script" path="res://script/HitBox.cs" id="2_4rwoo"]
+[ext_resource type="Script" path="res://script/HurtBox.cs" id="3_m1ana"]
+[ext_resource type="PackedScene" uid="uid://b3ykxgjpsyyoq" path="res://Component/HealthComponent.tscn" id="4_mnjdw"]
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_qfbxj")
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Graphics"]
+
+[node name="HitBox" type="Area2D" parent="Graphics"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("2_4rwoo")
+
+[node name="HurtBox" type="Area2D" parent="Graphics"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("3_m1ana")
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_mnjdw")]
+BaseHealth = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("1_q6exj")

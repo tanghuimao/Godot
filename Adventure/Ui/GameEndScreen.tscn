@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://cus1vruayluql"]
+
+[ext_resource type="Script" path="res://script/GameEndScreen.cs" id="1_81cwk"]
+[ext_resource type="FontFile" uid="uid://wij8ix11slgt" path="res://assets/SmileySans-Oblique.otf" id="1_s86mb"]
+[ext_resource type="AudioStream" uid="uid://d66lgkcey7gd" path="res://assets/Bgm/29 15 game over LOOP.mp3" id="3_kqoi8"]
+
+[node name="GameEndScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_81cwk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.67451)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_s86mb")
+theme_override_font_sizes/font_size = 24
+text = "Text
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_kqoi8")
+bus = &"BGM"

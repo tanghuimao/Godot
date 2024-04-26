@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bafphdbjh5tgu"]
+
+[ext_resource type="Script" path="res://script/GameGlobal.cs" id="1_q30td"]
+[ext_resource type="PackedScene" uid="uid://b3ykxgjpsyyoq" path="res://Component/HealthComponent.tscn" id="2_x7od8"]
+[ext_resource type="PackedScene" uid="uid://cmxr0xr27g0ye" path="res://Component/EnergyComponent.tscn" id="3_4xb7m"]
+
+[node name="GameGlobal" type="Node2D"]
+script = ExtResource("1_q30td")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_x7od8")]
+
+[node name="EnergyComponent" parent="." instance=ExtResource("3_4xb7m")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)

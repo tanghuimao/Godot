@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhvh401j8knaw"]
+
+[ext_resource type="Script" path="res://Mob.gd" id="1_pum8h"]
+[ext_resource type="PackedScene" uid="uid://cbathtkoymqqn" path="res://art/mob.glb" id="2_514fv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b2xj6"]
+radius = 1.14514
+height = 3.31634
+
+[node name="Mob" type="CharacterBody3D" groups=["mobs"]]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_pum8h")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Character" parent="Pivot" instance=ExtResource("2_514fv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.683173, 0.34903)
+shape = SubResource("CapsuleShape3D_b2xj6")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.698156, 0.191992)
+aabb = AABB(-1.2365, -0.637067, -1.66311, 2.47301, 1.27413, 3.5606)
+
+[node name="SpeedTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
+[connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]

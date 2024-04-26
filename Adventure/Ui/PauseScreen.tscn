@@ -1,0 +1,108 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpgyfwelja12d"]
+
+[ext_resource type="Theme" uid="uid://cmtaxdx5p3djs" path="res://Ui/GameTheme.tres" id="1_xsfix"]
+[ext_resource type="PackedScene" uid="uid://bg3a7bjtmhqlm" path="res://Ui/VolumeHSlider.tscn" id="2_0jf2q"]
+[ext_resource type="Script" path="res://script/PauseScreen.cs" id="2_gly53"]
+
+[node name="PauseScreen" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xsfix")
+script = ExtResource("2_gly53")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.533333)
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -11.5
+offset_right = 16.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBox"]
+layout_mode = 2
+text = "暂停"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioSettings" type="PanelContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBox/AudioSettings"]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+columns = 2
+
+[node name="VolumLabel" type="Label" parent="VBox/AudioSettings/GridContainer"]
+layout_mode = 2
+text = "主音量"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="VolumeHSlider" parent="VBox/AudioSettings/GridContainer" instance=ExtResource("2_0jf2q")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="BgmLabel" type="Label" parent="VBox/AudioSettings/GridContainer"]
+layout_mode = 2
+text = "音乐"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BgmHSlider" parent="VBox/AudioSettings/GridContainer" instance=ExtResource("2_0jf2q")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+Bus = 2
+
+[node name="SfxLabel" type="Label" parent="VBox/AudioSettings/GridContainer"]
+layout_mode = 2
+text = "音效"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SfxHSlider" parent="VBox/AudioSettings/GridContainer" instance=ExtResource("2_0jf2q")]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+Bus = 1
+
+[node name="Actions" type="PanelContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="VBox/Actions"]
+layout_mode = 2
+alignment = 1
+
+[node name="Resume" type="Button" parent="VBox/Actions/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "继续游戏"
+
+[node name="Quit" type="Button" parent="VBox/Actions/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "退出游戏"

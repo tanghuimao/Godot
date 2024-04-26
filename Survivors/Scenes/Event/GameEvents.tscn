@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://yamlserfdrg0"]
+
+[ext_resource type="Script" path="res://Scenes/Event/GameEvents.cs" id="1_a1pi1"]
+
+[node name="GameEvents" type="Node"]
+script = ExtResource("1_a1pi1")
