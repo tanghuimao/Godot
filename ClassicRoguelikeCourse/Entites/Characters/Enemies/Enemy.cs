@@ -1,19 +1,21 @@
-using Godot;
-using System;
 using ClassicRoguelikeCourse.Entites.Characters;
-using ClassicRoguelikeCourse.Resources.CharacterData.EnemyData;
+using ClassicRoguelikeCourse.Managers.AStarGridManager;
+using Godot;
 
 /// <summary>
 /// 敌人
 /// </summary>
 public partial class Enemy : Character
 {
+
+    private AStarGridManager _aStarGridManager;
+    
     public override void Initialize()
     {
         base.Initialize();
         // 注册事件
         _mapManager.Initialized += OnInitialized;
-        
+        _aStarGridManager = GetTree().CurrentScene.GetNode<AStarGridManager>("%AStarGridManager");
         // GD.Print("----------------------------------");
         // GD.Print($"名称: {CharacterData.Name}");
         // GD.Print($"视野: {CharacterData.Sight}");
@@ -40,5 +42,23 @@ public partial class Enemy : Character
         var enemySpawnCell = getEnemySpawnCell.Call().AsVector2I();
         // 设置位置
         GlobalPosition = enemySpawnCell * _mapManager.MapData.CellSize + _mapManager.MapData.CellSize / 2;
+    }
+    /// <summary>
+    /// 死亡  重写父类方法
+    /// </summary>
+    /// <param name="character"></param>
+    protected override void OnCharacterDead(Character character)
+    {
+        // 判断是否死亡
+        if (character != this || IsDead) return;
+        // 设置地图点为可通行
+        _aStarGridManager.AStarGrid2D.SetPointSolid(
+            (Vector2I) (GlobalPosition - _mapManager.MapData.CellSize / 2) / _mapManager.MapData.CellSize,
+            false);
+        // 销毁
+        QueueFree();
+        GD.Print(($"{CharacterData.Name} 被击杀"));
+        // 设置死亡
+        _isDead = true;
     }
 }

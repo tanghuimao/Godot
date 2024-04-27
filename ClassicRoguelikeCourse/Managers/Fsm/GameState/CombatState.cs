@@ -1,4 +1,5 @@
 using System;
+using ClassicRoguelikeCourse.Entites.Characters.Player;
 using Godot;
 
 namespace ClassicRoguelikeCourse.Managers.Fsm.GameState;
@@ -8,18 +9,17 @@ namespace ClassicRoguelikeCourse.Managers.Fsm.GameState;
 public partial class CombatState : Node, IState
 {
     public event Action<IState> UpdateEvent;
-    public void Enter()
+    
+    private CombatManager.CombatManager _combatManager;
+    
+    public void Initialize()
     {
-        // GD.Print("CombatState Enter");
+        _combatManager = GetTree().CurrentScene.GetNode<CombatManager.CombatManager>("%CombatManager");
     }
-
-    public void Exit()
-    {
-        // GD.Print("CombatState Exit");
-    }
-
+    
     public void Update(double delta)
     {
+        _combatManager.Update(delta);
         UpdateEvent?.Invoke(this);
     }
 }

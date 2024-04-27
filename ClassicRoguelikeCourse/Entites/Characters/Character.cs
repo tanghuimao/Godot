@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ClassicRoguelikeCourse.Component;
+using ClassicRoguelikeCourse.Managers.CombatManager;
 using ClassicRoguelikeCourse.Managers.MapManager;
 using ClassicRoguelikeCourse.Resources.CharacterData;
 using ClassicRoguelikeCourse.Resources.MapData;
@@ -14,15 +15,22 @@ namespace ClassicRoguelikeCourse.Entites.Characters;
 public partial class Character : Node2D, IEntity
 {
     //角色数据
-    [Export] public CharacterData CharacterData;
+    [Export] private CharacterData _characterData;
+    public  CharacterData CharacterData => _characterData;
     //组件集合
     protected List<IComponent> Components = new ();
     //地图管理器
     protected MapManager _mapManager;
+    //战斗管理器
+    protected CombatManager _combatManager;
+    //是否死亡
+    protected bool _isDead;
+    public bool IsDead => _isDead;
     
     public virtual void Initialize()
     {
         _mapManager = GetTree().CurrentScene.GetNode<MapManager>("%MapManager");
+        _combatManager = GetTree().CurrentScene.GetNode<CombatManager>("%CombatManager");
         //获取所有子节点
         foreach (var child in GetChildren())
         {
@@ -33,6 +41,8 @@ public partial class Character : Node2D, IEntity
         }
         //初始化战斗属性
         InitializeCombatAttributes();
+        //订阅事件
+        _combatManager.CharacterDead += OnCharacterDead;
     }
 
     public virtual void Update(double delta)
@@ -50,16 +60,16 @@ public partial class Character : Node2D, IEntity
     private void InitializeCombatAttributes()
     {
         //生命值
-        CharacterData.Health = CharacterData.Constitution * CharacterData.ConstitutionIncrementEffects["Health"];
-        CharacterData.MaxHealth = CharacterData.Constitution * CharacterData.ConstitutionIncrementEffects["MaxHealth"];
+        _characterData.Health = _characterData.Constitution * _characterData.ConstitutionIncrementEffects["Health"];
+        _characterData.MaxHealth = _characterData.Constitution * _characterData.ConstitutionIncrementEffects["MaxHealth"];
         //攻击力
-        CharacterData.Attack = CharacterData.Strength * CharacterData.StrengthIncrementEffects["Attack"];
+        _characterData.Attack = _characterData.Strength * _characterData.StrengthIncrementEffects["Attack"];
         //防御力
-        CharacterData.Defend = CharacterData.Strength * CharacterData.StrengthIncrementEffects["Defend"];
+        _characterData.Defend = _characterData.Strength * _characterData.StrengthIncrementEffects["Defend"];
         //闪避率
-        CharacterData.Dodge = CharacterData.Agility * CharacterData.AgilityIncrementEffects["Dodge"];
+        _characterData.Dodge = _characterData.Agility * _characterData.AgilityIncrementEffects["Dodge"];
         //暴击率
-        CharacterData.CriticalChance = CharacterData.Agility * CharacterData.AgilityIncrementEffects["CriticalChance"];
+        _characterData.CriticalChance = _characterData.Agility * _characterData.AgilityIncrementEffects["CriticalChance"];
     }
 
     /// <summary>
@@ -76,5 +86,15 @@ public partial class Character : Node2D, IEntity
         var distanceY = Mathf.Abs(startCell.Y - targetCell.Y);
         //返回距离
         return Mathf.Max(distanceX, distanceY);
+    }
+    
+    /// <summary>
+    /// 死亡事件  子对象重写使用
+    /// </summary>
+    /// <param name="character"></param>
+    /// <exception cref="NotImplementedException"></exception>
+    protected virtual void OnCharacterDead(Character character)
+    {
+        throw new Exception("不可直接调用基类方法");
     }
 }

@@ -7,12 +7,16 @@ namespace ClassicRoguelikeCourse.Entites.Characters.Player;
 /// </summary>
 public partial class Player : Character
 {
+    private Sprite2D _deathSprite2D;
+    
     /// <summary>
     /// 重写父类方法
     /// </summary>
     public override void Initialize()
     {
         base.Initialize();
+        _deathSprite2D = GetNode<Sprite2D>("DeathSprite2D");
+        _deathSprite2D.Visible = false;
         _mapManager.Initialized += OnInitialized;
         var data = CharacterData as PlayerData;
         GD.Print("----------------------------------");
@@ -43,5 +47,22 @@ public partial class Player : Character
     {
         // 设置玩家初始位置
         GlobalPosition = playerSpawnCell * _mapManager.MapData.CellSize + _mapManager.MapData.CellSize / 2;
+    }
+    
+    /// <summary>
+    /// 死亡  重写父类方法
+    /// </summary>
+    /// <param name="character"></param>
+    protected override void OnCharacterDead(Character character)
+    {
+        // 判断是否死亡
+        if (character != this || IsDead) return;
+        // 显示死亡动画
+        _deathSprite2D.Visible = true;
+        // 销毁
+        // QueueFree();
+        GD.Print(($"{CharacterData.Name} 被击杀!"));
+        // 设置死亡
+        _isDead = true;
     }
 }

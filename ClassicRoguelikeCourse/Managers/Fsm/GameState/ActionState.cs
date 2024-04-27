@@ -15,21 +15,10 @@ public partial class ActionState : Node, IState
     private Player _player;
     // 敌人容器
     public Node _enemyContainer;
-    public override void _Ready()
+    public void Initialize()
     {
         _player = GetTree().CurrentScene.GetNode<Player>("%Player");
         _enemyContainer = GetTree().CurrentScene.GetNode<Node>("%EnemyContainer");
-    }
-
-    public void Enter()
-    {   
-        // GD.Print("ActionState Enter");
-      
-    }
-
-    public void Exit()
-    {
-        // GD.Print("ActionState Exit");
     }
 
     public void Update(double delta)

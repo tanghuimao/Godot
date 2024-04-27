@@ -1,12 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2lvmy25nvxme"]
+[gd_scene load_steps=5 format=3 uid="uid://d2lvmy25nvxme"]
 
 [ext_resource type="Script" path="res://Entites/Characters/Character.cs" id="1_a6w1k"]
 [ext_resource type="Texture2D" uid="uid://5i1k6wyvhgfj" path="res://Assets/Textures/tile_sheet.png" id="1_awwic"]
 [ext_resource type="PackedScene" uid="uid://c73h4qoyvgah1" path="res://Component/MovementComponent/MovementComponent.tscn" id="3_ouo1g"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qgktj"]
-atlas = ExtResource("1_awwic")
-region = Rect2(0, 80, 16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ubsj1"]
 size = Vector2(16, 16)
@@ -15,7 +11,9 @@ size = Vector2(16, 16)
 script = ExtResource("1_a6w1k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_qgktj")
+texture = ExtResource("1_awwic")
+region_enabled = true
+region_rect = Rect2(0, 80, 16, 16)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 0

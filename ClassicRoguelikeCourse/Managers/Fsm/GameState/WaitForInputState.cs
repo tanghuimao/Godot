@@ -15,24 +15,13 @@ public partial class WaitForInputState : Node, IState
 
     private InputHandler _inputHandler;
 
-    public override void _Ready()
+    public void Initialize()
     {
         // 获取当前场景下的InputHandler
         _inputHandler = GetTree().CurrentScene.GetNode<InputHandler>("%InputHandler");
         // 监听InputHandler的输入事件
         _inputHandler.MovementInputEvent += OnMovementInputEvent;
     }
-
-    public void Enter()
-    {
-        // GD.Print("WaitForInputState Enter");
-    }
-
-    public void Exit()
-    {
-        // GD.Print("WaitForInputState Exit");
-    }
-
     public void Update(double delta)
     {
         _inputHandler.Update(delta);

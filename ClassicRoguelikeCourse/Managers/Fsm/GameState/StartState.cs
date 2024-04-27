@@ -19,7 +19,7 @@ public partial class StartState : Node, IState
     private AStarGridManager.AStarGridManager _aStarGridManager;
 
 
-    public override async void _Ready()
+    public async void Initialize()
     {
         // 获取节点
         _inputHandler = GetTree().CurrentScene.GetNode<InputHandler>("%InputHandler");
@@ -36,16 +36,6 @@ public partial class StartState : Node, IState
         await ToSignal(GetTree(), "process_frame");
         //最后初始化
         _aStarGridManager.Initialize();
-    }
-
-    public void Enter()
-    {
-        // GD.Print("StartState Enter");
-    }
-
-    public void Exit()
-    {
-        // GD.Print("StartState Exit");
     }
 
     public void Update(double delta)

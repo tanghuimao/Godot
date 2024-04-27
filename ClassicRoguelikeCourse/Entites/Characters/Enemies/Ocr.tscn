@@ -1,15 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1rwdls70vtqk"]
+[gd_scene load_steps=3 format=3 uid="uid://b1rwdls70vtqk"]
 
 [ext_resource type="PackedScene" uid="uid://b4dsejh2s2pfd" path="res://Entites/Characters/Enemies/Enemy.tscn" id="1_3rdpy"]
-[ext_resource type="Texture2D" uid="uid://5i1k6wyvhgfj" path="res://Assets/Textures/tile_sheet.png" id="2_l3134"]
 [ext_resource type="Resource" uid="uid://brj0c76rtd15v" path="res://Resources/CharacterData/EnemyData/OrcData.tres" id="2_ocn0k"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nseu7"]
-atlas = ExtResource("2_l3134")
-region = Rect2(112, 80, 16, 16)
-
 [node name="Ocr" instance=ExtResource("1_3rdpy")]
-CharacterData = ExtResource("2_ocn0k")
+_characterData = ExtResource("2_ocn0k")
 
 [node name="Sprite2D" parent="." index="0"]
-texture = SubResource("AtlasTexture_nseu7")
+region_rect = Rect2(112, 80, 16, 16)

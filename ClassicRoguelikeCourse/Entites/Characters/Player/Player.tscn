@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgqtn7ne7egh3"]
+[gd_scene load_steps=6 format=3 uid="uid://bgqtn7ne7egh3"]
 
 [ext_resource type="PackedScene" uid="uid://d2lvmy25nvxme" path="res://Entites/Characters/Character.tscn" id="1_ea2ed"]
 [ext_resource type="Script" path="res://Entites/Characters/Player/Player.cs" id="2_84ngy"]
@@ -6,17 +6,19 @@
 [ext_resource type="Resource" uid="uid://0kmptyj4pfq8" path="res://Resources/CharacterData/PlayerData/PlayerData.tres" id="3_jqke4"]
 [ext_resource type="PackedScene" uid="uid://d0mihsls8bsjm" path="res://Entites/Characters/Player/PlayerDebugger.tscn" id="4_rmsis"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5u83w"]
-atlas = ExtResource("3_gjiso")
-region = Rect2(0, 80, 16, 16)
-
 [node name="Player" instance=ExtResource("1_ea2ed")]
 script = ExtResource("2_84ngy")
-CharacterData = ExtResource("3_jqke4")
+_characterData = ExtResource("3_jqke4")
 
 [node name="Camera2D" type="Camera2D" parent="." index="0"]
 
 [node name="PlayerDebugger" parent="." index="1" instance=ExtResource("4_rmsis")]
 
 [node name="Sprite2D" parent="." index="2"]
-texture = SubResource("AtlasTexture_5u83w")
+scale = Vector2(1.02892, 1)
+
+[node name="DeathSprite2D" type="Sprite2D" parent="." index="3"]
+visible = false
+texture = ExtResource("3_gjiso")
+region_enabled = true
+region_rect = Rect2(16, 80, 16, 16)

@@ -1,4 +1,5 @@
 using ClassicRoguelikeCourse.Entites.Characters.Player;
+using ClassicRoguelikeCourse.Managers.CombatManager;
 using ClassicRoguelikeCourse.Managers.MapManager;
 using Godot;
 
@@ -18,13 +19,15 @@ public partial class RangAttackAi : Node, IAi
     private Enemy _enemy;
     // 线段
     private Line2D _line2D;
-    
+    // 战斗管理器
+    private CombatManager _combatManager;
     public void Initialize()
     {
         _mapManager = GetTree().CurrentScene.GetNode<MapManager>("%MapManager");
         _player = GetTree().CurrentScene.GetNode<Player>("%Player");
         _enemy = GetParent().GetParent<Enemy>();
         _line2D = GetNode<Line2D>("Line2D");
+        _combatManager = GetTree().CurrentScene.GetNode<CombatManager>("%CombatManager");
     }
 
     public bool Execute()
@@ -37,7 +40,8 @@ public partial class RangAttackAi : Node, IAi
         // 如果距离玩家大于视野，则不执行
         if (distancePlayer > _enemy.CharacterData.Sight) return false;
         
-        //TODO  攻击将纳入战斗结算
+        //攻击将纳入战斗结算
+        _combatManager.AddCombatant(_enemy, _player);
         GD.Print($"{_enemy.CharacterData.Name}远程攻击了{_player.CharacterData.Name}");
         // 显示远程攻击线
         ShowRangeAttackLine(_enemy.GlobalPosition, _player.GlobalPosition);

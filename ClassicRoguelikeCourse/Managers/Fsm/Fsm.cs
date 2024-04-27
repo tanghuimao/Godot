@@ -22,7 +22,12 @@ public partial class Fsm : Node, IManager
         _waitForInputState = GetNode<WaitForInputState>("WaitForInputState");
         _actionState = GetNode<ActionState>("ActionState");
         _combatState = GetNode<CombatState>("CombatState");
-        //状态切换
+        //初始化
+        _startState.Initialize();
+        _waitForInputState.Initialize();
+        _actionState.Initialize();
+        _combatState.Initialize();
+        //订阅状态
         _startState.UpdateEvent += OnStartStateUpdate;
         _waitForInputState.UpdateEvent += OnWaitForInputStateUpdate;
         _actionState.UpdateEvent += OnActionStateUpdate;
@@ -31,7 +36,6 @@ public partial class Fsm : Node, IManager
         //初始状态
         _currentState = _startState;
         
-        _currentState.Enter();
     }
     
     //视觉帧调用
@@ -46,9 +50,7 @@ public partial class Fsm : Node, IManager
     /// <param name="state"></param>
     private void OnStartStateUpdate(IState state)
     {
-        state.Exit();
         _currentState = _waitForInputState;
-        _currentState.Enter();
         // GD.Print("状态切换至：", nameof(_waitForInputState));
     }
     /// <summary>
@@ -57,9 +59,7 @@ public partial class Fsm : Node, IManager
     /// <param name="state"></param>
     private void OnWaitForInputStateUpdate(IState state)
     {
-        state.Exit();
         _currentState = _actionState;
-        _currentState.Enter();
         // GD.Print("状态切换至：", nameof(_actionState));
     }
     ///  <summary>
@@ -68,9 +68,7 @@ public partial class Fsm : Node, IManager
     /// <param name="state"></param>
     private void OnActionStateUpdate(IState state)
     {
-        state.Exit();
         _currentState = _combatState;
-        _currentState.Enter();
         // GD.Print("状态切换至：", nameof(_combatState));
     }
     ///  <summary>
@@ -79,9 +77,7 @@ public partial class Fsm : Node, IManager
     /// <param name="state"></param>
     private void OnCombatStateUpdate(IState state)
     {
-        state.Exit();
         _currentState = _startState;
-        _currentState.Enter();
         // GD.Print("状态切换至：", nameof(_startState));
     }
 

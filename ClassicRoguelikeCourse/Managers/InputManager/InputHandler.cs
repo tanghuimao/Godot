@@ -25,16 +25,20 @@ public partial class InputHandler : Node, IManager
     
     // 玩家
     private Player _player;
-    
+    // 战斗管理器
+    private CombatManager.CombatManager _combatManager;
     public void Initialize()
     {
         _mapManager = GetTree().CurrentScene.GetNode<MapManager.MapManager>("%MapManager");
         _player = GetTree().CurrentScene.GetNode<Player>("%Player");
         _interruptMovementTimer = GetNode<Timer>("InterruptMovementTimer");
+        _combatManager = GetTree().CurrentScene.GetNode<CombatManager.CombatManager>("%CombatManager");
     }
 
     public void Update(double delta)
     {
+        // 判断玩家是否死亡
+        if (_player.IsDead) return;
         HandleMovementInput();
     }
     /// <summary>
@@ -116,7 +120,8 @@ public partial class InputHandler : Node, IManager
             //如果碰撞体是敌人
             if (collider.Owner is Enemy enemy)
             {
-                //TODO  攻击将纳入战斗结算
+                //攻击将纳入战斗结算
+                _combatManager.AddCombatant(_player, enemy);
                 GD.Print($"玩家近战攻击了{enemy.CharacterData.Name}");
             }
         }

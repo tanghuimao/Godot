@@ -1,4 +1,5 @@
 using ClassicRoguelikeCourse.Entites.Characters.Player;
+using ClassicRoguelikeCourse.Managers.CombatManager;
 using ClassicRoguelikeCourse.Managers.MapManager;
 using Godot;
 
@@ -17,12 +18,16 @@ public partial class MeleeAttackAi : Node, IAi
 
     // 敌人
     private Enemy _enemy;
+
+    // 战斗管理器
+    private CombatManager _combatManager;
     
     public void Initialize()
     {
         _mapManager = GetTree().CurrentScene.GetNode<MapManager>("%MapManager");
         _player = GetTree().CurrentScene.GetNode<Player>("%Player");
         _enemy = GetParent().GetParent<Enemy>();
+        _combatManager = GetTree().CurrentScene.GetNode<CombatManager>("%CombatManager");
     }
 
     public bool Execute()
@@ -35,7 +40,8 @@ public partial class MeleeAttackAi : Node, IAi
         // 如果距离大于1，则进行不攻击
         if (distancePlayer > 1) return false;
         
-        //TODO  攻击将纳入战斗结算
+        //攻击将纳入战斗结算
+        _combatManager.AddCombatant(_enemy, _player);
         GD.Print($"{_enemy.CharacterData.Name}近战攻击了{_player.CharacterData.Name}");
         return true;
     }
