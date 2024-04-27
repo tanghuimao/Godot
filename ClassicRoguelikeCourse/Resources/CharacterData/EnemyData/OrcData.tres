@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://brj0c76rtd15v"]
+
+[ext_resource type="Script" path="res://Resources/CharacterData/EnemyData/EnemyData.cs" id="1_ea3du"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_ea3du")
+DeathDropExperience = 4.0
+DeathDropPickableObjects = {}
+Name = "兽人"
+Sight = 6
+Strength = 5
+Constitution = 5
+Agility = 5
+StrengthIncrementEffects = {
+"Attack": 2.0,
+"Defend": 1.0
+}
+ConstitutionIncrementEffects = {
+"Health": 3.0,
+"MaxHealth": 3.0
+}
+AgilityIncrementEffects = {
+"CriticalChance": 0.0,
+"Dodge": 0.0
+}

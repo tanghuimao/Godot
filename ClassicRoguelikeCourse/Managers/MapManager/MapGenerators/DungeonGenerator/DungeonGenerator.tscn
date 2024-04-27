@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq5pa6d2tec1d"]
+
+[ext_resource type="Script" path="res://Managers/MapManager/MapGenerators/DungeonGenerator/DungeonGenerator.cs" id="1_38cou"]
+
+[node name="DungeonGenerator" type="Node"]
+script = ExtResource("1_38cou")

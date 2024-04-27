@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0dx74mn4jlpx"]
+
+[ext_resource type="Script" path="res://Managers/Fsm/GameState/StartState.cs" id="1_vf01r"]
+
+[node name="StartState" type="Node"]
+script = ExtResource("1_vf01r")

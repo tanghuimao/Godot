@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfgob76md1xk4"]
+
+[ext_resource type="PackedScene" uid="uid://b4dsejh2s2pfd" path="res://Entites/Characters/Enemies/Enemy.tscn" id="1_a5v5e"]
+[ext_resource type="Resource" uid="uid://cverdmfjl3b8b" path="res://Resources/CharacterData/EnemyData/RatData.tres" id="2_chcxa"]
+[ext_resource type="Texture2D" uid="uid://5i1k6wyvhgfj" path="res://Assets/Textures/tile_sheet.png" id="2_kx83f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkhoa"]
+atlas = ExtResource("2_kx83f")
+region = Rect2(80, 80, 16, 16)
+
+[node name="Rat" instance=ExtResource("1_a5v5e")]
+CharacterData = ExtResource("2_chcxa")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = SubResource("AtlasTexture_nkhoa")

@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://djh2vsvdybrvf"]
+
+[ext_resource type="Script" path="res://Managers/Fsm/Fsm.cs" id="1_m762a"]
+[ext_resource type="PackedScene" uid="uid://dockcpq7drjre" path="res://Managers/Fsm/GameState/ActionState.tscn" id="2_fqlq3"]
+[ext_resource type="PackedScene" uid="uid://b216rqlk0pucc" path="res://Managers/Fsm/GameState/CombatState.tscn" id="3_px46a"]
+[ext_resource type="PackedScene" uid="uid://c0dx74mn4jlpx" path="res://Managers/Fsm/GameState/StartState.tscn" id="4_undlb"]
+[ext_resource type="PackedScene" uid="uid://csclr278ky327" path="res://Managers/Fsm/GameState/WaitForInputState.tscn" id="5_vv4af"]
+
+[node name="Fsm" type="Node"]
+script = ExtResource("1_m762a")
+
+[node name="ActionState" parent="." instance=ExtResource("2_fqlq3")]
+
+[node name="CombatState" parent="." instance=ExtResource("3_px46a")]
+
+[node name="StartState" parent="." instance=ExtResource("4_undlb")]
+
+[node name="WaitForInputState" parent="." instance=ExtResource("5_vv4af")]

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cplx78iavynfs"]
+
+[ext_resource type="Script" path="res://Resources/CharacterData/EnemyData/EnemyData.cs" id="1_ogj7u"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_ogj7u")
+DeathDropExperience = 3.0
+DeathDropPickableObjects = {}
+Name = "哥布林"
+Sight = 6
+Strength = 3
+Constitution = 3
+Agility = 3
+StrengthIncrementEffects = {
+"Attack": 2.0,
+"Defend": 1.0
+}
+ConstitutionIncrementEffects = {
+"Health": 3.0,
+"MaxHealth": 3.0
+}
+AgilityIncrementEffects = {
+"CriticalChance": 0.0,
+"Dodge": 0.0
+}

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqj0ghofy553a"]
+
+[ext_resource type="Script" path="res://Managers/MapManager/MapManager.cs" id="1_4c2w3"]
+[ext_resource type="Resource" uid="uid://277w6lvi34em" path="res://Resources/MapData/DungeonData/DungeonData.tres" id="2_8aab3"]
+
+[node name="MapManager" type="Node"]
+script = ExtResource("1_4c2w3")
+_mapData = ExtResource("2_8aab3")

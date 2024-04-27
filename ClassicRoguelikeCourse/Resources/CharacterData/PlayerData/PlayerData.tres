@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://0kmptyj4pfq8"]
+
+[ext_resource type="Script" path="res://Resources/CharacterData/PlayerData/PlayerData.cs" id="1_kwx0n"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_kwx0n")
+Name = "玩家"
+Sight = 6
+Strength = 8
+Constitution = 8
+Agility = 8
+StrengthIncrementEffects = {
+"Attack": 2.0,
+"Defend": 1.0
+}
+ConstitutionIncrementEffects = {
+"Health": 3.0,
+"MaxHealth": 3.0
+}
+AgilityIncrementEffects = {
+"CriticalChance": 0.005,
+"Dodge": 0.01
+}

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dvtxn1v3um8se"]
+
+[ext_resource type="Script" path="res://Resources/CharacterData/EnemyData/EnemyData.cs" id="1_youbh"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_youbh")
+DeathDropExperience = 5.0
+DeathDropPickableObjects = {}
+Name = "骷髅"
+Sight = 6
+Strength = 5
+Constitution = 5
+Agility = 5
+StrengthIncrementEffects = {
+"Attack": 2.0,
+"Defend": 1.0
+}
+ConstitutionIncrementEffects = {
+"Health": 3.0,
+"MaxHealth": 3.0
+}
+AgilityIncrementEffects = {
+"CriticalChance": 0.0,
+"Dodge": 0.0
+}

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://277w6lvi34em"]
+
+[ext_resource type="Script" path="res://Resources/MapData/DungeonData/DungeonData.cs" id="1_av8kg"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_av8kg")

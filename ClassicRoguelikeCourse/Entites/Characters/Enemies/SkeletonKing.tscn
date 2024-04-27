@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://csw3wuh31ipw2"]
+
+[ext_resource type="PackedScene" uid="uid://b4dsejh2s2pfd" path="res://Entites/Characters/Enemies/Enemy.tscn" id="1_xgdj4"]
+[ext_resource type="Resource" uid="uid://81xaxnxbgl8h" path="res://Resources/CharacterData/EnemyData/SkeletonKingData.tres" id="2_pcf11"]
+[ext_resource type="Texture2D" uid="uid://5i1k6wyvhgfj" path="res://Assets/Textures/tile_sheet.png" id="2_r5iq0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xyh2e"]
+atlas = ExtResource("2_r5iq0")
+region = Rect2(160, 80, 16, 16)
+
+[node name="SkeletonKing" instance=ExtResource("1_xgdj4")]
+CharacterData = ExtResource("2_pcf11")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = SubResource("AtlasTexture_xyh2e")

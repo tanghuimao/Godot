@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dpnjb7prs7n2o"]
+
+[ext_resource type="Script" path="res://Resources/CharacterData/EnemyData/EnemyData.cs" id="1_2pvm4"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_2pvm4")
+DeathDropExperience = 6.0
+DeathDropPickableObjects = {}
+Name = "骷髅法师"
+Sight = 8
+Strength = 4
+Constitution = 4
+Agility = 4
+StrengthIncrementEffects = {
+"Attack": 2.0,
+"Defend": 1.0
+}
+ConstitutionIncrementEffects = {
+"Health": 3.0,
+"MaxHealth": 3.0
+}
+AgilityIncrementEffects = {
+"CriticalChance": 0.0,
+"Dodge": 0.0
+}

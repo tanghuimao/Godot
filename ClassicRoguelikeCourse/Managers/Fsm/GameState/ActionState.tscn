@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dockcpq7drjre"]
+
+[ext_resource type="Script" path="res://Managers/Fsm/GameState/ActionState.cs" id="1_43mab"]
+
+[node name="ActionState" type="Node"]
+script = ExtResource("1_43mab")
