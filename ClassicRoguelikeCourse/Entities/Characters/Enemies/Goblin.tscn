@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://du6nppdaqvb40"]
 
-[ext_resource type="PackedScene" uid="uid://b4dsejh2s2pfd" path="res://Entites/Characters/Enemies/Enemy.tscn" id="1_sbvex"]
+[ext_resource type="PackedScene" uid="uid://b4dsejh2s2pfd" path="res://Entities/Characters/Enemies/Enemy.tscn" id="1_sbvex"]
 [ext_resource type="Resource" uid="uid://cplx78iavynfs" path="res://Resources/CharacterData/EnemyData/GoblinData.tres" id="2_ghhjs"]
 
 [node name="Goblin" instance=ExtResource("1_sbvex")]

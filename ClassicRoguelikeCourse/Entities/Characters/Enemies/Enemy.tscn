@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b4dsejh2s2pfd"]
 
-[ext_resource type="PackedScene" uid="uid://d2lvmy25nvxme" path="res://Entites/Characters/Character.tscn" id="1_bpyrm"]
-[ext_resource type="Script" path="res://Entites/Characters/Enemies/Enemy.cs" id="2_yv2e7"]
+[ext_resource type="PackedScene" uid="uid://d2lvmy25nvxme" path="res://Entities/Characters/Character.tscn" id="1_bpyrm"]
+[ext_resource type="Script" path="res://Entities/Characters/Enemies/Enemy.cs" id="2_yv2e7"]
 [ext_resource type="PackedScene" uid="uid://ctwdqlp011t84" path="res://Component/AiComponent/AiComponent.tscn" id="3_ca34o"]
 [ext_resource type="PackedScene" uid="uid://c0itu3lq0aa1d" path="res://Component/AiComponent/Ai/ChaseAi.tscn" id="4_h06hu"]
 [ext_resource type="PackedScene" uid="uid://up8kowsw6n57" path="res://Component/AiComponent/Ai/MeleeAttackAi.tscn" id="4_mj0bs"]

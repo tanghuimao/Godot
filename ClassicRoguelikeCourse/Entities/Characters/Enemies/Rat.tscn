@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bfgob76md1xk4"]
 
-[ext_resource type="PackedScene" uid="uid://b4dsejh2s2pfd" path="res://Entites/Characters/Enemies/Enemy.tscn" id="1_a5v5e"]
+[ext_resource type="PackedScene" uid="uid://b4dsejh2s2pfd" path="res://Entities/Characters/Enemies/Enemy.tscn" id="1_a5v5e"]
 [ext_resource type="Resource" uid="uid://cverdmfjl3b8b" path="res://Resources/CharacterData/EnemyData/RatData.tres" id="2_chcxa"]
 
 [node name="Rat" instance=ExtResource("1_a5v5e")]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b1rwdls70vtqk"]
 
-[ext_resource type="PackedScene" uid="uid://b4dsejh2s2pfd" path="res://Entites/Characters/Enemies/Enemy.tscn" id="1_3rdpy"]
+[ext_resource type="PackedScene" uid="uid://b4dsejh2s2pfd" path="res://Entities/Characters/Enemies/Enemy.tscn" id="1_3rdpy"]
 [ext_resource type="Resource" uid="uid://brj0c76rtd15v" path="res://Resources/CharacterData/EnemyData/OrcData.tres" id="2_ocn0k"]
 
 [node name="Ocr" instance=ExtResource("1_3rdpy")]

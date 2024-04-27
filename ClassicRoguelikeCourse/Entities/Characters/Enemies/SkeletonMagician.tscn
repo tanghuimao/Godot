@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bh6oerlp3pr35"]
 
-[ext_resource type="PackedScene" uid="uid://b4dsejh2s2pfd" path="res://Entites/Characters/Enemies/Enemy.tscn" id="1_ee8nt"]
+[ext_resource type="PackedScene" uid="uid://b4dsejh2s2pfd" path="res://Entities/Characters/Enemies/Enemy.tscn" id="1_ee8nt"]
 [ext_resource type="Resource" uid="uid://dpnjb7prs7n2o" path="res://Resources/CharacterData/EnemyData/SkeletonMagicianData.tres" id="2_8kd46"]
 [ext_resource type="PackedScene" uid="uid://bm8aoie6dykxf" path="res://Component/AiComponent/Ai/RangAttackAi.tscn" id="4_vhl06"]
 

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://djh2vsvdybrvf" path="res://Managers/Fsm/Fsm.tscn" id="2_sukfd"]
 [ext_resource type="PackedScene" uid="uid://dwc11cmwvgkye" path="res://Managers/InputManager/InputHandler.tscn" id="3_wru1m"]
 [ext_resource type="PackedScene" uid="uid://bqj0ghofy553a" path="res://Managers/MapManager/MapManager.tscn" id="4_daonv"]
-[ext_resource type="PackedScene" uid="uid://bgqtn7ne7egh3" path="res://Entites/Characters/Player/Player.tscn" id="4_mnwry"]
+[ext_resource type="PackedScene" uid="uid://bgqtn7ne7egh3" path="res://Entities/Characters/Player/Player.tscn" id="4_mnwry"]
 [ext_resource type="Script" path="res://Resources/MapData/DungeonData/DungeonData.cs" id="5_mwd74"]
 [ext_resource type="PackedScene" uid="uid://bq5pa6d2tec1d" path="res://Managers/MapManager/MapGenerators/DungeonGenerator/DungeonGenerator.tscn" id="5_pwa3j"]
 [ext_resource type="PackedScene" uid="uid://d1toxjtw5uqfk" path="res://Managers/AStarGridManager/AStarGridManager.tscn" id="7_v68hj"]

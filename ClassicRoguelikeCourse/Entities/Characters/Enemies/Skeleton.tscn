@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bnh677va2dieu"]
 
-[ext_resource type="PackedScene" uid="uid://b4dsejh2s2pfd" path="res://Entites/Characters/Enemies/Enemy.tscn" id="1_i33xr"]
+[ext_resource type="PackedScene" uid="uid://b4dsejh2s2pfd" path="res://Entities/Characters/Enemies/Enemy.tscn" id="1_i33xr"]
 [ext_resource type="Resource" uid="uid://dvtxn1v3um8se" path="res://Resources/CharacterData/EnemyData/SkeletonData.tres" id="2_6g6bb"]
 
 [node name="Skeleton" instance=ExtResource("1_i33xr")]
