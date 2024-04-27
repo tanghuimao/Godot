@@ -1,4 +1,5 @@
 using System;
+using ClassicRoguelikeCourse.Entites.Characters.Player;
 using Godot;
 
 namespace ClassicRoguelikeCourse.Managers;
@@ -18,8 +19,17 @@ public partial class InputHandler : Node, IManager
     private float _minDurationInterruptMovement = 0.05f;
     //定义中断移动计时器当前值
     private float _currentDurationInterruptMovement;
+    
+    // 地图管理器
+    private MapManager.MapManager _mapManager;
+    
+    // 玩家
+    private Player _player;
+    
     public void Initialize()
     {
+        _mapManager = GetTree().CurrentScene.GetNode<MapManager.MapManager>("%MapManager");
+        _player = GetTree().CurrentScene.GetNode<Player>("%Player");
         _interruptMovementTimer = GetNode<Timer>("InterruptMovementTimer");
     }
 
@@ -47,8 +57,9 @@ public partial class InputHandler : Node, IManager
 
         //判断是否中断移动计时器 未停止则不能移动
         if (!_interruptMovementTimer.IsStopped()) return false;
-        
-        
+
+        //尝试处理近战攻击
+        TryHandleMeleeAttack(direction);
         //触发移动事件
         MovementInputEvent?.Invoke(direction);
         //启动中断移动计时器
@@ -73,5 +84,42 @@ public partial class InputHandler : Node, IManager
         //获取移动方向
         var direction = Input.GetVector("move_left", "move_right", "move_up", "move_down");
         return (Vector2I)direction.Sign();
+    }
+
+    /// <summary>
+    /// 尝试处理近战攻击
+    /// </summary>
+    /// <param name="direction">攻击方向</param>
+    private void TryHandleMeleeAttack(Vector2I direction)
+    {
+        //攻击目标位置
+        var targetPosition = _player.GlobalPosition + direction * _mapManager.MapData.CellSize;
+        //获取物理空间状态
+        var space = _player.GetWorld2D().DirectSpaceState;
+
+        var parameters = new PhysicsPointQueryParameters2D
+        {
+            Position = targetPosition, //目标位置
+            CollideWithAreas = true, //碰撞区域
+            CollisionMask = (uint)PhysicsLayer.BlockMovement, //碰撞掩码
+            CollideWithBodies = false, //忽略其他碰撞体  关注Area2D
+        };
+        //碰撞检测结果  如果有碰撞结果 results.Count > 0 没有则 results.Count = 0
+        var results = space.IntersectPoint(parameters);
+        //如果没有碰撞结果
+        if (results.Count == 0) return;
+        
+        foreach (var result in results)
+        {
+            //获取碰撞体
+            var collider = result["collider"].As<Area2D>();
+            //如果碰撞体是敌人
+            if (collider.Owner is Enemy enemy)
+            {
+                //TODO  攻击将纳入战斗结算
+                GD.Print($"玩家近战攻击了{enemy.CharacterData.Name}");
+            }
+        }
+
     }
 }

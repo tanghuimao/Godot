@@ -15,21 +15,27 @@ public partial class StartState : Node, IState
     private MapManager.MapManager _mapManager;
     private InputHandler _inputHandler;
     private Player _player;
-    private EnemySpawner _enemySpawner;
+    private EnemyManager.EnemyManager _enemyManager;
+    private AStarGridManager.AStarGridManager _aStarGridManager;
 
 
-    public override void _Ready()
+    public override async void _Ready()
     {
         // 获取节点
         _inputHandler = GetTree().CurrentScene.GetNode<InputHandler>("%InputHandler");
         _player = GetTree().CurrentScene.GetNode<Player>("%Player");
         _mapManager = GetTree().CurrentScene.GetNode<MapManager.MapManager>("%MapManager");
-        _enemySpawner = GetTree().CurrentScene.GetNode<EnemySpawner>("%EnemySpawner");
+        _enemyManager = GetTree().CurrentScene.GetNode<EnemyManager.EnemyManager>("%EnemyManager");
+        _aStarGridManager = GetTree().CurrentScene.GetNode<AStarGridManager.AStarGridManager>("%AStarGridManager");
         // 初始化
         _player.Initialize();
-        _enemySpawner.Initialize();
+        _enemyManager.Initialize();
         _inputHandler.Initialize();
         _mapManager.Initialize();
+        // 等待一帧
+        await ToSignal(GetTree(), "process_frame");
+        //最后初始化
+        _aStarGridManager.Initialize();
     }
 
     public void Enter()

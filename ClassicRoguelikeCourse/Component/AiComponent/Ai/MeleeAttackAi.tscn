@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://up8kowsw6n57"]
+
+[ext_resource type="Script" path="res://Component/AiComponent/Ai/MeleeAttackAi.cs" id="1_aqu5g"]
+
+[node name="MeleeAi" type="Node"]
+script = ExtResource("1_aqu5g")

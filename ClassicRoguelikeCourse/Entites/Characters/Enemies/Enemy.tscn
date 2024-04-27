@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4dsejh2s2pfd"]
+[gd_scene load_steps=7 format=3 uid="uid://b4dsejh2s2pfd"]
 
 [ext_resource type="PackedScene" uid="uid://d2lvmy25nvxme" path="res://Entites/Characters/Character.tscn" id="1_bpyrm"]
 [ext_resource type="Script" path="res://Entites/Characters/Enemies/Enemy.cs" id="2_yv2e7"]
+[ext_resource type="PackedScene" uid="uid://ctwdqlp011t84" path="res://Component/AiComponent/AiComponent.tscn" id="3_ca34o"]
+[ext_resource type="PackedScene" uid="uid://c0itu3lq0aa1d" path="res://Component/AiComponent/Ai/ChaseAi.tscn" id="4_h06hu"]
+[ext_resource type="PackedScene" uid="uid://up8kowsw6n57" path="res://Component/AiComponent/Ai/MeleeAttackAi.tscn" id="4_mj0bs"]
+[ext_resource type="PackedScene" uid="uid://ckqwwem4lkwww" path="res://Component/AiComponent/Ai/WalkAroundAi.tscn" id="4_pbyq6"]
 
 [node name="Enemy" instance=ExtResource("1_bpyrm")]
 script = ExtResource("2_yv2e7")
+
+[node name="AiComponent" parent="." index="2" instance=ExtResource("3_ca34o")]
+
+[node name="MeleeAi" parent="AiComponent" index="0" instance=ExtResource("4_mj0bs")]
+
+[node name="ChaseAi" parent="AiComponent" index="1" instance=ExtResource("4_h06hu")]
+
+[node name="WalkAroundAi" parent="AiComponent" index="2" instance=ExtResource("4_pbyq6")]

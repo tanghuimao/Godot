@@ -1,12 +1,13 @@
 using System.Collections.Generic;
-using ClassicRoguelikeCourse.Managers;
 using Godot;
 using Godot.Collections;
+
+namespace ClassicRoguelikeCourse.Managers.EnemyManager;
 
 /// <summary>
 /// 敌人生成器
 /// </summary>
-public partial class EnemySpawner : Node, IManager
+public partial class EnemyManager : Node, IManager
 {
     // 敌人数量
     [Export]

@@ -61,4 +61,20 @@ public partial class Character : Node2D, IEntity
         //暴击率
         CharacterData.CriticalChance = CharacterData.Agility * CharacterData.AgilityIncrementEffects["CriticalChance"];
     }
+
+    /// <summary>
+    /// 获取当前角色到目标单元格距离
+    /// </summary>
+    /// <param name="targetCell"></param>
+    /// <returns></returns>
+    public int GetDistanceTo(Vector2I targetCell)
+    {
+        //获取当前角色到目标单元格距离
+        var startCell = (Vector2I)(GlobalPosition - _mapManager.MapData.CellSize / 2) / _mapManager.MapData.CellSize;
+        //计算距离
+        var distanceX = Mathf.Abs(startCell.X - targetCell.X);
+        var distanceY = Mathf.Abs(startCell.Y - targetCell.Y);
+        //返回距离
+        return Mathf.Max(distanceX, distanceY);
+    }
 }

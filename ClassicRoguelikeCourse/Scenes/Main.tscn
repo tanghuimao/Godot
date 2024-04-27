@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b7alouchlv4m2"]
+[gd_scene load_steps=13 format=3 uid="uid://b7alouchlv4m2"]
 
 [ext_resource type="Script" path="res://Scenes/Main.cs" id="1_qa8g0"]
 [ext_resource type="PackedScene" uid="uid://djh2vsvdybrvf" path="res://Managers/Fsm/Fsm.tscn" id="2_sukfd"]
@@ -7,13 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bgqtn7ne7egh3" path="res://Entites/Characters/Player/Player.tscn" id="4_mnwry"]
 [ext_resource type="Script" path="res://Resources/MapData/DungeonData/DungeonData.cs" id="5_mwd74"]
 [ext_resource type="PackedScene" uid="uid://bq5pa6d2tec1d" path="res://Managers/MapManager/MapGenerators/DungeonGenerator/DungeonGenerator.tscn" id="5_pwa3j"]
-[ext_resource type="PackedScene" uid="uid://b1rwdls70vtqk" path="res://Entites/Characters/Enemies/Ocr.tscn" id="8_bkwm0"]
+[ext_resource type="PackedScene" uid="uid://d1toxjtw5uqfk" path="res://Managers/AStarGridManager/AStarGridManager.tscn" id="7_v68hj"]
 [ext_resource type="Script" path="res://Resources/CharacterData/PlayerData/PlayerData.cs" id="8_n8eao"]
-[ext_resource type="PackedScene" uid="uid://cqe3npdbw2rom" path="res://Managers/EnemySpawner/EnemySpawner.tscn" id="8_xp3of"]
-[ext_resource type="PackedScene" uid="uid://bnh677va2dieu" path="res://Entites/Characters/Enemies/Skeleton.tscn" id="9_rjogn"]
-[ext_resource type="PackedScene" uid="uid://du6nppdaqvb40" path="res://Entites/Characters/Enemies/Goblin.tscn" id="10_yh8a1"]
-[ext_resource type="PackedScene" uid="uid://bfgob76md1xk4" path="res://Entites/Characters/Enemies/Rat.tscn" id="11_lgrr1"]
-[ext_resource type="PackedScene" uid="uid://csw3wuh31ipw2" path="res://Entites/Characters/Enemies/SkeletonKing.tscn" id="13_nheki"]
+[ext_resource type="PackedScene" uid="uid://cqe3npdbw2rom" path="res://Managers/EnemyManager/EnemyManager.tscn" id="8_xp3of"]
 
 [sub_resource type="Resource" id="Resource_mrk66"]
 resource_local_to_scene = true
@@ -43,11 +39,10 @@ AgilityIncrementEffects = {
 [node name="Main" type="Node"]
 script = ExtResource("1_qa8g0")
 
-[node name="Fsm" parent="." instance=ExtResource("2_sukfd")]
+[node name="TileMap" type="TileMap" parent="."]
 unique_name_in_owner = true
-
-[node name="InputHandler" parent="." instance=ExtResource("3_wru1m")]
-unique_name_in_owner = true
+format = 2
+layer_0/name = "Default"
 
 [node name="MapManager" parent="." instance=ExtResource("4_daonv")]
 unique_name_in_owner = true
@@ -55,27 +50,21 @@ _mapData = SubResource("Resource_mrk66")
 
 [node name="DungeonGenerator" parent="MapManager" instance=ExtResource("5_pwa3j")]
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="Fsm" parent="." instance=ExtResource("2_sukfd")]
 unique_name_in_owner = true
-format = 2
-layer_0/name = "Default"
+
+[node name="InputHandler" parent="." instance=ExtResource("3_wru1m")]
+unique_name_in_owner = true
 
 [node name="Player" parent="." instance=ExtResource("4_mnwry")]
 unique_name_in_owner = true
 CharacterData = SubResource("Resource_ixdd1")
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-
-[node name="EnemySpawner" parent="." instance=ExtResource("8_xp3of")]
-unique_name_in_owner = true
-_maxEnemyCount = 40
-_enemyScenes = {
-ExtResource("11_lgrr1"): 50.0,
-ExtResource("10_yh8a1"): 40.0,
-ExtResource("8_bkwm0"): 30.0,
-ExtResource("9_rjogn"): 20.0
-}
-_bossScenes = [ExtResource("13_nheki")]
-
 [node name="EnemyContainer" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="EnemyManager" parent="." instance=ExtResource("8_xp3of")]
+unique_name_in_owner = true
+
+[node name="AStarGridManager" parent="." instance=ExtResource("7_v68hj")]
 unique_name_in_owner = true

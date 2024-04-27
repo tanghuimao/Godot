@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckqwwem4lkwww"]
+
+[ext_resource type="Script" path="res://Component/AiComponent/Ai/WalkAroundAi.cs" id="1_pbims"]
+
+[node name="WalkAroundAi" type="Node"]
+script = ExtResource("1_pbims")

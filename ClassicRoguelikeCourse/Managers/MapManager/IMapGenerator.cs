@@ -1,4 +1,5 @@
-﻿using ClassicRoguelikeCourse.Entites;
+﻿using System;
+using ClassicRoguelikeCourse.Entites;
 using Godot;
 
 namespace ClassicRoguelikeCourse.Managers.MapManager;

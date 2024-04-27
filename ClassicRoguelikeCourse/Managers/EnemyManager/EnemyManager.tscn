@@ -1,0 +1,21 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqe3npdbw2rom"]
+
+[ext_resource type="Script" path="res://Managers/EnemyManager/EnemyManager.cs" id="1_5j5bx"]
+[ext_resource type="PackedScene" uid="uid://bfgob76md1xk4" path="res://Entites/Characters/Enemies/Rat.tscn" id="2_4yll4"]
+[ext_resource type="PackedScene" uid="uid://du6nppdaqvb40" path="res://Entites/Characters/Enemies/Goblin.tscn" id="3_hptc1"]
+[ext_resource type="PackedScene" uid="uid://b1rwdls70vtqk" path="res://Entites/Characters/Enemies/Ocr.tscn" id="4_pcl3j"]
+[ext_resource type="PackedScene" uid="uid://bnh677va2dieu" path="res://Entites/Characters/Enemies/Skeleton.tscn" id="5_ldn23"]
+[ext_resource type="PackedScene" uid="uid://bh6oerlp3pr35" path="res://Entites/Characters/Enemies/SkeletonMagician.tscn" id="6_rc734"]
+[ext_resource type="PackedScene" uid="uid://csw3wuh31ipw2" path="res://Entites/Characters/Enemies/SkeletonKing.tscn" id="7_fo1wd"]
+
+[node name="EnemyManager" type="Node"]
+script = ExtResource("1_5j5bx")
+_maxEnemyCount = 40
+_enemyScenes = {
+ExtResource("2_4yll4"): 50.0,
+ExtResource("3_hptc1"): 40.0,
+ExtResource("4_pcl3j"): 30.0,
+ExtResource("5_ldn23"): 20.0,
+ExtResource("6_rc734"): 10.0
+}
+_bossScenes = [ExtResource("7_fo1wd")]

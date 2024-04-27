@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0mihsls8bsjm"]
+
+[ext_resource type="Script" path="res://Entites/Characters/Player/PlayerDebugger.cs" id="1_r67c1"]
+
+[node name="PlayerDebugger" type="Node"]
+script = ExtResource("1_r67c1")

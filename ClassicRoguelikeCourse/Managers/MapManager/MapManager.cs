@@ -21,6 +21,7 @@ public partial class MapManager : Node, IManager
     
     //地图生成器
     private IMapGenerator _mapGenerator;
+    public IMapGenerator MapGenerator => _mapGenerator;
     
     //角色出生位置 玩家、敌人
     private List<Vector2I> _characterCellAtSpawn = new();

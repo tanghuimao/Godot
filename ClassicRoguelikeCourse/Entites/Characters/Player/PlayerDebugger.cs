@@ -5,7 +5,7 @@ namespace ClassicRoguelikeCourse.Entites.Characters.Player;
 /// <summary>
 /// 玩家调试信息
 /// </summary>
-public partial class PlayerDebug : Node
+public partial class PlayerDebugger : Node
 {
     public override void _Process(double delta)
     {

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0itu3lq0aa1d"]
+
+[ext_resource type="Script" path="res://Component/AiComponent/Ai/ChaseAi.cs" id="1_5mfwg"]
+
+[node name="ChaseAi" type="Node"]
+script = ExtResource("1_5mfwg")

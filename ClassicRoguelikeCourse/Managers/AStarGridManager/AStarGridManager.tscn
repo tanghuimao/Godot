@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1toxjtw5uqfk"]
+
+[ext_resource type="Script" path="res://Managers/AStarGridManager/AStarGridManager.cs" id="1_evjdw"]
+[ext_resource type="PackedScene" uid="uid://ueowwdpluuig" path="res://Managers/AStarGridManager/AStarGridManagerDebugger.tscn" id="2_7yrpu"]
+
+[node name="AStarGridManager" type="Node"]
+script = ExtResource("1_evjdw")
+
+[node name="AStarGridManagerDebugger" parent="." instance=ExtResource("2_7yrpu")]

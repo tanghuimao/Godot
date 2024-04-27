@@ -9,12 +9,16 @@ namespace ClassicRoguelikeCourse.Managers.Fsm.GameState;
 /// </summary>
 public partial class ActionState : Node, IState
 {
+    // 状态更新事件
     public event Action<IState> UpdateEvent;
+    // 玩家对象
     private Player _player;
-
+    // 敌人容器
+    public Node _enemyContainer;
     public override void _Ready()
     {
         _player = GetTree().CurrentScene.GetNode<Player>("%Player");
+        _enemyContainer = GetTree().CurrentScene.GetNode<Node>("%EnemyContainer");
     }
 
     public void Enter()
@@ -32,7 +36,14 @@ public partial class ActionState : Node, IState
     {
         //执行玩家的逻辑
         _player.Update(delta);
-        
+        //执行敌人的逻辑
+        foreach (var child in _enemyContainer.GetChildren())
+        {
+            if (child is Enemy enemy)
+            {
+                enemy.Update(delta);
+            }
+        }
         UpdateEvent?.Invoke(this);
     }
     
