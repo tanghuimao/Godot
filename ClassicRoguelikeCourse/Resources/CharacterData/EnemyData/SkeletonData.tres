@@ -1,18 +1,34 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://dvtxn1v3um8se"]
+[gd_resource type="Resource" load_steps=13 format=3 uid="uid://dvtxn1v3um8se"]
 
+[ext_resource type="PackedScene" uid="uid://bjx27exejgfhq" path="res://Entities/PickableObjects/Items/SmallPotion.tscn" id="1_0u02j"]
 [ext_resource type="PackedScene" uid="uid://dd505q4i8iv7d" path="res://Entities/PickableObjects/Items/MapScroll.tscn" id="1_hfr2l"]
 [ext_resource type="Script" path="res://Resources/CharacterData/EnemyData/EnemyData.cs" id="1_youbh"]
+[ext_resource type="PackedScene" uid="uid://dmyiw7rnsnje3" path="res://Entities/PickableObjects/Items/BigPotion.tscn" id="2_04sdj"]
 [ext_resource type="PackedScene" uid="uid://bgkkvujdlcfit" path="res://Entities/PickableObjects/Items/ReviveCross.tscn" id="2_5nv4r"]
 [ext_resource type="PackedScene" uid="uid://cxfjqkwugobyt" path="res://Entities/PickableObjects/Items/SightBall.tscn" id="3_ltpik"]
+[ext_resource type="PackedScene" uid="uid://cx1mud58brl0v" path="res://Entities/PickableObjects/Equipments/Sword.tscn" id="6_0ugrl"]
+[ext_resource type="PackedScene" uid="uid://jqwxatwxmxb1" path="res://Entities/PickableObjects/Equipments/Mace.tscn" id="7_c4xp6"]
+[ext_resource type="PackedScene" uid="uid://bu5dsyjxm1bx1" path="res://Entities/PickableObjects/Equipments/Shield.tscn" id="8_omh0l"]
+[ext_resource type="PackedScene" uid="uid://cjf744s1gwucw" path="res://Entities/PickableObjects/Equipments/Armour.tscn" id="9_lpwrl"]
+[ext_resource type="PackedScene" uid="uid://c2m576a6tfklm" path="res://Entities/PickableObjects/Equipments/Ring.tscn" id="10_dtgck"]
+[ext_resource type="PackedScene" uid="uid://ciitg2qtgewfi" path="res://Entities/PickableObjects/Equipments/Necklace.tscn" id="11_8xi4y"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_youbh")
 DeathDropExperience = 5.0
 DeathDropPickableObjects = {
-ExtResource("1_hfr2l"): 0.5,
+ExtResource("1_0u02j"): 0.0,
+ExtResource("2_04sdj"): 0.3,
+ExtResource("3_ltpik"): 0.0,
+ExtResource("1_hfr2l"): 0.0,
 ExtResource("2_5nv4r"): 0.5,
-ExtResource("3_ltpik"): 0.5
+ExtResource("6_0ugrl"): 0.0,
+ExtResource("7_c4xp6"): 0.0,
+ExtResource("8_omh0l"): 0.5,
+ExtResource("9_lpwrl"): 0.5,
+ExtResource("10_dtgck"): 0.0,
+ExtResource("11_8xi4y"): 0.0
 }
 Name = "骷髅"
 Sight = 6

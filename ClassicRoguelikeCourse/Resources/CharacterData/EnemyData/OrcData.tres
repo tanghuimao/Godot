@@ -1,23 +1,39 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://brj0c76rtd15v"]
+[gd_resource type="Resource" load_steps=13 format=3 uid="uid://brj0c76rtd15v"]
 
 [ext_resource type="Script" path="res://Resources/CharacterData/EnemyData/EnemyData.cs" id="1_ea3du"]
 [ext_resource type="PackedScene" uid="uid://cjf744s1gwucw" path="res://Entities/PickableObjects/Equipments/Armour.tscn" id="1_l6lkg"]
+[ext_resource type="PackedScene" uid="uid://bjx27exejgfhq" path="res://Entities/PickableObjects/Items/SmallPotion.tscn" id="1_mppl4"]
 [ext_resource type="PackedScene" uid="uid://jqwxatwxmxb1" path="res://Entities/PickableObjects/Equipments/Mace.tscn" id="2_3x72k"]
+[ext_resource type="PackedScene" uid="uid://dmyiw7rnsnje3" path="res://Entities/PickableObjects/Items/BigPotion.tscn" id="2_mjihx"]
+[ext_resource type="PackedScene" uid="uid://cxfjqkwugobyt" path="res://Entities/PickableObjects/Items/SightBall.tscn" id="3_dxyq0"]
 [ext_resource type="PackedScene" uid="uid://bu5dsyjxm1bx1" path="res://Entities/PickableObjects/Equipments/Shield.tscn" id="3_i0dbp"]
+[ext_resource type="PackedScene" uid="uid://dd505q4i8iv7d" path="res://Entities/PickableObjects/Items/MapScroll.tscn" id="4_obb0i"]
+[ext_resource type="PackedScene" uid="uid://bgkkvujdlcfit" path="res://Entities/PickableObjects/Items/ReviveCross.tscn" id="5_nwppp"]
+[ext_resource type="PackedScene" uid="uid://cx1mud58brl0v" path="res://Entities/PickableObjects/Equipments/Sword.tscn" id="6_hbdkc"]
+[ext_resource type="PackedScene" uid="uid://c2m576a6tfklm" path="res://Entities/PickableObjects/Equipments/Ring.tscn" id="10_7send"]
+[ext_resource type="PackedScene" uid="uid://ciitg2qtgewfi" path="res://Entities/PickableObjects/Equipments/Necklace.tscn" id="11_5lhe2"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_ea3du")
 DeathDropExperience = 4.0
 DeathDropPickableObjects = {
-ExtResource("1_l6lkg"): 0.5,
+ExtResource("1_mppl4"): 0.2,
+ExtResource("2_mjihx"): 0.3,
+ExtResource("3_dxyq0"): 0.4,
+ExtResource("4_obb0i"): 0.3,
+ExtResource("5_nwppp"): 0.0,
+ExtResource("6_hbdkc"): 0.0,
 ExtResource("2_3x72k"): 0.5,
-ExtResource("3_i0dbp"): 0.5
+ExtResource("3_i0dbp"): 0.5,
+ExtResource("1_l6lkg"): 0.5,
+ExtResource("10_7send"): 0.0,
+ExtResource("11_5lhe2"): 0.0
 }
 Name = "兽人"
 Sight = 6
 Strength = 5
-Constitution = 8
+Constitution = 10
 Agility = 3
 StrengthIncrementEffects = {
 "Attack": 2.0,

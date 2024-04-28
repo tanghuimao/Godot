@@ -1,8 +1,17 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://cplx78iavynfs"]
+[gd_resource type="Resource" load_steps=13 format=3 uid="uid://cplx78iavynfs"]
 
 [ext_resource type="PackedScene" uid="uid://bjx27exejgfhq" path="res://Entities/PickableObjects/Items/SmallPotion.tscn" id="1_dgkue"]
 [ext_resource type="Script" path="res://Resources/CharacterData/EnemyData/EnemyData.cs" id="1_ogj7u"]
 [ext_resource type="PackedScene" uid="uid://dmyiw7rnsnje3" path="res://Entities/PickableObjects/Items/BigPotion.tscn" id="2_dkl3c"]
+[ext_resource type="PackedScene" uid="uid://cxfjqkwugobyt" path="res://Entities/PickableObjects/Items/SightBall.tscn" id="3_57by6"]
+[ext_resource type="PackedScene" uid="uid://dd505q4i8iv7d" path="res://Entities/PickableObjects/Items/MapScroll.tscn" id="4_43h77"]
+[ext_resource type="PackedScene" uid="uid://bgkkvujdlcfit" path="res://Entities/PickableObjects/Items/ReviveCross.tscn" id="5_bb41o"]
+[ext_resource type="PackedScene" uid="uid://cx1mud58brl0v" path="res://Entities/PickableObjects/Equipments/Sword.tscn" id="6_dvt1d"]
+[ext_resource type="PackedScene" uid="uid://jqwxatwxmxb1" path="res://Entities/PickableObjects/Equipments/Mace.tscn" id="7_pb054"]
+[ext_resource type="PackedScene" uid="uid://bu5dsyjxm1bx1" path="res://Entities/PickableObjects/Equipments/Shield.tscn" id="8_it1il"]
+[ext_resource type="PackedScene" uid="uid://cjf744s1gwucw" path="res://Entities/PickableObjects/Equipments/Armour.tscn" id="9_s45x0"]
+[ext_resource type="PackedScene" uid="uid://c2m576a6tfklm" path="res://Entities/PickableObjects/Equipments/Ring.tscn" id="10_ujlug"]
+[ext_resource type="PackedScene" uid="uid://ciitg2qtgewfi" path="res://Entities/PickableObjects/Equipments/Necklace.tscn" id="11_jel17"]
 
 [resource]
 resource_local_to_scene = true
@@ -10,7 +19,16 @@ script = ExtResource("1_ogj7u")
 DeathDropExperience = 3.0
 DeathDropPickableObjects = {
 ExtResource("1_dgkue"): 0.5,
-ExtResource("2_dkl3c"): 0.5
+ExtResource("2_dkl3c"): 0.5,
+ExtResource("3_57by6"): 0.2,
+ExtResource("4_43h77"): 0.0,
+ExtResource("5_bb41o"): 0.0,
+ExtResource("6_dvt1d"): 0.5,
+ExtResource("7_pb054"): 0.0,
+ExtResource("8_it1il"): 0.2,
+ExtResource("9_s45x0"): 0.3,
+ExtResource("10_ujlug"): 0.0,
+ExtResource("11_jel17"): 0.0
 }
 Name = "哥布林"
 Sight = 6

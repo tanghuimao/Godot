@@ -1,12 +1,35 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://81xaxnxbgl8h"]
+[gd_resource type="Resource" load_steps=13 format=3 uid="uid://81xaxnxbgl8h"]
 
+[ext_resource type="PackedScene" uid="uid://bjx27exejgfhq" path="res://Entities/PickableObjects/Items/SmallPotion.tscn" id="1_fwuct"]
 [ext_resource type="Script" path="res://Resources/CharacterData/EnemyData/EnemyData.cs" id="1_qtcqt"]
+[ext_resource type="PackedScene" uid="uid://dmyiw7rnsnje3" path="res://Entities/PickableObjects/Items/BigPotion.tscn" id="2_17g7a"]
+[ext_resource type="PackedScene" uid="uid://cxfjqkwugobyt" path="res://Entities/PickableObjects/Items/SightBall.tscn" id="3_hkltl"]
+[ext_resource type="PackedScene" uid="uid://dd505q4i8iv7d" path="res://Entities/PickableObjects/Items/MapScroll.tscn" id="4_epx35"]
+[ext_resource type="PackedScene" uid="uid://bgkkvujdlcfit" path="res://Entities/PickableObjects/Items/ReviveCross.tscn" id="5_duxh8"]
+[ext_resource type="PackedScene" uid="uid://cx1mud58brl0v" path="res://Entities/PickableObjects/Equipments/Sword.tscn" id="6_t060p"]
+[ext_resource type="PackedScene" uid="uid://jqwxatwxmxb1" path="res://Entities/PickableObjects/Equipments/Mace.tscn" id="7_k6158"]
+[ext_resource type="PackedScene" uid="uid://bu5dsyjxm1bx1" path="res://Entities/PickableObjects/Equipments/Shield.tscn" id="8_0l8rk"]
+[ext_resource type="PackedScene" uid="uid://cjf744s1gwucw" path="res://Entities/PickableObjects/Equipments/Armour.tscn" id="9_yyhjc"]
+[ext_resource type="PackedScene" uid="uid://c2m576a6tfklm" path="res://Entities/PickableObjects/Equipments/Ring.tscn" id="10_g0k7p"]
+[ext_resource type="PackedScene" uid="uid://ciitg2qtgewfi" path="res://Entities/PickableObjects/Equipments/Necklace.tscn" id="11_12du2"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_qtcqt")
 DeathDropExperience = 18.0
-DeathDropPickableObjects = {}
+DeathDropPickableObjects = {
+ExtResource("1_fwuct"): 0.0,
+ExtResource("2_17g7a"): 0.0,
+ExtResource("3_hkltl"): 0.0,
+ExtResource("4_epx35"): 0.0,
+ExtResource("5_duxh8"): 0.5,
+ExtResource("6_t060p"): 0.0,
+ExtResource("7_k6158"): 0.0,
+ExtResource("8_0l8rk"): 0.0,
+ExtResource("9_yyhjc"): 0.5,
+ExtResource("10_g0k7p"): 0.5,
+ExtResource("11_12du2"): 0.5
+}
 Name = "骷髅王"
 Sight = 6
 Strength = 40
@@ -21,6 +44,6 @@ ConstitutionIncrementEffects = {
 "MaxHealth": 3.0
 }
 AgilityIncrementEffects = {
-"CriticalChance": 0.0,
-"Dodge": 0.0
+"CriticalChance": 0.005,
+"Dodge": 0.01
 }
