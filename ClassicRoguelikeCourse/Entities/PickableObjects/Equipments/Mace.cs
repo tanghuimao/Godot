@@ -25,7 +25,7 @@ public partial class Mace : Equipment, IRightHandHoldEquipment
         base.Initialize();
         _actualStrengthIncrement = GD.RandRange(_minStrengthIncrement, _maxStrengthIncrement);
         _description = "攻击：" + _actualAttackIncrement.ToString("0.0") + "\n" +
-                       "力量：" + _actualAttackIncrement;
+                       "力量：" + _actualStrengthIncrement;
     }
     
     public override void Equip()

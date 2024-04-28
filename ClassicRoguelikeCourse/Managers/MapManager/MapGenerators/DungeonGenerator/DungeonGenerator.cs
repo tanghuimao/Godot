@@ -103,7 +103,7 @@ public partial class DungeonGenerator : Node, IMapGenerator
             (int)TileMapLayer.Default,
             allCells,
             (int)TerrainSet.Default,
-            (int)DungeonTerrainSet.Wall
+            (int)DungeonTerrain.Wall
         );
     }
 
@@ -147,7 +147,7 @@ public partial class DungeonGenerator : Node, IMapGenerator
             (int)TileMapLayer.Default,
             allRoomCells,
             (int)TerrainSet.Default,
-            (int)DungeonTerrainSet.Floor
+            (int)DungeonTerrain.Floor
         );
     }
 
@@ -245,7 +245,7 @@ public partial class DungeonGenerator : Node, IMapGenerator
             (int)TileMapLayer.Default,
             allCorridorCells,
             (int)TerrainSet.Default,
-            (int)DungeonTerrainSet.Floor
+            (int)DungeonTerrain.Floor
         );
     }
 

@@ -11,14 +11,22 @@ namespace ClassicRoguelikeCourse.Managers.Fsm.GameState;
 /// </summary>
 public partial class StartState : Node, IState
 {
+    // 状态更新事件
     public event Action<IState> UpdateEvent;
-
+    // 地图管理器
     private MapManager.MapManager _mapManager;
+    // 输入管理器
     private InputHandler _inputHandler;
+    // 玩家
     private Player _player;
+    // 敌人管理器
     private EnemyManager.EnemyManager _enemyManager;
+    // A*网格管理器
     private AStarGridManager.AStarGridManager _aStarGridManager;
+    // 背包窗口
     private InventoryWindow _inventoryWindow;
+    // 迷雾管理器
+    private FogPainterManager.FogPainterManager _fogPainterManager;
 
 
     public async void Initialize()
@@ -30,6 +38,7 @@ public partial class StartState : Node, IState
         _enemyManager = GetTree().CurrentScene.GetNode<EnemyManager.EnemyManager>("%EnemyManager");
         _aStarGridManager = GetTree().CurrentScene.GetNode<AStarGridManager.AStarGridManager>("%AStarGridManager");
         _inventoryWindow = GetTree().CurrentScene.GetNode<InventoryWindow>("%InventoryWindow");
+        _fogPainterManager = GetTree().CurrentScene.GetNode<FogPainterManager.FogPainterManager>("%FogPainterManager");
         // 初始化
         _player.Initialize();
         _enemyManager.Initialize();
@@ -40,6 +49,7 @@ public partial class StartState : Node, IState
         await ToSignal(GetTree(), "process_frame");
         //最后初始化
         _aStarGridManager.Initialize();
+        _fogPainterManager.Initialize();
     }
 
     public void Update(double delta)

@@ -6,6 +6,7 @@ public enum PhysicsLayer
     BlockMovement = 1 << 0, //移动 1
     BlockSight = 1 << 1,    //视野 2
     PickableObject = 1 << 2,//可拾取 4
+    Fog = 1 << 3,//战争迷雾 8
 }
 /// <summary>
 /// 地图图层
@@ -26,7 +27,7 @@ public enum TerrainSet
 /// <summary>
 /// 地牢地形
 /// </summary>
-public enum DungeonTerrainSet
+public enum DungeonTerrain
 {
     Floor,
     Wall
@@ -34,6 +35,16 @@ public enum DungeonTerrainSet
 /// <summary>
 /// 森林地形
 /// </summary>
-public enum ForestTerrainSet
+public enum ForestTerrain
 {
+}
+
+/// <summary>
+/// 战争迷雾
+/// </summary>
+public enum FogTerrain
+{
+    Unexplored, //未探索
+    Explored, //探索
+    Visible //可见
 }

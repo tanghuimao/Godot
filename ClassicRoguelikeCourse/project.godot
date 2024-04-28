@@ -89,3 +89,4 @@ put_away_inventory_object={
 2d_physics/layer_1="block_movement"
 2d_physics/layer_2="block_sight"
 2d_physics/layer_3="pickable_object"
+2d_physics/layer_4="fog"

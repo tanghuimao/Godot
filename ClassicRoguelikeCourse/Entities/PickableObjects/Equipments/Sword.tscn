@@ -8,7 +8,7 @@ script = ExtResource("2_pu0ee")
 _minAttackIncrement = 3.0
 _maxAttackIncrement = 20.0
 _minAgilityIncrement = 1
-_maxAgilityIncrement = 3
+_maxAgilityIncrement = 10
 _name = "长剑"
 
 [node name="Sprite2D" parent="." index="0"]

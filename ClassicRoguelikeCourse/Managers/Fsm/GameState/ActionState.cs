@@ -15,10 +15,14 @@ public partial class ActionState : Node, IState
     private Player _player;
     // 敌人容器
     public Node _enemyContainer;
+    // 迷雾绘制管理器
+    private FogPainterManager.FogPainterManager _fogPainterManager;
+    
     public void Initialize()
     {
         _player = GetTree().CurrentScene.GetNode<Player>("%Player");
         _enemyContainer = GetTree().CurrentScene.GetNode<Node>("%EnemyContainer");
+        _fogPainterManager = GetTree().CurrentScene.GetNode<FogPainterManager.FogPainterManager>("%FogPainterManager");
     }
 
     public void Update(double delta)
@@ -33,6 +37,9 @@ public partial class ActionState : Node, IState
                 enemy.Update(delta);
             }
         }
+        //执行迷雾绘制逻辑
+        _fogPainterManager.Update(delta);
+        
         UpdateEvent?.Invoke(this);
     }
     
