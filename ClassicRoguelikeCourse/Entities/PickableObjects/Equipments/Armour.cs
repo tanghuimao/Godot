@@ -21,7 +21,7 @@ public partial class Armour : Equipment, IBodyWearEquipment
     private int _minConstitutionIncrement = 1;
     // 最大体质增加量
     [Export]
-    private int _maxConstitutionIncrement = 15;
+    private int _maxConstitutionIncrement = 10;
     // 实际体质增加量
     private int _actualConstitutionIncrement;
 

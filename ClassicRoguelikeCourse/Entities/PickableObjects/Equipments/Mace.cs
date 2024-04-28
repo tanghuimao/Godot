@@ -7,9 +7,13 @@ namespace ClassicRoguelikeCourse.Entities.PickableObjects.Equipments;
 /// </summary>
 public partial class Mace : Equipment, IRightHandHoldEquipment
 {
+    // 最小攻击增加量
+    [Export] private float _minAttackIncrement = 3f;
+
+    // 最大攻击增加量
+    [Export] private float _maxAttackIncrement = 20f;
     // 实际攻击增加量
-    [Export]
-    private float _actualAttackIncrement = 18f;
+    private float _actualAttackIncrement;
     
     // 最小力量增加量
     [Export]
@@ -23,6 +27,8 @@ public partial class Mace : Equipment, IRightHandHoldEquipment
     public override void Initialize()
     {
         base.Initialize();
+        // 计算实际攻击增加量
+        _actualAttackIncrement = (float)GD.RandRange(_minAttackIncrement, _maxAttackIncrement);
         _actualStrengthIncrement = GD.RandRange(_minStrengthIncrement, _maxStrengthIncrement);
         _description = "攻击：" + _actualAttackIncrement.ToString("0.0") + "\n" +
                        "力量：" + _actualStrengthIncrement;

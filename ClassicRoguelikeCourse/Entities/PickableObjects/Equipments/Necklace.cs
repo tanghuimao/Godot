@@ -21,7 +21,7 @@ public partial class Necklace : Equipment, INeckWearEquipment
     private int _minStrengthIncrement = 1;
     // 最大力量增加量
     [Export]
-    private int _maxStrengthIncrement = 8;
+    private int _maxStrengthIncrement = 10;
     // 实际力量增加量
     private int _actualStrengthIncrement;
     
@@ -30,7 +30,7 @@ public partial class Necklace : Equipment, INeckWearEquipment
     private int _minConstitutionIncrement = 1;
     // 最大体质增加量
     [Export]
-    private int _maxConstitutionIncrement = 15;
+    private int _maxConstitutionIncrement = 10;
     // 实际体质增加量
     private int _actualConstitutionIncrement;
 
