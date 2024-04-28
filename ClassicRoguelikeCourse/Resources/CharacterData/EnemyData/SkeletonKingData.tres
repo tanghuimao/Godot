@@ -8,10 +8,10 @@ script = ExtResource("1_qtcqt")
 DeathDropExperience = 18.0
 DeathDropPickableObjects = {}
 Name = "骷髅王"
-Sight = 8
-Strength = 18
-Constitution = 18
-Agility = 18
+Sight = 6
+Strength = 40
+Constitution = 40
+Agility = 40
 StrengthIncrementEffects = {
 "Attack": 2.0,
 "Defend": 1.0

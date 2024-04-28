@@ -1,3 +1,4 @@
+using ClassicRoguelikeCourse.Entities.PickableObjects.Equipments;
 using Godot;
 using Godot.Collections;
 
@@ -19,4 +20,11 @@ public partial class PlayerData : CharacterData
     public short BaseAttributePointsGainPerLevelUp = 5;
     //背包
     public Array<PickableObject> Inventory = new();
+
+    //装备
+    public ILeftHandHoldEquipment LeftHandHoldEquipment;
+    public IRightHandHoldEquipment RightHandHoldEquipment;
+    public IBodyWearEquipment BodyWearEquipment;
+    public INeckWearEquipment NeckWearEquipment;
+    public IFingerWearEquipment FingerWearEquipment;
 }

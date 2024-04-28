@@ -14,9 +14,9 @@ ExtResource("2_dkl3c"): 0.5
 }
 Name = "哥布林"
 Sight = 6
-Strength = 3
-Constitution = 3
-Agility = 3
+Strength = 5
+Constitution = 4
+Agility = 4
 StrengthIncrementEffects = {
 "Attack": 2.0,
 "Defend": 1.0

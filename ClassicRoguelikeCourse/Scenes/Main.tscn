@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b7alouchlv4m2"]
+[gd_scene load_steps=15 format=3 uid="uid://b7alouchlv4m2"]
 
 [ext_resource type="Script" path="res://Scenes/Main.cs" id="1_qa8g0"]
 [ext_resource type="PackedScene" uid="uid://djh2vsvdybrvf" path="res://Managers/Fsm/Fsm.tscn" id="2_sukfd"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Resources/CharacterData/PlayerData/PlayerData.cs" id="8_n8eao"]
 [ext_resource type="PackedScene" uid="uid://cqe3npdbw2rom" path="res://Managers/EnemyManager/EnemyManager.tscn" id="8_xp3of"]
 [ext_resource type="PackedScene" uid="uid://cogoga3da2hx6" path="res://Managers/CombatManager/CombatManager.tscn" id="9_31x8m"]
+[ext_resource type="PackedScene" uid="uid://cql33m6dmjt7g" path="res://UI/InventoryWindow/InventoryWindow.tscn" id="12_rclfk"]
 
 [sub_resource type="Resource" id="Resource_mrk66"]
 resource_local_to_scene = true
@@ -75,3 +76,7 @@ unique_name_in_owner = true
 [node name="Player" parent="." instance=ExtResource("4_mnwry")]
 unique_name_in_owner = true
 _characterData = SubResource("Resource_ve730")
+
+[node name="InventoryWindow" parent="." instance=ExtResource("12_rclfk")]
+unique_name_in_owner = true
+visible = false

@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using ClassicRoguelikeCourse.UI.InventoryWindow;
 using Godot;
 
 namespace ClassicRoguelikeCourse.Managers.Fsm.GameState;
@@ -15,20 +16,26 @@ public partial class WaitForInputState : Node, IState
 
     private InputHandler _inputHandler;
 
+    private InventoryWindow _inventoryWindow;
+
     public void Initialize()
     {
         // 获取当前场景下的InputHandler
         _inputHandler = GetTree().CurrentScene.GetNode<InputHandler>("%InputHandler");
+        _inventoryWindow = GetTree().CurrentScene.GetNode<InventoryWindow>("%InventoryWindow");
         // 监听InputHandler的输入事件
         _inputHandler.MovementInputEvent += OnMovementInputEvent;
         _inputHandler.PickupInputEvent += OnPickupInputEvent;
+        _inputHandler.ToggleInventoryWindowInputEvent += OnToggleInventoryWindowInputEvent;
+        _inputHandler.UseInventoryObjectInputEvent += OnUseInventoryObjectInputEvent;
+        _inputHandler.PutAwayInventoryObjectInputEvent += OnPutAwayInventoryObjectInputEvent;
     }
     public void Update(double delta)
     {
         _inputHandler.Update(delta);
     }
     /// <summary>
-    /// 输入事件
+    /// 移动事件
     /// </summary>
     /// <param name="obj"></param>
     private void OnMovementInputEvent(Vector2I obj)
@@ -36,9 +43,36 @@ public partial class WaitForInputState : Node, IState
         // 触发状态更新事件
         UpdateEvent?.Invoke(this);
     }
-    
+    /// <summary>
+    /// 拾取事件
+    /// </summary>
     private void OnPickupInputEvent()
     {
+        // 触发状态更新事件
+        UpdateEvent?.Invoke(this);
+    }
+    /// <summary>
+    /// 打开/关闭背包窗口事件
+    /// </summary>
+    private void OnToggleInventoryWindowInputEvent()
+    {
+        _inventoryWindow.Toggle();
+    }
+    /// <summary>
+    /// 使用背包物品事件
+    /// </summary>
+    private void OnPutAwayInventoryObjectInputEvent()
+    {
+        _inventoryWindow.UseInventoryObject();
+        // 触发状态更新事件
+        UpdateEvent?.Invoke(this);
+    }
+    /// <summary>
+    /// 使用背包物品事件
+    /// </summary>
+    private void OnUseInventoryObjectInputEvent()
+    {
+        _inventoryWindow.UseInventoryObject();
         // 触发状态更新事件
         UpdateEvent?.Invoke(this);
     }

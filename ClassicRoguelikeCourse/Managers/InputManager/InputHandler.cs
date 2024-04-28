@@ -1,5 +1,6 @@
 using System;
 using ClassicRoguelikeCourse.Entites.Characters.Player;
+using ClassicRoguelikeCourse.UI.InventoryWindow;
 using Godot;
 
 namespace ClassicRoguelikeCourse.Managers;
@@ -13,6 +14,13 @@ public partial class InputHandler : Node, IManager
     public event Action<Vector2I> MovementInputEvent;
     //定义拾取事件
     public event Action PickupInputEvent;
+    //定义打开背包事件
+    public event Action ToggleInventoryWindowInputEvent;
+    //定义使用背包物品事件
+    public event Action UseInventoryObjectInputEvent;
+    //定义丢弃背包物品事件
+    public event Action PutAwayInventoryObjectInputEvent;
+    
     //定义中断移动计时器
     private Timer _interruptMovementTimer;
     //定义中断移动计时器最大值
@@ -21,43 +29,95 @@ public partial class InputHandler : Node, IManager
     private float _minDurationInterruptMovement = 0.05f;
     //定义中断移动计时器当前值
     private float _currentDurationInterruptMovement;
-    
     // 地图管理器
     private MapManager.MapManager _mapManager;
-    
     // 玩家
     private Player _player;
     // 战斗管理器
     private CombatManager.CombatManager _combatManager;
+    // 背包窗口
+    private InventoryWindow _inventoryWindow;
+    
     public void Initialize()
     {
         _mapManager = GetTree().CurrentScene.GetNode<MapManager.MapManager>("%MapManager");
         _player = GetTree().CurrentScene.GetNode<Player>("%Player");
         _interruptMovementTimer = GetNode<Timer>("InterruptMovementTimer");
         _combatManager = GetTree().CurrentScene.GetNode<CombatManager.CombatManager>("%CombatManager");
+        _inventoryWindow = GetTree().CurrentScene.GetNode<InventoryWindow>("%InventoryWindow");
     }
 
     public void Update(double delta)
     {
         // 判断玩家是否死亡
         if (_player.IsDead) return;
+        // 处理使用背包物品事件
+        if (_inventoryWindow.Visible && HandleUseInventoryObjectInputEvent()) return;
+        // 处理丢弃背包物品事件
+        if (_inventoryWindow.Visible && HandlePutAwayInventoryObjectInputEvent()) return;
+        // 处理打开背包事件
+        if (HandleToggleInventoryWindowInput()) return;
+        // 判断背包窗口是否可见
+        if (_inventoryWindow.Visible) return;
         // 处理拾取事件
         if (HandlePickUpInput()) return;
         // 处理移动事件
         HandleMovementInput();
     }
+    
+    /// <summary>
+    /// 处理使用背包物品事件
+    /// </summary>
+    /// <returns></returns>
+    public bool HandleUseInventoryObjectInputEvent()
+    {
+        if (Input.IsActionJustPressed("use_inventory_object"))
+        {
+            UseInventoryObjectInputEvent?.Invoke();
+            return true;
+        }
+        return false;
+    }
+    
+    /// <summary>
+    /// 处理丢弃背包物品事件
+    /// </summary>
+    /// <returns></returns>
+    public bool HandlePutAwayInventoryObjectInputEvent()
+    {
+        if (Input.IsActionJustPressed("put_away_inventory_object"))
+        {
+            PutAwayInventoryObjectInputEvent?.Invoke();
+            return true;
+        }
+        return false;
+    }
+    
+    /// <summary>
+    /// 处理打开背包事件
+    /// </summary>
+    /// <returns></returns>
+    public bool HandleToggleInventoryWindowInput()
+    {
+        if (Input.IsActionJustPressed("toggle_inventory"))
+        {
+            ToggleInventoryWindowInputEvent?.Invoke();
+            return true;
+        }
+        return false;
+    }
+    
     /// <summary>
     /// 处理拾取事件
     /// </summary>
     /// <returns></returns>
-    public bool HandlePickUpInput()
+    private bool HandlePickUpInput()
     {
-        if (Input.IsActionPressed("pick_up"))
+        if (Input.IsActionJustPressed("pick_up"))
         {
             PickupInputEvent?.Invoke();
             return true;
         }
-
         return false;
     }
     

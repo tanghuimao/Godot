@@ -27,7 +27,7 @@ public partial class PickableObject : Node2D, IEntity
     // 玩家
     protected Player _player;
 
-    public void Initialize()
+    public virtual void Initialize()
     {
         _mapManager = GetTree().CurrentScene.GetNode<MapManager>("%MapManager");
         _tileMap = GetTree().CurrentScene.GetNode<TileMap>("%TileMap");

@@ -1,6 +1,7 @@
 using System;
 using ClassicRoguelikeCourse.Entites.Characters;
 using ClassicRoguelikeCourse.Entites.Characters.Player;
+using ClassicRoguelikeCourse.Entities.PickableObjects.Items;
 using ClassicRoguelikeCourse.Managers;
 using ClassicRoguelikeCourse.Resources.CharacterData.PlayerData;
 using Godot;
@@ -81,6 +82,11 @@ public partial class PickUpComponent : Node, IComponent
     /// <param name="pickableObject">物品或者装备</param>
     private void PickUp(Character character, PickableObject pickableObject)
     {
+        //拾取物品立即产生作用
+        if (pickableObject is IImmediateEffectItem immediateEffectItem)
+        {
+            immediateEffectItem.DoImmediateEffect();
+        }
         //获取玩家
         var player = character as Player;
         //添加物品

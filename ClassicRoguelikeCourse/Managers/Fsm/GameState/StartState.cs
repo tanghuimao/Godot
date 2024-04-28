@@ -1,5 +1,6 @@
 using System;
 using ClassicRoguelikeCourse.Entites.Characters.Player;
+using ClassicRoguelikeCourse.UI.InventoryWindow;
 using Godot;
 
 namespace ClassicRoguelikeCourse.Managers.Fsm.GameState;
@@ -17,6 +18,7 @@ public partial class StartState : Node, IState
     private Player _player;
     private EnemyManager.EnemyManager _enemyManager;
     private AStarGridManager.AStarGridManager _aStarGridManager;
+    private InventoryWindow _inventoryWindow;
 
 
     public async void Initialize()
@@ -27,11 +29,13 @@ public partial class StartState : Node, IState
         _mapManager = GetTree().CurrentScene.GetNode<MapManager.MapManager>("%MapManager");
         _enemyManager = GetTree().CurrentScene.GetNode<EnemyManager.EnemyManager>("%EnemyManager");
         _aStarGridManager = GetTree().CurrentScene.GetNode<AStarGridManager.AStarGridManager>("%AStarGridManager");
+        _inventoryWindow = GetTree().CurrentScene.GetNode<InventoryWindow>("%InventoryWindow");
         // 初始化
         _player.Initialize();
         _enemyManager.Initialize();
         _inputHandler.Initialize();
         _mapManager.Initialize();
+        _inventoryWindow.Initialize();
         // 等待一帧
         await ToSignal(GetTree(), "process_frame");
         //最后初始化

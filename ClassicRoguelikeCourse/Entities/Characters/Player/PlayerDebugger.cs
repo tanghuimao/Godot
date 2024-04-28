@@ -22,7 +22,7 @@ public partial class PlayerDebugger : Node
             GD.Print($"视野: {player.CharacterData.Sight}");
             GD.Print($"力量: {player.CharacterData.Strength}");
             GD.Print($"体质: {player.CharacterData.Constitution}");
-            GD.Print($"敏捷: {player.CharacterData.Agility}");
+            GD.Print($"敏捷: {player.CharacterData.Agility}"); 
             GD.Print($"生命值: {player.CharacterData.Health}");
             GD.Print($"最大生命值: {player.CharacterData.MaxHealth}");
             GD.Print($"攻击力: {player.CharacterData.Attack}");

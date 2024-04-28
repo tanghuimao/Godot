@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfh5yju0dljp2"]
+
+[ext_resource type="FontFile" uid="uid://cr6jnn2rvsmcs" path="res://Assets/Fonts/vonwaon_bitmap_16px.ttf" id="1_3i7qe"]
+[ext_resource type="Script" path="res://UI/InventoryWindow/InventoryObject.cs" id="2_wxfl1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwkj2"]
+bg_color = Color(0.6, 0.6, 0.6, 0.462745)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_df6i8"]
+
+[node name="InventoryObject" type="Button"]
+theme_override_fonts/font = ExtResource("1_3i7qe")
+theme_override_styles/focus = SubResource("StyleBoxFlat_qwkj2")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_df6i8")
+text = "1.测试物品"
+alignment = 0
+script = ExtResource("2_wxfl1")

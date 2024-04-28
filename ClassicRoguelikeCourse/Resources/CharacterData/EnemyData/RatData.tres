@@ -14,9 +14,9 @@ ExtResource("2_t2y3x"): 0.5
 }
 Name = "老鼠"
 Sight = 8
-Strength = 2
-Constitution = 2
-Agility = 2
+Strength = 3
+Constitution = 3
+Agility = 8
 StrengthIncrementEffects = {
 "Attack": 2.0,
 "Defend": 1.0

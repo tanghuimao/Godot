@@ -17,8 +17,8 @@ ExtResource("3_i0dbp"): 0.5
 Name = "兽人"
 Sight = 6
 Strength = 5
-Constitution = 5
-Agility = 5
+Constitution = 8
+Agility = 3
 StrengthIncrementEffects = {
 "Attack": 2.0,
 "Defend": 1.0

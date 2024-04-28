@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=3 uid="uid://cql33m6dmjt7g"]
+
+[ext_resource type="Script" path="res://UI/InventoryWindow/InventoryWindow.cs" id="1_ddwkv"]
+[ext_resource type="FontFile" uid="uid://cr6jnn2rvsmcs" path="res://Assets/Fonts/vonwaon_bitmap_16px.ttf" id="1_iuncu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2s8tx"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 8
+border_width_bottom = 16
+border_color = Color(0.8, 0.8, 0.8, 0.027451)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64dsx"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 8
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0.8, 0.8, 0.8, 0.027451)
+
+[node name="InventoryWindow" type="CanvasLayer"]
+script = ExtResource("1_ddwkv")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.490196)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="LeftPanel" type="Panel" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_2s8tx")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 32
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/LeftPanel/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="InventoryContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftPanel/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightPanel" type="Panel" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_64dsx")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/HBoxContainer/RightPanel/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_iuncu")
+autowrap_mode = 1

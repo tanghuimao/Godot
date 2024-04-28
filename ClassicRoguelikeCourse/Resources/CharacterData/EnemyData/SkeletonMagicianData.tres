@@ -14,9 +14,9 @@ ExtResource("2_etf35"): 0.5
 }
 Name = "骷髅法师"
 Sight = 8
-Strength = 4
-Constitution = 4
-Agility = 4
+Strength = 8
+Constitution = 3
+Agility = 8
 StrengthIncrementEffects = {
 "Attack": 2.0,
 "Defend": 1.0
