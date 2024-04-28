@@ -7,4 +7,3 @@
 script = ExtResource("1_evjdw")
 
 [node name="AStarGridManagerDebugger" parent="." instance=ExtResource("2_7yrpu")]
-visible = false

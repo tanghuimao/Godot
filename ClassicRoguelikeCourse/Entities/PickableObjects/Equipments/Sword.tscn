@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx1mud58brl0v"]
+
+[ext_resource type="PackedScene" uid="uid://chiog4ebirwte" path="res://Entities/PickableObjects/Equipments/Equipment.tscn" id="1_wu7p0"]
+[ext_resource type="Script" path="res://Entities/PickableObjects/Equipments/Sword.cs" id="2_pu0ee"]
+
+[node name="Sword" instance=ExtResource("1_wu7p0")]
+script = ExtResource("2_pu0ee")
+_name = "长剑"
+
+[node name="Sprite2D" parent="." index="0"]
+region_rect = Rect2(0, 112, 16, 16)

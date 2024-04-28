@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 
 namespace ClassicRoguelikeCourse.Resources.CharacterData.PlayerData;
 /// <summary>
@@ -16,4 +17,6 @@ public partial class PlayerData : CharacterData
     public float LevelUpExperienceThresholdIncrementRate = 0.2f;
     //基础升级获取属性点
     public short BaseAttributePointsGainPerLevelUp = 5;
+    //背包
+    public Array<PickableObject> Inventory = new();
 }

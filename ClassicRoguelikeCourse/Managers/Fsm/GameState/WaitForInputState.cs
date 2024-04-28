@@ -21,6 +21,7 @@ public partial class WaitForInputState : Node, IState
         _inputHandler = GetTree().CurrentScene.GetNode<InputHandler>("%InputHandler");
         // 监听InputHandler的输入事件
         _inputHandler.MovementInputEvent += OnMovementInputEvent;
+        _inputHandler.PickupInputEvent += OnPickupInputEvent;
     }
     public void Update(double delta)
     {
@@ -31,6 +32,12 @@ public partial class WaitForInputState : Node, IState
     /// </summary>
     /// <param name="obj"></param>
     private void OnMovementInputEvent(Vector2I obj)
+    {
+        // 触发状态更新事件
+        UpdateEvent?.Invoke(this);
+    }
+    
+    private void OnPickupInputEvent()
     {
         // 触发状态更新事件
         UpdateEvent?.Invoke(this);

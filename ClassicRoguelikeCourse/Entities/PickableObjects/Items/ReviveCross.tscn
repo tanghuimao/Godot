@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgkkvujdlcfit"]
+
+[ext_resource type="PackedScene" uid="uid://bibfcrey75ih2" path="res://Entities/PickableObjects/Items/Item.tscn" id="1_o70wd"]
+[ext_resource type="Script" path="res://Entities/PickableObjects/Items/ReviveCross.cs" id="2_7u7x8"]
+
+[node name="ReviveCross" instance=ExtResource("1_o70wd")]
+script = ExtResource("2_7u7x8")
+_name = "复活十字"
+
+[node name="Sprite2D" parent="." index="0"]
+region_rect = Rect2(64, 96, 16, 16)

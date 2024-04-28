@@ -1,12 +1,17 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cverdmfjl3b8b"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://cverdmfjl3b8b"]
 
 [ext_resource type="Script" path="res://Resources/CharacterData/EnemyData/EnemyData.cs" id="1_eo30f"]
+[ext_resource type="PackedScene" uid="uid://bjx27exejgfhq" path="res://Entities/PickableObjects/Items/SmallPotion.tscn" id="1_wjb6f"]
+[ext_resource type="PackedScene" uid="uid://cx1mud58brl0v" path="res://Entities/PickableObjects/Equipments/Sword.tscn" id="2_t2y3x"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_eo30f")
 DeathDropExperience = 2.0
-DeathDropPickableObjects = {}
+DeathDropPickableObjects = {
+ExtResource("1_wjb6f"): 0.5,
+ExtResource("2_t2y3x"): 0.5
+}
 Name = "老鼠"
 Sight = 8
 Strength = 2

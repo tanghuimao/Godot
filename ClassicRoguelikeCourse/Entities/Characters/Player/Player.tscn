@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgqtn7ne7egh3"]
+[gd_scene load_steps=7 format=3 uid="uid://bgqtn7ne7egh3"]
 
 [ext_resource type="PackedScene" uid="uid://d2lvmy25nvxme" path="res://Entities/Characters/Character.tscn" id="1_ea2ed"]
 [ext_resource type="Script" path="res://Entities/Characters/Player/Player.cs" id="2_84ngy"]
 [ext_resource type="Texture2D" uid="uid://5i1k6wyvhgfj" path="res://Assets/Textures/tile_sheet.png" id="3_gjiso"]
 [ext_resource type="Resource" uid="uid://0kmptyj4pfq8" path="res://Resources/CharacterData/PlayerData/PlayerData.tres" id="3_jqke4"]
 [ext_resource type="PackedScene" uid="uid://d0mihsls8bsjm" path="res://Entities/Characters/Player/PlayerDebugger.tscn" id="4_rmsis"]
+[ext_resource type="PackedScene" uid="uid://orm1tvxf2tc4" path="res://Component/PickUpComponent/PickUpComponent.tscn" id="6_8ewru"]
 
 [node name="Player" instance=ExtResource("1_ea2ed")]
 script = ExtResource("2_84ngy")
@@ -16,9 +17,12 @@ _characterData = ExtResource("3_jqke4")
 
 [node name="Sprite2D" parent="." index="2"]
 scale = Vector2(1.02892, 1)
+region_rect = Rect2(0, 80, 16, 16)
 
 [node name="DeathSprite2D" type="Sprite2D" parent="." index="3"]
 visible = false
 texture = ExtResource("3_gjiso")
 region_enabled = true
 region_rect = Rect2(16, 80, 16, 16)
+
+[node name="PickUpComponent" parent="." index="6" instance=ExtResource("6_8ewru")]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjf744s1gwucw"]
+
+[ext_resource type="PackedScene" uid="uid://chiog4ebirwte" path="res://Entities/PickableObjects/Equipments/Equipment.tscn" id="1_ew5bx"]
+[ext_resource type="Script" path="res://Entities/PickableObjects/Equipments/Armour.cs" id="2_66gkw"]
+
+[node name="Armour" instance=ExtResource("1_ew5bx")]
+script = ExtResource("2_66gkw")
+_name = "盔甲"
+
+[node name="Sprite2D" parent="." index="0"]
+region_rect = Rect2(48, 112, 16, 16)

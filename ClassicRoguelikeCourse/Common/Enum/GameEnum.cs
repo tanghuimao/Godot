@@ -3,8 +3,9 @@
 /// </summary>
 public enum PhysicsLayer
 {
-    BlockMovement = 1 << 0,
-    BlockSight = 1 << 1,
+    BlockMovement = 1 << 0, //移动 1
+    BlockSight = 1 << 1,    //视野 2
+    PickableObject = 1 << 2,//可拾取 4
 }
 /// <summary>
 /// 地图图层

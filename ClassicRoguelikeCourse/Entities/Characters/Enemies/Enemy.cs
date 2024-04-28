@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using ClassicRoguelikeCourse.Component;
+using ClassicRoguelikeCourse.Entites;
 using ClassicRoguelikeCourse.Entites.Characters;
 using ClassicRoguelikeCourse.Managers.AStarGridManager;
 using Godot;
@@ -5,16 +8,17 @@ using Godot;
 /// <summary>
 /// 敌人
 /// </summary>
-public partial class Enemy : Character
+public partial class Enemy : Character, ILateUpdateEntity
 {
-
     private AStarGridManager _aStarGridManager;
+
+    private List<ILateUpdateComponent> _lateUpdateComponents = new();
     
     public override void Initialize()
     {
         base.Initialize();
         // 注册事件
-        _mapManager.Initialized += OnInitialized;
+        _mapManager.Initialized += OnMapManagerInitialized;
         _aStarGridManager = GetTree().CurrentScene.GetNode<AStarGridManager>("%AStarGridManager");
         // GD.Print("----------------------------------");
         // GD.Print($"名称: {CharacterData.Name}");
@@ -29,6 +33,23 @@ public partial class Enemy : Character
         // GD.Print($"闪避: {CharacterData.Dodge}");
         // GD.Print($"暴击: {CharacterData.CriticalChance}");
         // GD.Print("----------------------------------");
+        
+        //获取所有子节点
+        foreach (var child in GetChildren())
+        {
+            if (child is not ILateUpdateComponent) continue;
+            var component = child as ILateUpdateComponent;
+            _lateUpdateComponents.Add(component);
+        }
+    }
+
+    public void LateUpdate()
+    {
+        //遍历组件 调用更新方法
+        foreach (var component in _lateUpdateComponents)
+        {
+            component.LateUpdate();
+        }
     }
 
     /// <summary>
@@ -36,7 +57,7 @@ public partial class Enemy : Character
     /// </summary>
     /// <param name="playerSpawnCell">玩家生成位置</param>
     /// <param name="getEnemySpawnCell">敌人生成方法</param>
-    private void OnInitialized(Vector2I playerSpawnCell , Callable getEnemySpawnCell)
+    private void OnMapManagerInitialized(Vector2I playerSpawnCell , Callable getEnemySpawnCell)
     {
         // 获取敌人生成位置 转换类型
         var enemySpawnCell = getEnemySpawnCell.Call().AsVector2I();

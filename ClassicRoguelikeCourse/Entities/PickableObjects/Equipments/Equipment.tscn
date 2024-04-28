@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://chiog4ebirwte"]
+
+[ext_resource type="PackedScene" uid="uid://igh3wdv73xac" path="res://Entities/PickableObjects/PickableObject.tscn" id="1_ltnfm"]
+[ext_resource type="Script" path="res://Entities/PickableObjects/Equipments/Equipment.cs" id="2_ibovh"]
+
+[node name="Equipment" instance=ExtResource("1_ltnfm")]
+script = ExtResource("2_ibovh")

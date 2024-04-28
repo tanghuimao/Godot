@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd505q4i8iv7d"]
+
+[ext_resource type="PackedScene" uid="uid://bibfcrey75ih2" path="res://Entities/PickableObjects/Items/Item.tscn" id="1_exofb"]
+[ext_resource type="Script" path="res://Entities/PickableObjects/Items/MapScroll.cs" id="2_hyxp3"]
+
+[node name="MapScroll" instance=ExtResource("1_exofb")]
+script = ExtResource("2_hyxp3")
+_name = "地图卷轴"
+
+[node name="Sprite2D" parent="." index="0"]
+region_rect = Rect2(48, 96, 16, 16)

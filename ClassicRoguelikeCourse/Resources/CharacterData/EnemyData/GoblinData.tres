@@ -1,12 +1,17 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cplx78iavynfs"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://cplx78iavynfs"]
 
+[ext_resource type="PackedScene" uid="uid://bjx27exejgfhq" path="res://Entities/PickableObjects/Items/SmallPotion.tscn" id="1_dgkue"]
 [ext_resource type="Script" path="res://Resources/CharacterData/EnemyData/EnemyData.cs" id="1_ogj7u"]
+[ext_resource type="PackedScene" uid="uid://dmyiw7rnsnje3" path="res://Entities/PickableObjects/Items/BigPotion.tscn" id="2_dkl3c"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_ogj7u")
 DeathDropExperience = 3.0
-DeathDropPickableObjects = {}
+DeathDropPickableObjects = {
+ExtResource("1_dgkue"): 0.5,
+ExtResource("2_dkl3c"): 0.5
+}
 Name = "哥布林"
 Sight = 6
 Strength = 3

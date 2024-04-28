@@ -1,12 +1,19 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dvtxn1v3um8se"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://dvtxn1v3um8se"]
 
+[ext_resource type="PackedScene" uid="uid://dd505q4i8iv7d" path="res://Entities/PickableObjects/Items/MapScroll.tscn" id="1_hfr2l"]
 [ext_resource type="Script" path="res://Resources/CharacterData/EnemyData/EnemyData.cs" id="1_youbh"]
+[ext_resource type="PackedScene" uid="uid://bgkkvujdlcfit" path="res://Entities/PickableObjects/Items/ReviveCross.tscn" id="2_5nv4r"]
+[ext_resource type="PackedScene" uid="uid://cxfjqkwugobyt" path="res://Entities/PickableObjects/Items/SightBall.tscn" id="3_ltpik"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_youbh")
 DeathDropExperience = 5.0
-DeathDropPickableObjects = {}
+DeathDropPickableObjects = {
+ExtResource("1_hfr2l"): 0.5,
+ExtResource("2_5nv4r"): 0.5,
+ExtResource("3_ltpik"): 0.5
+}
 Name = "骷髅"
 Sight = 6
 Strength = 5

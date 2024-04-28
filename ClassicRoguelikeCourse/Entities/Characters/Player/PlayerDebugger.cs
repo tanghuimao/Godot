@@ -13,7 +13,7 @@ public partial class PlayerDebugger : Node
         {
             var player = GetTree().CurrentScene.GetNode<Player>("%Player");
             var data = player.CharacterData as PlayerData;
-            GD.Print("----------------------------------");
+            GD.Print("------------玩家信息------------");
             GD.Print($"名称: {player.CharacterData.Name}");
             GD.Print($"等级: {data.Level}");
             GD.Print($"经验: {data.Experience}");
@@ -29,7 +29,13 @@ public partial class PlayerDebugger : Node
             GD.Print($"防御力: {player.CharacterData.Defend}");
             GD.Print($"闪避: {player.CharacterData.Dodge}");
             GD.Print($"暴击: {player.CharacterData.CriticalChance}");
-            GD.Print("----------------------------------");
+            GD.Print("------------------------------");
+            GD.Print("------------背包信息------------");
+            foreach (var pickableObject in (player.CharacterData as PlayerData).Inventory)
+            {
+                GD.Print($"* {pickableObject.Name}");
+            }
+            GD.Print("------------------------------");
         }
     }
 }

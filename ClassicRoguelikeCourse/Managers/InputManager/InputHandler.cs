@@ -10,7 +10,9 @@ namespace ClassicRoguelikeCourse.Managers;
 public partial class InputHandler : Node, IManager
 {
     //定义移动事件 Vector2I 整数向量
-    public event  Action<Vector2I> MovementInputEvent;
+    public event Action<Vector2I> MovementInputEvent;
+    //定义拾取事件
+    public event Action PickupInputEvent;
     //定义中断移动计时器
     private Timer _interruptMovementTimer;
     //定义中断移动计时器最大值
@@ -39,8 +41,26 @@ public partial class InputHandler : Node, IManager
     {
         // 判断玩家是否死亡
         if (_player.IsDead) return;
+        // 处理拾取事件
+        if (HandlePickUpInput()) return;
+        // 处理移动事件
         HandleMovementInput();
     }
+    /// <summary>
+    /// 处理拾取事件
+    /// </summary>
+    /// <returns></returns>
+    public bool HandlePickUpInput()
+    {
+        if (Input.IsActionPressed("pick_up"))
+        {
+            PickupInputEvent?.Invoke();
+            return true;
+        }
+
+        return false;
+    }
+    
     /// <summary>
     /// 处理移动事件
     /// </summary>
@@ -100,7 +120,7 @@ public partial class InputHandler : Node, IManager
         var targetPosition = _player.GlobalPosition + direction * _mapManager.MapData.CellSize;
         //获取物理空间状态
         var space = _player.GetWorld2D().DirectSpaceState;
-
+        //碰撞检测参数
         var parameters = new PhysicsPointQueryParameters2D
         {
             Position = targetPosition, //目标位置

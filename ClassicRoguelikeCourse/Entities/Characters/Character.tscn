@@ -1,19 +1,19 @@
 [gd_scene load_steps=5 format=3 uid="uid://d2lvmy25nvxme"]
 
-[ext_resource type="Script" path="res://Entities/Characters/Character.cs" id="1_a6w1k"]
-[ext_resource type="Texture2D" uid="uid://5i1k6wyvhgfj" path="res://Assets/Textures/tile_sheet.png" id="1_awwic"]
-[ext_resource type="PackedScene" uid="uid://c73h4qoyvgah1" path="res://Component/MovementComponent/MovementComponent.tscn" id="3_ouo1g"]
+[ext_resource type="Script" path="res://Entities/Characters/Character.cs" id="1_mng1j"]
+[ext_resource type="Texture2D" uid="uid://5i1k6wyvhgfj" path="res://Assets/Textures/tile_sheet.png" id="2_6df1v"]
+[ext_resource type="PackedScene" uid="uid://c73h4qoyvgah1" path="res://Component/MovementComponent/MovementComponent.tscn" id="3_t3ps2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ubsj1"]
 size = Vector2(16, 16)
 
 [node name="Character" type="Node2D"]
-script = ExtResource("1_a6w1k")
+script = ExtResource("1_mng1j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_awwic")
+texture = ExtResource("2_6df1v")
 region_enabled = true
-region_rect = Rect2(0, 80, 16, 16)
+region_rect = Rect2(32, 80, 16, 16)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 0
@@ -21,4 +21,4 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_ubsj1")
 
-[node name="MovementComponent" parent="." instance=ExtResource("3_ouo1g")]
+[node name="MovementComponent" parent="." instance=ExtResource("3_t3ps2")]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxfjqkwugobyt"]
+
+[ext_resource type="PackedScene" uid="uid://bibfcrey75ih2" path="res://Entities/PickableObjects/Items/Item.tscn" id="1_mb73x"]
+[ext_resource type="Script" path="res://Entities/PickableObjects/Items/SightBall.cs" id="2_jlj4h"]
+
+[node name="SightBall" instance=ExtResource("1_mb73x")]
+script = ExtResource("2_jlj4h")
+_name = "视力宝珠"
+
+[node name="Sprite2D" parent="." index="0"]
+region_rect = Rect2(32, 96, 16, 16)

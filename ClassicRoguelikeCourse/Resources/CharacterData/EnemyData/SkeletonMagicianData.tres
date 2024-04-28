@@ -1,12 +1,17 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dpnjb7prs7n2o"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://dpnjb7prs7n2o"]
 
 [ext_resource type="Script" path="res://Resources/CharacterData/EnemyData/EnemyData.cs" id="1_2pvm4"]
+[ext_resource type="PackedScene" uid="uid://ciitg2qtgewfi" path="res://Entities/PickableObjects/Equipments/Necklace.tscn" id="1_uylco"]
+[ext_resource type="PackedScene" uid="uid://c2m576a6tfklm" path="res://Entities/PickableObjects/Equipments/Ring.tscn" id="2_etf35"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_2pvm4")
 DeathDropExperience = 6.0
-DeathDropPickableObjects = {}
+DeathDropPickableObjects = {
+ExtResource("1_uylco"): 0.5,
+ExtResource("2_etf35"): 0.5
+}
 Name = "骷髅法师"
 Sight = 8
 Strength = 4

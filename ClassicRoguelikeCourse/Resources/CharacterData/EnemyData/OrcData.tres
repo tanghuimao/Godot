@@ -1,12 +1,19 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://brj0c76rtd15v"]
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://brj0c76rtd15v"]
 
 [ext_resource type="Script" path="res://Resources/CharacterData/EnemyData/EnemyData.cs" id="1_ea3du"]
+[ext_resource type="PackedScene" uid="uid://cjf744s1gwucw" path="res://Entities/PickableObjects/Equipments/Armour.tscn" id="1_l6lkg"]
+[ext_resource type="PackedScene" uid="uid://jqwxatwxmxb1" path="res://Entities/PickableObjects/Equipments/Mace.tscn" id="2_3x72k"]
+[ext_resource type="PackedScene" uid="uid://bu5dsyjxm1bx1" path="res://Entities/PickableObjects/Equipments/Shield.tscn" id="3_i0dbp"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_ea3du")
 DeathDropExperience = 4.0
-DeathDropPickableObjects = {}
+DeathDropPickableObjects = {
+ExtResource("1_l6lkg"): 0.5,
+ExtResource("2_3x72k"): 0.5,
+ExtResource("3_i0dbp"): 0.5
+}
 Name = "兽人"
 Sight = 6
 Strength = 5
