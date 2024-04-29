@@ -9,10 +9,10 @@ public partial class Ring : Equipment, IFingerWearEquipment
 {
     // 最小暴击增加量
     [Export]
-    private float _minCriticalChanceIncrement = 0.05f;
+    private float _minCriticalChanceIncrement = 0.005f;
     // 最大暴击增加量
     [Export]
-    private float _maxCriticalChanceIncrement = 0.3f;
+    private float _maxCriticalChanceIncrement = 0.03f;
     // 实际暴击增加量
     private float _actualCriticalChanceIncrement;
     
@@ -41,7 +41,7 @@ public partial class Ring : Equipment, IFingerWearEquipment
         _actualCriticalChanceIncrement = (float)GD.RandRange(_minCriticalChanceIncrement, _maxCriticalChanceIncrement);
         _actualStrengthIncrement = GD.RandRange(_minStrengthIncrement, _maxStrengthIncrement);
         _actualAgilityIncrement = GD.RandRange(_minAgilityIncrement, _maxAgilityIncrement);
-        _description = "暴击：" + _actualCriticalChanceIncrement.ToString("0.00") + "%\n " +
+        _description = "暴击：" + _actualCriticalChanceIncrement.ToString("0.00") + "%\n" +
                        "力量：" + _actualStrengthIncrement + "\n" +
                        "敏捷：" + _minAgilityIncrement;
     }

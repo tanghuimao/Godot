@@ -15,6 +15,8 @@ public partial class WaitForInputState : Node, IState
     public event Action<IState> UpdateEvent;
 
     private InputHandler _inputHandler;
+    
+    private StairManager.StairManager _stairManager;
 
     private InventoryWindow _inventoryWindow;
 
@@ -22,6 +24,7 @@ public partial class WaitForInputState : Node, IState
     {
         // 获取当前场景下的InputHandler
         _inputHandler = GetTree().CurrentScene.GetNode<InputHandler>("%InputHandler");
+        _stairManager = GetTree().CurrentScene.GetNode<StairManager.StairManager>("%StairManager");
         _inventoryWindow = GetTree().CurrentScene.GetNode<InventoryWindow>("%InventoryWindow");
         // 监听InputHandler的输入事件
         _inputHandler.MovementInputEvent += OnMovementInputEvent;
@@ -29,6 +32,8 @@ public partial class WaitForInputState : Node, IState
         _inputHandler.ToggleInventoryWindowInputEvent += OnToggleInventoryWindowInputEvent;
         _inputHandler.UseInventoryObjectInputEvent += OnUseInventoryObjectInputEvent;
         _inputHandler.PutAwayInventoryObjectInputEvent += OnPutAwayInventoryObjectInputEvent;
+        _inputHandler.GoUpStairInputEvent += OnGoUpStairInputEvent;
+        _inputHandler.GoDownStairInputEvent += OnGoDownStairInputEvent;
     }
     public void Update(double delta)
     {
@@ -75,5 +80,20 @@ public partial class WaitForInputState : Node, IState
         _inventoryWindow.UseInventoryObject();
         // 触发状态更新事件
         UpdateEvent?.Invoke(this);
+    }
+    /// <summary>
+    /// 上楼事件
+    /// </summary>
+    private void OnGoUpStairInputEvent()
+    {
+        _stairManager.TryGoToPreviousScene();
+    }
+
+    /// <summary>
+    /// 下楼事件
+    /// </summary>
+    private void OnGoDownStairInputEvent()
+    {
+        _stairManager.TryGoToNextScene();
     }
 }

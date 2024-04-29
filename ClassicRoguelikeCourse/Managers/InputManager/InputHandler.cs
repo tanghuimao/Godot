@@ -20,6 +20,10 @@ public partial class InputHandler : Node, IManager
     public event Action UseInventoryObjectInputEvent;
     //定义丢弃背包物品事件
     public event Action PutAwayInventoryObjectInputEvent;
+    //定义上楼梯事件
+    public event  Action GoUpStairInputEvent;
+    //定义下楼梯事件
+    public event  Action GoDownStairInputEvent;
     
     //定义中断移动计时器
     private Timer _interruptMovementTimer;
@@ -59,10 +63,42 @@ public partial class InputHandler : Node, IManager
         if (HandleToggleInventoryWindowInput()) return;
         // 判断背包窗口是否可见
         if (_inventoryWindow.Visible) return;
+        // 处理上楼梯事件
+        if (HandleGoUpStairInputEvent()) return;
+        // 处理下楼梯事件
+        if (HandleGoDownStairInputEvent()) return;
         // 处理拾取事件
         if (HandlePickUpInput()) return;
         // 处理移动事件
         HandleMovementInput();
+    }
+    
+    /// <summary>
+    /// 处理上楼梯事件
+    /// </summary>
+    /// <returns></returns>
+    public bool HandleGoUpStairInputEvent()
+    {
+        if (Input.IsActionJustPressed("go_up_stair"))
+        {
+            GoUpStairInputEvent?.Invoke();
+            return true;
+        }
+        return false;
+    }
+    
+    /// <summary>
+    /// 处理下楼梯事件
+    /// </summary>
+    /// <returns></returns>
+    public bool HandleGoDownStairInputEvent()
+    {
+        if (Input.IsActionJustPressed("go_down_stair"))
+        {
+            GoDownStairInputEvent?.Invoke();
+            return true;
+        }
+        return false;
     }
     
     /// <summary>

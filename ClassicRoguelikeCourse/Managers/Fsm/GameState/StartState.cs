@@ -39,6 +39,8 @@ public partial class StartState : Node, IState
 
     // 属性面板
     private AttributePanel _attributePanel;
+    // 楼梯管理器
+    private StairManager.StairManager _stairManager;
 
 
     public async void Initialize()
@@ -52,6 +54,7 @@ public partial class StartState : Node, IState
         _inventoryWindow = GetTree().CurrentScene.GetNode<InventoryWindow>("%InventoryWindow");
         _fogPainterManager = GetTree().CurrentScene.GetNode<FogPainterManager.FogPainterManager>("%FogPainterManager");
         _attributePanel = GetTree().CurrentScene.GetNode<AttributePanel>("%AttributePanel");
+        _stairManager = GetTree().CurrentScene.GetNode<StairManager.StairManager>("%StairManager");
         // 初始化
         _player.Initialize();
         _enemyManager.Initialize();
@@ -63,6 +66,7 @@ public partial class StartState : Node, IState
         await ToSignal(GetTree(), "process_frame");
         //最后初始化
         _aStarGridManager.Initialize();
+        _stairManager.Initialize();
         _fogPainterManager.Initialize();
     }
 

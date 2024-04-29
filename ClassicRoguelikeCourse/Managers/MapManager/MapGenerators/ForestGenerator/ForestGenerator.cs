@@ -32,7 +32,6 @@ public partial class ForestGenerator : Node, IMapGenerator
 
     public void Update(double delta)
     {
-        throw new System.NotImplementedException();
     }
 
     public Vector2I GetPlayerSpawnCell()

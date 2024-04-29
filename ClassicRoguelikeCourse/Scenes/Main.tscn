@@ -6,11 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://bqj0ghofy553a" path="res://Managers/MapManager/MapManager.tscn" id="4_daonv"]
 [ext_resource type="PackedScene" uid="uid://bgqtn7ne7egh3" path="res://Entities/Characters/Player/Player.tscn" id="4_mnwry"]
 [ext_resource type="Script" path="res://Resources/MapData/ForestData/ForestData.cs" id="5_wpl0y"]
-[ext_resource type="PackedScene" uid="uid://qe5rrqi4f6xl" path="res://Managers/MapManager/MapGenerators/ForestGenerator/ForestGenerator.tscn" id="6_nibdj"]
 [ext_resource type="PackedScene" uid="uid://d1toxjtw5uqfk" path="res://Managers/AStarGridManager/AStarGridManager.tscn" id="7_v68hj"]
 [ext_resource type="Script" path="res://Resources/CharacterData/PlayerData/PlayerData.cs" id="8_n8eao"]
 [ext_resource type="PackedScene" uid="uid://cqe3npdbw2rom" path="res://Managers/EnemyManager/EnemyManager.tscn" id="8_xp3of"]
 [ext_resource type="PackedScene" uid="uid://cogoga3da2hx6" path="res://Managers/CombatManager/CombatManager.tscn" id="9_31x8m"]
+[ext_resource type="PackedScene" uid="uid://dxhkwvlnbd417" path="res://Managers/StairManager/StairManager.tscn" id="10_cv5pg"]
 [ext_resource type="PackedScene" uid="uid://do4dtlk2arjwq" path="res://Managers/FogPainterManager/FogPainterManager.tscn" id="10_tvb47"]
 [ext_resource type="PackedScene" uid="uid://cql33m6dmjt7g" path="res://UI/InventoryWindow/InventoryWindow.tscn" id="12_rclfk"]
 [ext_resource type="PackedScene" uid="uid://cjtkgrqa3ftni" path="res://UI/AttributePanel/AttributePanel.tscn" id="14_04s6v"]
@@ -54,8 +54,6 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 _mapData = SubResource("Resource_drc6d")
 
-[node name="ForestGenerator" parent="MapManager" instance=ExtResource("6_nibdj")]
-
 [node name="EnemyManager" parent="." instance=ExtResource("8_xp3of")]
 unique_name_in_owner = true
 
@@ -66,6 +64,9 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="FogPainterManager" parent="." instance=ExtResource("10_tvb47")]
+unique_name_in_owner = true
+
+[node name="StairManager" parent="." instance=ExtResource("10_cv5pg")]
 unique_name_in_owner = true
 
 [node name="GameViewportContainer" type="SubViewportContainer" parent="."]

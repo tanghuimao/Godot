@@ -22,7 +22,8 @@ public enum TileMapLayer
 public enum TerrainSet
 {
     Default,
-    Fog
+    Fog,
+    Stair
 }
 /// <summary>
 /// 地牢地形
