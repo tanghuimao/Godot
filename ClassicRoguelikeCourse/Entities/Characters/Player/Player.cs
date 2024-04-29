@@ -78,4 +78,13 @@ public partial class Player : Character
         }
         GD.Print(($"{CharacterData.Name} 被击杀!"));
     }
+    /// <summary>
+    /// 添加经验
+    /// </summary>
+    /// <param name="exp">经验</param>
+    public void AddExperience(float exp)
+    {
+        var characterData = CharacterData as PlayerData;
+        characterData.Experience += exp;
+    }
 }

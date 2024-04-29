@@ -61,7 +61,6 @@ public partial class Ring : Equipment, IFingerWearEquipment
         playerData.Agility += _actualAgilityIncrement;
         // 改变装备引用
         playerData.FingerWearEquipment = this;
-        base.Equip();
     }
 
     public override void EquipWithoutEffect()
@@ -88,6 +87,5 @@ public partial class Ring : Equipment, IFingerWearEquipment
         playerData.Agility -= _actualAgilityIncrement;
         // 改变装备引用
         playerData.FingerWearEquipment = null;
-        base.UnEquip();
     }
 }

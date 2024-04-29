@@ -12,7 +12,8 @@ public partial class Main : Node
     
     public override void _Ready()
     {
-        base._Ready();
+        //设置背景
+        RenderingServer.SetDefaultClearColor(Colors.Black);
         _fsm = GetNode<Fsm>("%Fsm");
         _fsm.Initialize();
     }

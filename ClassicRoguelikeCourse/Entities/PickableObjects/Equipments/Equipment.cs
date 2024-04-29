@@ -33,7 +33,7 @@ public partial class Equipment : PickableObject
     /// </summary>
     public virtual void Equip()
     {
-        _player.ChangeCombatAttributes();
+        throw new System.Exception("不能直接调用基类方法");
     }
 
     /// <summary>
@@ -49,6 +49,6 @@ public partial class Equipment : PickableObject
     /// </summary>
     public virtual void UnEquip()
     {
-        _player.ChangeCombatAttributes();
+        throw new System.Exception("不能直接调用基类方法");
     }
 }

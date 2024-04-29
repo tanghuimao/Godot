@@ -61,8 +61,6 @@ public partial class Necklace : Equipment, INeckWearEquipment
         playerData.Constitution += _actualConstitutionIncrement;
         // 改变装备引用
         playerData.NeckWearEquipment = this;
-        base.Equip();
-        _player.ChangeConstitution(_actualConstitutionIncrement);
     }
 
     public override void EquipWithoutEffect()
@@ -89,7 +87,5 @@ public partial class Necklace : Equipment, INeckWearEquipment
         playerData.Constitution -= _actualConstitutionIncrement;
         // 改变装备引用
         playerData.NeckWearEquipment = null;
-        base.UnEquip();
-        _player.ChangeConstitution(-_actualConstitutionIncrement);
     }
 }

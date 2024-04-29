@@ -49,8 +49,6 @@ public partial class Armour : Equipment, IBodyWearEquipment
         playerData.Constitution += _actualConstitutionIncrement;
         // 改变装备引用
         playerData.BodyWearEquipment = this;
-        base.Equip();
-        _player.ChangeConstitution(_actualConstitutionIncrement);
     }
 
     public override void EquipWithoutEffect()
@@ -76,7 +74,5 @@ public partial class Armour : Equipment, IBodyWearEquipment
         playerData.Constitution -= _actualConstitutionIncrement;
         // 改变装备引用
         playerData.BodyWearEquipment = null;
-        base.UnEquip();
-        _player.ChangeConstitution(-_actualConstitutionIncrement);
     }
 }

@@ -1,4 +1,5 @@
 using ClassicRoguelikeCourse.Entites.Characters;
+using ClassicRoguelikeCourse.Entites.Characters.Player;
 using ClassicRoguelikeCourse.Resources.CharacterData.EnemyData;
 using Godot;
 
@@ -23,8 +24,24 @@ public partial class DropDownComponent : Node, IComponent, ILateUpdateComponent
     public void LateUpdate()
     {
         TryDropPickableObject();
+        DropExperience();
     }
-
+    /// <summary>
+    /// 掉落经验
+    /// </summary>
+    private void DropExperience()
+    {
+        // 获取拥有者
+        var owner = GetOwner<Character>();
+        // 不是敌人 或者 未死亡
+        if (owner is not Enemy || !owner.IsDead) return;
+        // 获取掉落经验
+        var dropExperience = (owner.CharacterData as EnemyData).DeathDropExperience;
+        // 获取玩家
+        var player = GetTree().CurrentScene.GetNode<Player>("%Player");
+        player.AddExperience(dropExperience);
+    }
+    
     /// <summary>
     /// 尝试掉落物品
     /// </summary>

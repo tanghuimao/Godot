@@ -48,7 +48,6 @@ public partial class Mace : Equipment, IRightHandHoldEquipment
         playerData.Strength += _actualStrengthIncrement;
         // 改变装备引用
         playerData.RightHandHoldEquipment = this;
-        base.Equip();
     }
 
     public override void EquipWithoutEffect()
@@ -74,6 +73,5 @@ public partial class Mace : Equipment, IRightHandHoldEquipment
         playerData.Strength -= _actualStrengthIncrement;
         // 改变装备引用
         playerData.RightHandHoldEquipment = null;
-        base.UnEquip();
     }
 }

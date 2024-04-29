@@ -18,23 +18,23 @@ resource_local_to_scene = true
 script = ExtResource("1_2pvm4")
 DeathDropExperience = 6.0
 DeathDropPickableObjects = {
-ExtResource("1_bp8yn"): 0.0,
-ExtResource("2_dmplf"): 0.1,
-ExtResource("3_fpe7a"): 0.0,
-ExtResource("4_qmat0"): 0.0,
-ExtResource("5_q8vai"): 0.3,
+ExtResource("1_bp8yn"): 0.1,
+ExtResource("2_dmplf"): 0.2,
+ExtResource("3_fpe7a"): 0.1,
+ExtResource("4_qmat0"): 0.2,
+ExtResource("5_q8vai"): 0.5,
 ExtResource("6_nirvo"): 0.0,
 ExtResource("7_ii5mo"): 0.0,
-ExtResource("8_yj4s6"): 0.0,
+ExtResource("8_yj4s6"): 0.5,
 ExtResource("9_ovwpj"): 0.0,
 ExtResource("2_etf35"): 0.5,
 ExtResource("1_uylco"): 0.5
 }
 Name = "骷髅法师"
-Sight = 8
-Strength = 8
-Constitution = 3
-Agility = 8
+_sight = 7
+_strength = 5
+_constitution = 3
+_agility = 3
 StrengthIncrementEffects = {
 "Attack": 2.0,
 "Defend": 1.0

@@ -22,19 +22,19 @@ ExtResource("1_mppl4"): 0.2,
 ExtResource("2_mjihx"): 0.3,
 ExtResource("3_dxyq0"): 0.4,
 ExtResource("4_obb0i"): 0.3,
-ExtResource("5_nwppp"): 0.0,
-ExtResource("6_hbdkc"): 0.0,
+ExtResource("5_nwppp"): 0.1,
+ExtResource("6_hbdkc"): 0.1,
 ExtResource("2_3x72k"): 0.5,
 ExtResource("3_i0dbp"): 0.5,
 ExtResource("1_l6lkg"): 0.5,
-ExtResource("10_7send"): 0.0,
-ExtResource("11_5lhe2"): 0.0
+ExtResource("10_7send"): 0.1,
+ExtResource("11_5lhe2"): 0.1
 }
 Name = "兽人"
-Sight = 6
-Strength = 5
-Constitution = 10
-Agility = 3
+_sight = 3
+_strength = 6
+_constitution = 8
+_agility = 6
 StrengthIncrementEffects = {
 "Attack": 2.0,
 "Defend": 1.0

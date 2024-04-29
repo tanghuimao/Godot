@@ -49,8 +49,6 @@ public partial class Shield : Equipment, ILeftHandHoldEquipment
         playerData.Constitution += _actualConstitutionIncrement;
         // 改变装备引用
         playerData.LeftHandHoldEquipment = this;
-        base.Equip();
-        _player.ChangeConstitution(_actualConstitutionIncrement);
     }
 
     public override void EquipWithoutEffect()
@@ -76,7 +74,5 @@ public partial class Shield : Equipment, ILeftHandHoldEquipment
         playerData.Constitution -= _actualConstitutionIncrement;
         // 改变装备引用
         playerData.LeftHandHoldEquipment = null;
-        base.UnEquip();
-        _player.ChangeConstitution(-_actualConstitutionIncrement);
     }
 }

@@ -6,10 +6,10 @@
 resource_local_to_scene = true
 script = ExtResource("1_kwx0n")
 Name = "玩家"
-Sight = 6
-Strength = 8
-Constitution = 8
-Agility = 8
+_sight = 6
+_strength = 8
+_constitution = 8
+_agility = 8
 StrengthIncrementEffects = {
 "Attack": 2.0,
 "Defend": 1.0

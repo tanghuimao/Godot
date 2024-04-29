@@ -19,22 +19,22 @@ script = ExtResource("1_youbh")
 DeathDropExperience = 5.0
 DeathDropPickableObjects = {
 ExtResource("1_0u02j"): 0.0,
-ExtResource("2_04sdj"): 0.3,
+ExtResource("2_04sdj"): 0.2,
 ExtResource("3_ltpik"): 0.0,
-ExtResource("1_hfr2l"): 0.0,
+ExtResource("1_hfr2l"): 0.2,
 ExtResource("2_5nv4r"): 0.5,
 ExtResource("6_0ugrl"): 0.0,
 ExtResource("7_c4xp6"): 0.0,
 ExtResource("8_omh0l"): 0.5,
 ExtResource("9_lpwrl"): 0.5,
-ExtResource("10_dtgck"): 0.0,
-ExtResource("11_8xi4y"): 0.0
+ExtResource("10_dtgck"): 0.3,
+ExtResource("11_8xi4y"): 0.2
 }
 Name = "骷髅"
-Sight = 6
-Strength = 8
-Constitution = 5
-Agility = 5
+_sight = 6
+_strength = 8
+_constitution = 3
+_agility = 3
 StrengthIncrementEffects = {
 "Attack": 2.0,
 "Defend": 1.0

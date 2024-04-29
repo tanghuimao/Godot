@@ -40,6 +40,7 @@ public partial class Sword : Equipment, IRightHandHoldEquipment
         base.Initialize();
         // 计算实际攻击增加量
         _actualAttackIncrement = (float)GD.RandRange(_minAttackIncrement, _maxAttackIncrement);
+        _actualStrengthIncrement = GD.RandRange(_minStrengthIncrement, _maxStrengthIncrement);
         _actualAgilityIncrement = GD.RandRange(_minAgilityIncrement, _maxAgilityIncrement);
         _description = "攻击：" + _actualAttackIncrement.ToString("0.0") + "\n" +
                        "力量：" + _actualStrengthIncrement + "\n" +
@@ -62,7 +63,6 @@ public partial class Sword : Equipment, IRightHandHoldEquipment
         playerData.Agility += _actualAgilityIncrement;
         // 改变装备引用
         playerData.RightHandHoldEquipment = this;
-        base.Equip();
     }
 
     public override void EquipWithoutEffect()
@@ -90,6 +90,5 @@ public partial class Sword : Equipment, IRightHandHoldEquipment
         playerData.Agility -= _actualAgilityIncrement;
         // 改变装备引用
         playerData.RightHandHoldEquipment = null;
-        base.UnEquip();
     }
 }

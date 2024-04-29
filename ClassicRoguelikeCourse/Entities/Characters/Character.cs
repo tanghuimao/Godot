@@ -88,14 +88,6 @@ public partial class Character : Node2D, IEntity
         //暴击率
         _characterData.CriticalChance = _characterData.Agility * _characterData.AgilityIncrementEffects["CriticalChance"];
     }
-    /// <summary>
-    /// 改变体质
-    /// </summary>
-    public void ChangeConstitution(int changeConstitution)
-    {
-        //生命值
-        _characterData.Health += changeConstitution * _characterData.ConstitutionIncrementEffects["Health"];
-    }
     
 
     /// <summary>

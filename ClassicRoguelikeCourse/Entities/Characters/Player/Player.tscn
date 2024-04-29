@@ -22,6 +22,7 @@ region_rect = Rect2(0, 80, 16, 16)
 
 [node name="DeathSprite2D" type="Sprite2D" parent="." index="3"]
 visible = false
+modulate = Color(0.847059, 0.564706, 0.121569, 1)
 texture = ExtResource("3_gjiso")
 region_enabled = true
 region_rect = Rect2(16, 80, 16, 16)

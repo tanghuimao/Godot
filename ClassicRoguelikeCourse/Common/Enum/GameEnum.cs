@@ -37,6 +37,10 @@ public enum DungeonTerrain
 /// </summary>
 public enum ForestTerrain
 {
+    Ground, //地面
+    Grass, //草地
+    Tree, //树
+    DeadTree //死亡树
 }
 
 /// <summary>
