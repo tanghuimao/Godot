@@ -18,17 +18,17 @@ resource_local_to_scene = true
 script = ExtResource("1_ea3du")
 DeathDropExperience = 4.0
 DeathDropPickableObjects = {
-ExtResource("1_mppl4"): 0.2,
-ExtResource("2_mjihx"): 0.3,
-ExtResource("3_dxyq0"): 0.4,
-ExtResource("4_obb0i"): 0.3,
-ExtResource("5_nwppp"): 0.1,
+ExtResource("1_mppl4"): 0.0,
+ExtResource("2_mjihx"): 0.2,
+ExtResource("3_dxyq0"): 0.0,
+ExtResource("4_obb0i"): 0.5,
+ExtResource("5_nwppp"): 0.0,
 ExtResource("6_hbdkc"): 0.1,
-ExtResource("2_3x72k"): 0.5,
+ExtResource("2_3x72k"): 0.1,
 ExtResource("3_i0dbp"): 0.5,
 ExtResource("1_l6lkg"): 0.5,
 ExtResource("10_7send"): 0.1,
-ExtResource("11_5lhe2"): 0.1
+ExtResource("11_5lhe2"): 0.0
 }
 Name = "兽人"
 _sight = 3

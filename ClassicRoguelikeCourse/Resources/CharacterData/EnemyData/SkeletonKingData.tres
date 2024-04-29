@@ -31,10 +31,10 @@ ExtResource("10_g0k7p"): 0.5,
 ExtResource("11_12du2"): 0.5
 }
 Name = "骷髅王"
-Sight = 6
-Strength = 40
-Constitution = 40
-Agility = 40
+_sight = 6
+_strength = 8
+_constitution = 8
+_agility = 8
 StrengthIncrementEffects = {
 "Attack": 2.0,
 "Defend": 1.0

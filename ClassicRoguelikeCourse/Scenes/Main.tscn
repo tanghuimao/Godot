@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://dwc11cmwvgkye" path="res://Managers/InputManager/InputHandler.tscn" id="3_wru1m"]
 [ext_resource type="PackedScene" uid="uid://bqj0ghofy553a" path="res://Managers/MapManager/MapManager.tscn" id="4_daonv"]
 [ext_resource type="PackedScene" uid="uid://bgqtn7ne7egh3" path="res://Entities/Characters/Player/Player.tscn" id="4_mnwry"]
-[ext_resource type="Script" path="res://Resources/MapData/DungeonData/DungeonData.cs" id="5_mwd74"]
-[ext_resource type="PackedScene" uid="uid://bq5pa6d2tec1d" path="res://Managers/MapManager/MapGenerators/DungeonGenerator/DungeonGenerator.tscn" id="5_pwa3j"]
+[ext_resource type="Script" path="res://Resources/MapData/ForestData/ForestData.cs" id="5_wpl0y"]
+[ext_resource type="PackedScene" uid="uid://qe5rrqi4f6xl" path="res://Managers/MapManager/MapGenerators/ForestGenerator/ForestGenerator.tscn" id="6_nibdj"]
 [ext_resource type="PackedScene" uid="uid://d1toxjtw5uqfk" path="res://Managers/AStarGridManager/AStarGridManager.tscn" id="7_v68hj"]
 [ext_resource type="Script" path="res://Resources/CharacterData/PlayerData/PlayerData.cs" id="8_n8eao"]
 [ext_resource type="PackedScene" uid="uid://cqe3npdbw2rom" path="res://Managers/EnemyManager/EnemyManager.tscn" id="8_xp3of"]
@@ -15,9 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://cql33m6dmjt7g" path="res://UI/InventoryWindow/InventoryWindow.tscn" id="12_rclfk"]
 [ext_resource type="PackedScene" uid="uid://cjtkgrqa3ftni" path="res://UI/AttributePanel/AttributePanel.tscn" id="14_04s6v"]
 
-[sub_resource type="Resource" id="Resource_mrk66"]
+[sub_resource type="Resource" id="Resource_drc6d"]
 resource_local_to_scene = true
-script = ExtResource("5_mwd74")
+script = ExtResource("5_wpl0y")
 
 [sub_resource type="Resource" id="Resource_ve730"]
 resource_local_to_scene = true
@@ -32,6 +32,7 @@ StrengthIncrementEffects = {
 "Defend": 1.0
 }
 ConstitutionIncrementEffects = {
+"Defend": 1.0,
 "Health": 3.0,
 "MaxHealth": 3.0
 }
@@ -51,9 +52,9 @@ unique_name_in_owner = true
 
 [node name="MapManager" parent="." instance=ExtResource("4_daonv")]
 unique_name_in_owner = true
-_mapData = SubResource("Resource_mrk66")
+_mapData = SubResource("Resource_drc6d")
 
-[node name="DungeonGenerator" parent="MapManager" instance=ExtResource("5_pwa3j")]
+[node name="ForestGenerator" parent="MapManager" instance=ExtResource("6_nibdj")]
 
 [node name="EnemyManager" parent="." instance=ExtResource("8_xp3of")]
 unique_name_in_owner = true

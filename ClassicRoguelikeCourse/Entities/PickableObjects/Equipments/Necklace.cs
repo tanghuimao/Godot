@@ -9,10 +9,10 @@ public partial class Necklace : Equipment, INeckWearEquipment
 {
     // 最小闪避增加量
     [Export]
-    private float _minDodgeIncrement = 0.1f;
+    private float _minDodgeIncrement = 0.01f;
     // 最大闪避增加量
     [Export]
-    private float _maxDodgeIncrement = 0.5f;
+    private float _maxDodgeIncrement = 0.05f;
     // 实际闪避增加量
     private float _actualDodgeIncrement;
     

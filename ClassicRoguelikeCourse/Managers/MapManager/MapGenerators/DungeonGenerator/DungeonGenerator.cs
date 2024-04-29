@@ -43,10 +43,10 @@ public partial class DungeonGenerator : Node, IMapGenerator
         //随机获取一个房间
         var randIndex = GD.RandRange(0, _rooms.Count - 1);
         //获取中心点
-        var playerStartCell = _rooms[randIndex].GetCenter();
+        var playerSpawnCell = _rooms[randIndex].GetCenter();
         //尝试添加玩家
-        GetParent<MapManager>().TryAddCharacterCellAtSpawn(playerStartCell);
-        return playerStartCell;
+        GetParent<MapManager>().TryAddCharacterCellAtSpawn(playerSpawnCell);
+        return playerSpawnCell;
     }
 
     public Vector2I GetEnemySpawnCell()
@@ -61,10 +61,10 @@ public partial class DungeonGenerator : Node, IMapGenerator
             var randomX = GD.RandRange(room.Position.X, room.Position.X + room.Size.X - 1);
             var randomY = GD.RandRange(room.Position.Y, room.Position.Y + room.Size.Y - 1);
         
-            var spawnCell = new Vector2I(randomX, randomY);
+            var enemySpawnCell = new Vector2I(randomX, randomY);
             //尝试添加敌人 返回false 则继续
-            if (!GetParent<MapManager>().TryAddCharacterCellAtSpawn(spawnCell)) continue;
-            return spawnCell;
+            if (!GetParent<MapManager>().TryAddCharacterCellAtSpawn(enemySpawnCell)) continue;
+            return enemySpawnCell;
         }
        
     }

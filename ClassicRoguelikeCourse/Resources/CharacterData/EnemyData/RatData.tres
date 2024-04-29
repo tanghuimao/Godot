@@ -19,16 +19,16 @@ script = ExtResource("1_eo30f")
 DeathDropExperience = 2.0
 DeathDropPickableObjects = {
 ExtResource("1_wjb6f"): 0.5,
-ExtResource("2_vto4y"): 0.3,
-ExtResource("3_als52"): 0.2,
-ExtResource("4_88fgt"): 0.1,
-ExtResource("5_crwes"): 0.1,
+ExtResource("2_vto4y"): 0.2,
+ExtResource("3_als52"): 0.1,
+ExtResource("4_88fgt"): 0.0,
+ExtResource("5_crwes"): 0.0,
 ExtResource("2_t2y3x"): 0.5,
 ExtResource("7_kulgj"): 0.2,
 ExtResource("8_nlorv"): 0.1,
-ExtResource("9_r5d66"): 0.1,
-ExtResource("10_fkysi"): 0.1,
-ExtResource("11_hawy5"): 0.1
+ExtResource("9_r5d66"): 0.0,
+ExtResource("10_fkysi"): 0.0,
+ExtResource("11_hawy5"): 0.0
 }
 Name = "老鼠"
 _sight = 8

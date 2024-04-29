@@ -52,3 +52,12 @@ public enum FogTerrain
     Explored, //探索
     Visible //可见
 }
+
+/// <summary>
+/// 楼梯方向
+/// </summary>
+public enum StairTerrain
+{
+    UpStair, //上
+    DownStair, //下
+}
