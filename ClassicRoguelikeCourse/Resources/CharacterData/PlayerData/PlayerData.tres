@@ -15,6 +15,7 @@ StrengthIncrementEffects = {
 "Defend": 1.0
 }
 ConstitutionIncrementEffects = {
+"Defend": 1.0,
 "Health": 3.0,
 "MaxHealth": 3.0
 }

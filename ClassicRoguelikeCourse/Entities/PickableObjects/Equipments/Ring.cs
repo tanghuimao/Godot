@@ -9,10 +9,10 @@ public partial class Ring : Equipment, IFingerWearEquipment
 {
     // 最小暴击增加量
     [Export]
-    private float _minCriticalChanceIncrement = 0.005f;
+    private float _minCriticalChanceIncrement = 0.01f;
     // 最大暴击增加量
     [Export]
-    private float _maxCriticalChanceIncrement = 0.03f;
+    private float _maxCriticalChanceIncrement = 0.05f;
     // 实际暴击增加量
     private float _actualCriticalChanceIncrement;
     

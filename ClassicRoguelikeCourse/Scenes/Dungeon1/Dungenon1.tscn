@@ -16,7 +16,7 @@ script = ExtResource("4_mfwb4")
 Name = "玩家"
 _sight = 6
 _strength = 8
-_constitution = 18
+_constitution = 8
 _agility = 8
 StrengthIncrementEffects = {
 "Attack": 2.0,

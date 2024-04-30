@@ -13,9 +13,9 @@ resource_local_to_scene = true
 script = ExtResource("7_yd2o5")
 Name = "玩家"
 _sight = 6
-_strength = 8
-_constitution = 18
-_agility = 8
+_strength = 800
+_constitution = 800
+_agility = 800
 StrengthIncrementEffects = {
 "Attack": 2.0,
 "Defend": 1.0
@@ -32,12 +32,12 @@ AgilityIncrementEffects = {
 
 [node name="Forest" instance=ExtResource("1_dv8p3")]
 
-[node name="MapManager" parent="." index="2"]
+[node name="MapManager" parent="." index="3"]
 _mapData = ExtResource("2_svfes")
 
 [node name="ForestGenerator" parent="MapManager" index="0" instance=ExtResource("3_5sngo")]
 
-[node name="EnemyManager" parent="." index="3"]
+[node name="EnemyManager" parent="." index="4"]
 _maxEnemyCount = 20
 _enemyScenes = {
 ExtResource("4_bhhk2"): 50.0,
@@ -46,7 +46,7 @@ ExtResource("6_n8qbl"): 30.0
 }
 _bossScenes = []
 
-[node name="StairManager" parent="." index="7"]
+[node name="StairManager" parent="." index="9"]
 _nextScenePath = "res://Scenes/Dungeon1/Dungenon1.tscn"
 
 [node name="Player" parent="GameViewportContainer/GameSubViewport" index="3"]

@@ -4,6 +4,7 @@
 [ext_resource type="Resource" uid="uid://81xaxnxbgl8h" path="res://Resources/CharacterData/EnemyData/SkeletonKingData.tres" id="2_pcf11"]
 
 [node name="SkeletonKing" instance=ExtResource("1_xgdj4")]
+modulate = Color(1, 0, 0, 1)
 _characterData = ExtResource("2_pcf11")
 
 [node name="Sprite2D" parent="." index="0"]

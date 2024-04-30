@@ -36,15 +36,17 @@ public partial class FogPainterManager : Node, IManager, ILoadable
         _player = GetTree().CurrentScene.GetNode<Player>("%Player");
         _enemyContainer = GetTree().CurrentScene.GetNode<Node>("%EnemyContainer");
         _saveLoadManager = GetTree().CurrentScene.GetNode<SaveLoadManager.SaveLoadManager>("%SaveLoadManager");
-        //填充地图所有格子为未探索
-        FullFillWithUnexplored();
-        //等待一帧
-        await ToSignal(GetTree(), "process_frame");
         //刷新迷雾
         if (!InitializeByLoadData())
         {
-            RefreshFog();
+            //填充地图所有格子为未探索
+            FullFillWithUnexplored();
         }
+        //等待一帧
+        await ToSignal(GetTree(), "process_frame");
+        //刷新迷雾
+        RefreshFog();
+        
     }
 
     public void Update(double delta)

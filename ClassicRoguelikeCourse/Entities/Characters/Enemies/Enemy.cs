@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ClassicRoguelikeCourse.Component;
 using ClassicRoguelikeCourse.Entites;
@@ -12,6 +13,9 @@ namespace ClassicRoguelikeCourse.Entities.Characters.Enemies;
 /// </summary>
 public partial class Enemy : Character, ILateUpdateEntity
 {
+    // 骷髅王死亡事件
+    public event Action SkeletonKingDead;
+    
     private AStarGridManager _aStarGridManager;
 
     private List<ILateUpdateComponent> _lateUpdateComponents = new();
@@ -150,6 +154,10 @@ public partial class Enemy : Character, ILateUpdateEntity
         // 销毁
         QueueFree();
         GD.Print(($"{_characterData.Name} 被击杀"));
+        if (string.Equals(_characterData.Name, "骷髅王"))
+        {
+            SkeletonKingDead.Invoke();
+        }
         // 设置死亡
         _isDead = true;
     }

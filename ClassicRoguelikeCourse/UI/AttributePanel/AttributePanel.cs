@@ -69,9 +69,9 @@ public partial class AttributePanel : MarginContainer, IUi
             _healthLabel.Text = "血量：" + _playerData.Health.ToString("0.0") + "/" + value.ToString("0.0");
         _playerData.AttackChanged += value => _attackLabel.Text = "攻击：" + value.ToString("0.0");
         _playerData.DefendChanged += value => _defendLabel.Text = "防御：" + value.ToString("0.0");
-        _playerData.DodgeChanged += value => _dodgeLabel.Text = "闪避：" + (value * 100f).ToString("0.0") + "%";
+        _playerData.DodgeChanged += value => _dodgeLabel.Text = "闪避：" + (value * 100f).ToString("0.00") + "%";
         _playerData.CriticalChanceChanged +=
-            value => _criticalChanceLabel.Text = "暴击：" + (value * 100f).ToString("0.0") + "%";
+            value => _criticalChanceLabel.Text = "暴击：" + (value * 100f).ToString("0.00") + "%";
     }
 
     private void InitializeAttributeLabels()

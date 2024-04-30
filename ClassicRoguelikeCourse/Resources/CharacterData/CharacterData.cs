@@ -173,6 +173,7 @@ public partial class CharacterData : Resource
         get => _dodge;
         set
         {
+            value = Mathf.Clamp(value, 0f, 0.6f);
             _dodge = value;
             DodgeChanged?.Invoke(value);
         }
@@ -186,6 +187,7 @@ public partial class CharacterData : Resource
         get => _criticalChance;
         set
         {
+            value = Mathf.Clamp(value, 0f, 0.6f);
             _criticalChance = value;
             CriticalChanceChanged?.Invoke(value);
         }

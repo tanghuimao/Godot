@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using ClassicRoguelikeCourse.Entities.PickableObjects.Equipments;
 using ClassicRoguelikeCourse.Entities.PickableObjects.Items;
@@ -7,13 +8,17 @@ using Godot;
 using Godot.Collections;
 
 namespace ClassicRoguelikeCourse.Entities.Characters.Player;
+
 /// <summary>
 /// 玩家
 /// </summary>
 public partial class Player : Entities.Characters.Character
 {
+    //死亡事件
+    public event Action DiedForSure;
+
     private Sprite2D _deathSprite2D;
-    
+
     /// <summary>
     /// 重写父类方法
     /// </summary>
@@ -42,6 +47,7 @@ public partial class Player : Entities.Characters.Character
         // GD.Print($"暴击: {CharacterData.CriticalChance}");
         // GD.Print("----------------------------------");
     }
+
     /// <summary>
     /// 加载数据
     /// </summary>
@@ -51,7 +57,7 @@ public partial class Player : Entities.Characters.Character
         if (_saveLoadManager.LoadedData == null ||
             _saveLoadManager.LoadedData.Count == 0 ||
             !_saveLoadManager.LoadedData.ContainsKey("Maps") ||
-            !_saveLoadManager.LoadedData.ContainsKey("Player") ) return false;
+            !_saveLoadManager.LoadedData.ContainsKey("Player")) return false;
         // 玩家数据
         var player = _saveLoadManager.LoadedData["Player"].AsGodotDictionary<string, Variant>();
         (_characterData as PlayerData).Level = (short)player["Level"].AsInt32();
@@ -61,7 +67,7 @@ public partial class Player : Entities.Characters.Character
         var inventoryEquipState = player["InventoryEquipState"].AsGodotArray<bool>();
         //遍历背包数据
         for (var i = 0; i < inventoryPickableObjects.Count; i++)
-        {   
+        {
             // 获取物品场景路径
             var pickableObjectScenePath = inventoryPickableObjects[i];
             // 获取物品是否装备状态
@@ -82,10 +88,9 @@ public partial class Player : Entities.Characters.Character
             if (pickableObjectEquipState)
             {
                 (pickableObjectInstance as Equipment).EquipWithoutEffect();
-                
             }
         }
-        
+
         var maps = _saveLoadManager.LoadedData["Maps"].AsGodotArray<Godot.Collections.Dictionary<string, Variant>>();
         for (int i = 0; i < maps.Count; i++)
         {
@@ -97,9 +102,10 @@ public partial class Player : Entities.Characters.Character
 
             return true;
         }
+
         return false;
     }
-    
+
     /// <summary>
     /// 地图初始化完成 事件
     /// </summary>
@@ -108,10 +114,11 @@ public partial class Player : Entities.Characters.Character
     private void OnInitialized(Vector2I playerSpawnCell, Callable _)
     {
         if (InitializeByLoadData()) return;
-        
+
         // 设置玩家初始位置
         GlobalPosition = playerSpawnCell * _mapManager.MapData.CellSize + _mapManager.MapData.CellSize / 2;
     }
+
     /// <summary>
     /// 获取保存数据
     /// </summary>
@@ -128,7 +135,7 @@ public partial class Player : Entities.Characters.Character
         //背包数据
         var inventoryPickableObjects = new Array<string>();
         var inventoryEquipState = new Array<bool>();
-        
+
         foreach (var item in playerData.Inventory)
         {
             //添加物品场景文件路径
@@ -136,10 +143,11 @@ public partial class Player : Entities.Characters.Character
             //添加装备状态
             inventoryEquipState.Add(item is Equipment && (item as Equipment).IsEquipped);
         }
+
         playerDataForSave.Add("InventoryPickableObjects", inventoryPickableObjects);
         playerDataForSave.Add("InventoryEquipState", inventoryEquipState);
-        
-        return  playerDataForSave;
+
+        return playerDataForSave;
     }
 
     /// <summary>
@@ -154,7 +162,7 @@ public partial class Player : Entities.Characters.Character
         _isDead = true;
         // 显示死亡动画
         _deathSprite2D.Visible = true;
-        
+
         //获取玩家背包中首个死亡物品
         var playerData = CharacterData as PlayerData;
         var firstDeadEffectItem = playerData.Inventory.FirstOrDefault(item => item is IDeadEffectItem);
@@ -167,8 +175,12 @@ public partial class Player : Entities.Characters.Character
             _isDead = false;
             return;
         }
+
         GD.Print(($"{CharacterData.Name} 被击杀!"));
+        //死亡事件
+        DiedForSure?.Invoke();
     }
+
     /// <summary>
     /// 添加经验
     /// </summary>

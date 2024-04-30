@@ -7,7 +7,7 @@ namespace ClassicRoguelikeCourse.Resources.MapData;
 public partial class MapData : Resource
 {
     // 地图大小
-    public Vector2I MapSize = new(30, 20);
+    public Vector2I MapSize = new(60, 40);
     // 地图单元格大小
     public Vector2I CellSize = new(16, 16);
 }

@@ -1,7 +1,9 @@
 using System;
 using ClassicRoguelikeCourse.Entites.Characters.Player;
 using ClassicRoguelikeCourse.UI.AttributePanel;
+using ClassicRoguelikeCourse.UI.DefeatWindow;
 using ClassicRoguelikeCourse.UI.InventoryWindow;
+using ClassicRoguelikeCourse.UI.VictoryWindow;
 using Godot;
 using Player = ClassicRoguelikeCourse.Entities.Characters.Player.Player;
 
@@ -34,6 +36,10 @@ public partial class StartState : Node, IState
 
     // 背包窗口
     private InventoryWindow _inventoryWindow;
+    // 胜利窗口
+    private VictoryWindow _victoryWindow;
+    // 死亡窗口
+    private DefeatWindow _defeatWindow;
 
     // 迷雾管理器
     private FogPainterManager.FogPainterManager _fogPainterManager;
@@ -57,6 +63,8 @@ public partial class StartState : Node, IState
         _enemyManager = GetTree().CurrentScene.GetNode<EnemyManager.EnemyManager>("%EnemyManager");
         _aStarGridManager = GetTree().CurrentScene.GetNode<AStarGridManager.AStarGridManager>("%AStarGridManager");
         _inventoryWindow = GetTree().CurrentScene.GetNode<InventoryWindow>("%InventoryWindow");
+        _victoryWindow = GetTree().CurrentScene.GetNode<VictoryWindow>("%VictoryWindow");
+        _defeatWindow = GetTree().CurrentScene.GetNode<DefeatWindow>("%DefeatWindow");
         _fogPainterManager = GetTree().CurrentScene.GetNode<FogPainterManager.FogPainterManager>("%FogPainterManager");
         _attributePanel = GetTree().CurrentScene.GetNode<AttributePanel>("%AttributePanel");
         _stairManager = GetTree().CurrentScene.GetNode<StairManager.StairManager>("%StairManager");
@@ -70,6 +78,8 @@ public partial class StartState : Node, IState
         _pickableObjectSpawner.Initialize();
         _mapManager.Initialize();
         _inventoryWindow.Initialize();
+        _victoryWindow.Initialize(); 
+        _defeatWindow.Initialize();
         _attributePanel.Initialize();
         // 等待一帧
         await ToSignal(GetTree(), "process_frame");

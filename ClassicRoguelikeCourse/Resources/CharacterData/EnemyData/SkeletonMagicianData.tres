@@ -45,6 +45,6 @@ ConstitutionIncrementEffects = {
 "MaxHealth": 3.0
 }
 AgilityIncrementEffects = {
-"CriticalChance": 0.0,
-"Dodge": 0.0
+"CriticalChance": 0.005,
+"Dodge": 0.01
 }

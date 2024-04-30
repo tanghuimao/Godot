@@ -18,6 +18,8 @@ public partial class WaitForInputState : Node, IState
     
     private StairManager.StairManager _stairManager;
 
+    private SaveLoadManager.SaveLoadManager _saveLoadManager;
+
     private InventoryWindow _inventoryWindow;
 
     public void Initialize()
@@ -25,6 +27,7 @@ public partial class WaitForInputState : Node, IState
         // 获取当前场景下的InputHandler
         _inputHandler = GetTree().CurrentScene.GetNode<InputHandler>("%InputHandler");
         _stairManager = GetTree().CurrentScene.GetNode<StairManager.StairManager>("%StairManager");
+        _saveLoadManager = GetTree().CurrentScene.GetNode<SaveLoadManager.SaveLoadManager>("%SaveLoadManager");
         _inventoryWindow = GetTree().CurrentScene.GetNode<InventoryWindow>("%InventoryWindow");
         // 监听InputHandler的输入事件
         _inputHandler.MovementInputEvent += OnMovementInputEvent;
@@ -34,6 +37,7 @@ public partial class WaitForInputState : Node, IState
         _inputHandler.PutAwayInventoryObjectInputEvent += OnPutAwayInventoryObjectInputEvent;
         _inputHandler.GoUpStairInputEvent += OnGoUpStairInputEvent;
         _inputHandler.GoDownStairInputEvent += OnGoDownStairInputEvent;
+        _inputHandler.RestartGameInputEvent += OnRestartGameInputEvent;
     }
     public void Update(double delta)
     {
@@ -95,5 +99,15 @@ public partial class WaitForInputState : Node, IState
     private void OnGoDownStairInputEvent()
     {
         _stairManager.TryGoToNextScene();
+    }
+    /// <summary>
+    /// 重新开始游戏事件
+    /// </summary>
+    private void OnRestartGameInputEvent()
+    {
+        // 删除存档文件
+        _saveLoadManager.TryDeleteSaveFile();
+        // 重新加载游戏 切换到森林
+        GetTree().ChangeSceneToFile("res://Scenes/Forest/Forest.tscn");
     }
 }

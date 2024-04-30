@@ -1,7 +1,9 @@
 using System;
 using ClassicRoguelikeCourse.Entites.Characters.Player;
 using ClassicRoguelikeCourse.Entities.Characters.Enemies;
+using ClassicRoguelikeCourse.UI.DefeatWindow;
 using ClassicRoguelikeCourse.UI.InventoryWindow;
+using ClassicRoguelikeCourse.UI.VictoryWindow;
 using Godot;
 using Player = ClassicRoguelikeCourse.Entities.Characters.Player.Player;
 
@@ -14,36 +16,55 @@ public partial class InputHandler : Node, IManager
 {
     //定义移动事件 Vector2I 整数向量
     public event Action<Vector2I> MovementInputEvent;
+
     //定义拾取事件
     public event Action PickupInputEvent;
+
     //定义打开背包事件
     public event Action ToggleInventoryWindowInputEvent;
+
     //定义使用背包物品事件
     public event Action UseInventoryObjectInputEvent;
+
     //定义丢弃背包物品事件
     public event Action PutAwayInventoryObjectInputEvent;
+
     //定义上楼梯事件
-    public event  Action GoUpStairInputEvent;
+    public event Action GoUpStairInputEvent;
+
     //定义下楼梯事件
-    public event  Action GoDownStairInputEvent;
-    
+    public event Action GoDownStairInputEvent;
+    //定义重新开始游戏事件
+    public event Action RestartGameInputEvent;
+
     //定义中断移动计时器
     private Timer _interruptMovementTimer;
+
     //定义中断移动计时器最大值
     private float _maxDurationInterruptMovement = 0.5f;
+
     //定义中断移动计时器最小值
     private float _minDurationInterruptMovement = 0.05f;
+
     //定义中断移动计时器当前值
     private float _currentDurationInterruptMovement;
+
     // 地图管理器
     private MapManager.MapManager _mapManager;
+
     // 玩家
     private Player _player;
+
     // 战斗管理器
     private CombatManager.CombatManager _combatManager;
+
     // 背包窗口
     private InventoryWindow _inventoryWindow;
-    
+    // 胜利窗口
+    private VictoryWindow _victoryWindow;
+    // 死亡窗口
+    private DefeatWindow _defeatWindow;
+
     public void Initialize()
     {
         _mapManager = GetTree().CurrentScene.GetNode<MapManager.MapManager>("%MapManager");
@@ -51,10 +72,16 @@ public partial class InputHandler : Node, IManager
         _interruptMovementTimer = GetNode<Timer>("InterruptMovementTimer");
         _combatManager = GetTree().CurrentScene.GetNode<CombatManager.CombatManager>("%CombatManager");
         _inventoryWindow = GetTree().CurrentScene.GetNode<InventoryWindow>("%InventoryWindow");
+        _victoryWindow = GetTree().CurrentScene.GetNode<VictoryWindow>("%VictoryWindow");
+        _defeatWindow = GetTree().CurrentScene.GetNode<DefeatWindow>("%DefeatWindow");
     }
 
     public void Update(double delta)
-    {
+    {   
+        // 处理重新开始游戏事件
+        if (HandleRestartGameInputEvent()) return;
+        // 判断胜利窗口和死亡窗口是否可见
+        if (_victoryWindow.Visible || _defeatWindow.Visible) return;
         // 判断玩家是否死亡
         if (_player.IsDead) return;
         // 处理使用背包物品事件
@@ -74,7 +101,24 @@ public partial class InputHandler : Node, IManager
         // 处理移动事件
         HandleMovementInput();
     }
-    
+    /// <summary>
+    /// 处理重新开始游戏事件
+    /// </summary>
+    /// <returns></returns>
+    public bool HandleRestartGameInputEvent()
+    {
+        // 判断胜利窗口和死亡窗口是否可见
+        if (!_victoryWindow.Visible && !_defeatWindow.Visible) return false;
+        
+        if (Input.IsActionJustPressed("restart_game"))
+        {
+            RestartGameInputEvent?.Invoke();
+            return true;
+        }
+
+        return false;
+    }
+
     /// <summary>
     /// 处理上楼梯事件
     /// </summary>
@@ -86,9 +130,10 @@ public partial class InputHandler : Node, IManager
             GoUpStairInputEvent?.Invoke();
             return true;
         }
+
         return false;
     }
-    
+
     /// <summary>
     /// 处理下楼梯事件
     /// </summary>
@@ -100,9 +145,10 @@ public partial class InputHandler : Node, IManager
             GoDownStairInputEvent?.Invoke();
             return true;
         }
+
         return false;
     }
-    
+
     /// <summary>
     /// 处理使用背包物品事件
     /// </summary>
@@ -114,9 +160,10 @@ public partial class InputHandler : Node, IManager
             UseInventoryObjectInputEvent?.Invoke();
             return true;
         }
+
         return false;
     }
-    
+
     /// <summary>
     /// 处理丢弃背包物品事件
     /// </summary>
@@ -128,9 +175,10 @@ public partial class InputHandler : Node, IManager
             PutAwayInventoryObjectInputEvent?.Invoke();
             return true;
         }
+
         return false;
     }
-    
+
     /// <summary>
     /// 处理打开背包事件
     /// </summary>
@@ -142,9 +190,10 @@ public partial class InputHandler : Node, IManager
             ToggleInventoryWindowInputEvent?.Invoke();
             return true;
         }
+
         return false;
     }
-    
+
     /// <summary>
     /// 处理拾取事件
     /// </summary>
@@ -156,9 +205,10 @@ public partial class InputHandler : Node, IManager
             PickupInputEvent?.Invoke();
             return true;
         }
+
         return false;
     }
-    
+
     /// <summary>
     /// 处理移动事件
     /// </summary>
@@ -230,7 +280,7 @@ public partial class InputHandler : Node, IManager
         var results = space.IntersectPoint(parameters);
         //如果没有碰撞结果
         if (results.Count == 0) return;
-        
+
         foreach (var result in results)
         {
             //获取碰撞体
@@ -243,6 +293,5 @@ public partial class InputHandler : Node, IManager
                 GD.Print($"玩家近战攻击了{enemy.CharacterData.Name}");
             }
         }
-
     }
 }
