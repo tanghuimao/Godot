@@ -3,6 +3,7 @@ using ClassicRoguelikeCourse.Entities.PickableObjects.Equipments;
 using ClassicRoguelikeCourse.Entities.PickableObjects.Items;
 using ClassicRoguelikeCourse.Resources.CharacterData.PlayerData;
 using Godot;
+using Player = ClassicRoguelikeCourse.Entities.Characters.Player.Player;
 
 namespace ClassicRoguelikeCourse.UI.InventoryWindow;
 /// <summary>

@@ -1,13 +1,16 @@
 using ClassicRoguelikeCourse.Entites.Characters.Player;
+using ClassicRoguelikeCourse.Entities.Characters.Enemies;
+using ClassicRoguelikeCourse.Managers.SaveLoadManager;
 using Godot;
 using Godot.Collections;
+using Player = ClassicRoguelikeCourse.Entities.Characters.Player.Player;
 
 namespace ClassicRoguelikeCourse.Managers.FogPainterManager;
 
 /// <summary>
 /// 迷雾绘制管理器
 /// </summary>
-public partial class FogPainterManager : Node, IManager
+public partial class FogPainterManager : Node, IManager, ILoadable
 {
     // 地图管理器
     private MapManager.MapManager _mapManager;
@@ -23,6 +26,8 @@ public partial class FogPainterManager : Node, IManager
     
     // 敌人容器
     private Node _enemyContainer;
+    
+    private SaveLoadManager.SaveLoadManager _saveLoadManager;
 
     public async void Initialize()
     {
@@ -30,12 +35,16 @@ public partial class FogPainterManager : Node, IManager
         _tileMap = GetTree().CurrentScene.GetNode<TileMap>("%TileMap");
         _player = GetTree().CurrentScene.GetNode<Player>("%Player");
         _enemyContainer = GetTree().CurrentScene.GetNode<Node>("%EnemyContainer");
+        _saveLoadManager = GetTree().CurrentScene.GetNode<SaveLoadManager.SaveLoadManager>("%SaveLoadManager");
         //填充地图所有格子为未探索
         FullFillWithUnexplored();
         //等待一帧
         await ToSignal(GetTree(), "process_frame");
         //刷新迷雾
-        RefreshFog();
+        if (!InitializeByLoadData())
+        {
+            RefreshFog();
+        }
     }
 
     public void Update(double delta)
@@ -44,6 +53,55 @@ public partial class FogPainterManager : Node, IManager
         RefreshFog();
     }
 
+    /// <summary>
+    /// 加载地图数据
+    /// </summary>
+    /// <returns></returns>
+    public bool InitializeByLoadData()
+    {
+        if (_saveLoadManager.LoadedData == null ||
+            _saveLoadManager.LoadedData.Count == 0 ||
+            !_saveLoadManager.LoadedData.ContainsKey("Maps") ||
+            !_saveLoadManager.LoadedData.ContainsKey("Player") ) return false;
+        var maps = _saveLoadManager.LoadedData["Maps"].AsGodotArray<Godot.Collections.Dictionary<string, Variant>>();
+        for (int i = 0; i < maps.Count; i++)
+        {
+            var map = maps[i];
+            //名称 和 当前保存场景相同
+            if (map["SceneName"].AsString() != GetTree().CurrentScene.Name) continue;
+            //获取地图单元格
+            var unexploredCells = map["UnexploredCells"].AsGodotArray<Vector2I>();
+            var exploredCells = map["ExploredCells"].AsGodotArray<Vector2I>();
+            var visibleCells = map["VisibleCells"].AsGodotArray<Vector2I>();
+
+            //设置地图单元格
+            _tileMap.SetCellsTerrainConnect(
+                (int)TileMapLayer.Fog,
+                unexploredCells,
+                (int)TerrainSet.Fog,
+                (int)FogTerrain.Unexplored,
+                false
+            );
+            
+            _tileMap.SetCellsTerrainConnect(
+                (int)TileMapLayer.Fog,
+                exploredCells,
+                (int)TerrainSet.Fog,
+                (int)FogTerrain.Explored,
+                false
+            );
+            _tileMap.SetCellsTerrainConnect(
+                (int)TileMapLayer.Fog,
+                visibleCells,
+                (int)TerrainSet.Fog,
+                (int)FogTerrain.Visible,
+                false
+            );
+            return true;
+        }
+        return false;
+    }
+    
     /// <summary>
     /// 填充地图所有格子为未探索
     /// </summary>

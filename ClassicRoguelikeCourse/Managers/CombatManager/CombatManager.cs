@@ -11,10 +11,10 @@ namespace ClassicRoguelikeCourse.Managers.CombatManager;
 public partial class CombatManager : Node, IManager
 {
     // 角色死亡事件
-    public event Action<Character> CharacterDead; 
+    public event Action<Entities.Characters.Character> CharacterDead; 
     
     // 战斗记录  key 攻击者  value 被攻击者
-    private List<KeyValuePair<Character, Character>> _combatants = new();
+    private List<KeyValuePair<Entities.Characters.Character, Entities.Characters.Character>> _combatants = new();
     
     public void Initialize()
     {
@@ -27,9 +27,9 @@ public partial class CombatManager : Node, IManager
     /// <summary>
     /// 添加战斗记录
     /// </summary>
-    public void AddCombatant(Character attacker, Character defender)
+    public void AddCombatant(Entities.Characters.Character attacker, Entities.Characters.Character defender)
     {
-        _combatants.Add(new KeyValuePair<Character, Character>(attacker, defender));
+        _combatants.Add(new KeyValuePair<Entities.Characters.Character, Entities.Characters.Character>(attacker, defender));
     }
     
     /// <summary>
@@ -51,7 +51,7 @@ public partial class CombatManager : Node, IManager
     /// </summary>
     /// <param name="attacker">攻击者</param>
     /// <param name="defender">被攻击者（防御者）</param>
-    private void HandleCombat(Character attacker, Character defender)
+    private void HandleCombat(Entities.Characters.Character attacker, Entities.Characters.Character defender)
     {
         //1.检测被攻击者是否成功闪避攻击
         if (IsVictimDodged(defender)) return;
@@ -73,7 +73,7 @@ public partial class CombatManager : Node, IManager
     /// </summary>
     /// <param name="defender">被攻击者（防御者）</param>
     /// <returns></returns>
-    private bool IsVictimDodged(Character defender)
+    private bool IsVictimDodged(Entities.Characters.Character defender)
     {
         var randomNumber = GD.RandRange(0f, 1f);
         if (defender.CharacterData.Dodge >= randomNumber)
@@ -89,7 +89,7 @@ public partial class CombatManager : Node, IManager
     /// </summary>
     /// <param name="attacker">攻击者</param>
     /// <returns></returns>
-    private bool IsAttackCriticalChance(Character attacker)
+    private bool IsAttackCriticalChance(Entities.Characters.Character attacker)
     {
         var randomNumber = GD.RandRange(0f, 1f);
         if (attacker.CharacterData.CriticalChance >= randomNumber)
@@ -105,7 +105,7 @@ public partial class CombatManager : Node, IManager
     /// <param name="attacker">攻击者</param>
     /// <param name="isCriticalChance">是否暴击</param>
     /// <returns></returns>
-    private float GetAttackerAttackPower(Character attacker, bool isCriticalChance)
+    private float GetAttackerAttackPower(Entities.Characters.Character attacker, bool isCriticalChance)
     {
         return  isCriticalChance ? attacker.CharacterData.Attack * 2 : attacker.CharacterData.Attack;
     }
@@ -114,7 +114,7 @@ public partial class CombatManager : Node, IManager
     /// </summary>
     /// <param name="defender"></param>
     /// <returns></returns>
-    private float GetDefenderDefensePower(Character defender)
+    private float GetDefenderDefensePower(Entities.Characters.Character defender)
     {
         return defender.CharacterData.Defend;
     }
@@ -138,7 +138,7 @@ public partial class CombatManager : Node, IManager
     /// </summary>
     /// <param name="defender">被攻击者</param>
     /// <param name="damage">伤害</param>
-    private void HandleDefenderDamage(Character defender, float damage)
+    private void HandleDefenderDamage(Entities.Characters.Character defender, float damage)
     {
         // 扣除血量
         defender.CharacterData.Health -= damage;

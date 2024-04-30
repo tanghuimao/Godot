@@ -1,7 +1,9 @@
 using ClassicRoguelikeCourse.Entites.Characters.Player;
+using ClassicRoguelikeCourse.Entities.Characters.Enemies;
 using ClassicRoguelikeCourse.Managers.CombatManager;
 using ClassicRoguelikeCourse.Managers.MapManager;
 using Godot;
+using Player = ClassicRoguelikeCourse.Entities.Characters.Player.Player;
 
 namespace ClassicRoguelikeCourse.Component.AiComponent.Ai;
 /// <summary>

@@ -1,7 +1,9 @@
 using System;
 using ClassicRoguelikeCourse.Entites.Characters.Player;
+using ClassicRoguelikeCourse.Entities.Characters.Enemies;
 using ClassicRoguelikeCourse.UI.InventoryWindow;
 using Godot;
+using Player = ClassicRoguelikeCourse.Entities.Characters.Player.Player;
 
 namespace ClassicRoguelikeCourse.Managers;
 

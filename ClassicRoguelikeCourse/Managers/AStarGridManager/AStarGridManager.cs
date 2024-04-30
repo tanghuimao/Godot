@@ -1,6 +1,7 @@
 using ClassicRoguelikeCourse.Entites.Characters.Player;
 using Godot;
 using Godot.Collections;
+using Player = ClassicRoguelikeCourse.Entities.Characters.Player.Player;
 
 namespace ClassicRoguelikeCourse.Managers.AStarGridManager;
 

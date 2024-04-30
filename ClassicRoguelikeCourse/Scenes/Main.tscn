@@ -1,12 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://b7alouchlv4m2"]
+[gd_scene load_steps=19 format=3 uid="uid://b7alouchlv4m2"]
 
 [ext_resource type="Script" path="res://Scenes/Main.cs" id="1_qa8g0"]
 [ext_resource type="PackedScene" uid="uid://djh2vsvdybrvf" path="res://Managers/Fsm/Fsm.tscn" id="2_sukfd"]
+[ext_resource type="PackedScene" uid="uid://dhbsx6myn2o3r" path="res://Managers/SaveLoadManager/SaveLoadManager.tscn" id="3_iuorv"]
 [ext_resource type="PackedScene" uid="uid://dwc11cmwvgkye" path="res://Managers/InputManager/InputHandler.tscn" id="3_wru1m"]
 [ext_resource type="PackedScene" uid="uid://bqj0ghofy553a" path="res://Managers/MapManager/MapManager.tscn" id="4_daonv"]
 [ext_resource type="PackedScene" uid="uid://bgqtn7ne7egh3" path="res://Entities/Characters/Player/Player.tscn" id="4_mnwry"]
 [ext_resource type="Script" path="res://Resources/MapData/ForestData/ForestData.cs" id="5_wpl0y"]
 [ext_resource type="PackedScene" uid="uid://d1toxjtw5uqfk" path="res://Managers/AStarGridManager/AStarGridManager.tscn" id="7_v68hj"]
+[ext_resource type="PackedScene" uid="uid://cqi7tl53prpaj" path="res://Managers/PickableObjectSpawner/PickableObjectSpawner.tscn" id="8_2bqdp"]
 [ext_resource type="Script" path="res://Resources/CharacterData/PlayerData/PlayerData.cs" id="8_n8eao"]
 [ext_resource type="PackedScene" uid="uid://cqe3npdbw2rom" path="res://Managers/EnemyManager/EnemyManager.tscn" id="8_xp3of"]
 [ext_resource type="PackedScene" uid="uid://cogoga3da2hx6" path="res://Managers/CombatManager/CombatManager.tscn" id="9_31x8m"]
@@ -47,6 +49,9 @@ script = ExtResource("1_qa8g0")
 [node name="Fsm" parent="." instance=ExtResource("2_sukfd")]
 unique_name_in_owner = true
 
+[node name="SaveLoadManager" parent="." instance=ExtResource("3_iuorv")]
+unique_name_in_owner = true
+
 [node name="InputHandler" parent="." instance=ExtResource("3_wru1m")]
 unique_name_in_owner = true
 
@@ -55,6 +60,9 @@ unique_name_in_owner = true
 _mapData = SubResource("Resource_drc6d")
 
 [node name="EnemyManager" parent="." instance=ExtResource("8_xp3of")]
+unique_name_in_owner = true
+
+[node name="PickableObjectSpawner" parent="." instance=ExtResource("8_2bqdp")]
 unique_name_in_owner = true
 
 [node name="AStarGridManager" parent="." instance=ExtResource("7_v68hj")]

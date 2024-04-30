@@ -1,13 +1,15 @@
 using Godot;
-using System;
 using ClassicRoguelikeCourse.Entites;
 using ClassicRoguelikeCourse.Entites.Characters.Player;
 using ClassicRoguelikeCourse.Managers.MapManager;
+using ClassicRoguelikeCourse.Managers.SaveLoadManager;
+using Godot.Collections;
+using Player = ClassicRoguelikeCourse.Entities.Characters.Player.Player;
 
 /// <summary>
 /// 拾取物父类接口
 /// </summary>
-public partial class PickableObject : Node2D, IEntity
+public partial class PickableObject : Node2D, IEntity, ISavable
 {
     // 名称
     [Export] protected string _name;
@@ -36,5 +38,14 @@ public partial class PickableObject : Node2D, IEntity
 
     public void Update(double delta)
     {
+    }
+
+    public Dictionary<string, Variant> GetDataForSave()
+    {
+        return new Dictionary<string, Variant>
+        {
+            {"ScenePath", SceneFilePath},
+            {"Position", GlobalPosition},
+        };
     }
 }

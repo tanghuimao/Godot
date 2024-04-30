@@ -3,6 +3,7 @@ using ClassicRoguelikeCourse.Entites.Characters.Player;
 using ClassicRoguelikeCourse.UI.AttributePanel;
 using ClassicRoguelikeCourse.UI.InventoryWindow;
 using Godot;
+using Player = ClassicRoguelikeCourse.Entities.Characters.Player.Player;
 
 namespace ClassicRoguelikeCourse.Managers.Fsm.GameState;
 
@@ -41,6 +42,10 @@ public partial class StartState : Node, IState
     private AttributePanel _attributePanel;
     // 楼梯管理器
     private StairManager.StairManager _stairManager;
+    // 存档管理器
+    private SaveLoadManager.SaveLoadManager _saveLoadManager;
+    // 拾取物生成器
+    private PickableObjectSpawner.PickableObjectSpawner _pickableObjectSpawner;
 
 
     public async void Initialize()
@@ -55,10 +60,14 @@ public partial class StartState : Node, IState
         _fogPainterManager = GetTree().CurrentScene.GetNode<FogPainterManager.FogPainterManager>("%FogPainterManager");
         _attributePanel = GetTree().CurrentScene.GetNode<AttributePanel>("%AttributePanel");
         _stairManager = GetTree().CurrentScene.GetNode<StairManager.StairManager>("%StairManager");
+        _saveLoadManager = GetTree().CurrentScene.GetNode<SaveLoadManager.SaveLoadManager>("%SaveLoadManager");
+        _pickableObjectSpawner = GetTree().CurrentScene.GetNode<PickableObjectSpawner.PickableObjectSpawner>("%PickableObjectSpawner");
         // 初始化
+        _saveLoadManager.Initialize();
+        _inputHandler.Initialize();
         _player.Initialize();
         _enemyManager.Initialize();
-        _inputHandler.Initialize();
+        _pickableObjectSpawner.Initialize();
         _mapManager.Initialize();
         _inventoryWindow.Initialize();
         _attributePanel.Initialize();

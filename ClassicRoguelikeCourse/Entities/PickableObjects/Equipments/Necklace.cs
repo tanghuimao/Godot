@@ -41,7 +41,7 @@ public partial class Necklace : Equipment, INeckWearEquipment
         _actualDodgeIncrement = (float)GD.RandRange(_minDodgeIncrement, _maxDodgeIncrement);
         _actualStrengthIncrement = GD.RandRange(_minStrengthIncrement, _maxStrengthIncrement);
         _actualConstitutionIncrement = GD.RandRange(_minConstitutionIncrement, _maxConstitutionIncrement);
-        _description = "闪避：" + _actualDodgeIncrement.ToString("0.00") + "%\n" +
+        _description = "闪避：" + (_actualDodgeIncrement * 100f).ToString("0.00") + "%\n" +
                        "力量：" + _actualStrengthIncrement + "\n" +
                        "体质：" + _actualConstitutionIncrement;
     }

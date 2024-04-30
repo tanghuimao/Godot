@@ -1,6 +1,8 @@
 using System;
 using ClassicRoguelikeCourse.Entites.Characters.Player;
+using ClassicRoguelikeCourse.Entities.Characters.Enemies;
 using Godot;
+using Player = ClassicRoguelikeCourse.Entities.Characters.Player.Player;
 
 namespace ClassicRoguelikeCourse.Managers.Fsm.GameState;
 

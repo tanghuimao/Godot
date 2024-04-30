@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using ClassicRoguelikeCourse.Entities.Characters.Enemies;
+using ClassicRoguelikeCourse.Managers.SaveLoadManager;
 using Godot;
 using Godot.Collections;
 
@@ -7,7 +9,7 @@ namespace ClassicRoguelikeCourse.Managers.EnemyManager;
 /// <summary>
 /// 敌人生成器
 /// </summary>
-public partial class EnemyManager : Node, IManager
+public partial class EnemyManager : Node, IManager, ILoadable
 {
     // 敌人数量
     [Export]
@@ -20,18 +22,67 @@ public partial class EnemyManager : Node, IManager
     private Array<PackedScene> _bossScenes = new();
     
     // 敌人容器
-    public Node _enemyContainer;
+    private Node _enemyContainer;
+    
+    public Node EnemyContainer => _enemyContainer;
+    // 存档管理器
+    private  SaveLoadManager.SaveLoadManager _saveLoadManager;
     public void Initialize()
     {
         _enemyContainer = GetTree().CurrentScene.GetNode<Node>("%EnemyContainer");
-        //生成敌人
-        SpawnEnemy();
-        //boss生成
-        SpawnBoss();
+        _saveLoadManager = GetTree().CurrentScene.GetNode<SaveLoadManager.SaveLoadManager>("%SaveLoadManager");
+        if (!InitializeByLoadData())
+        {
+            //生成敌人
+            SpawnEnemy();
+            //boss生成
+            SpawnBoss();
+        }
     }
 
     public void Update(double delta)
     {
+    }
+    
+    /// <summary>
+    /// 存档加载数据
+    /// </summary>
+    /// <returns></returns>
+    public bool InitializeByLoadData()
+    {
+        if (_saveLoadManager.LoadedData == null ||
+            _saveLoadManager.LoadedData.Count == 0 ||
+            !_saveLoadManager.LoadedData.ContainsKey("Maps")) return false;
+
+        var maps = _saveLoadManager.LoadedData["Maps"].AsGodotArray<Godot.Collections.Dictionary<string, Variant>>();
+        for (int i = 0; i < maps.Count; i++)
+        {
+            var map = maps[i];
+            //名称 和 当前保存场景相同
+            if (map["SceneName"].AsString() != GetTree().CurrentScene.Name) continue;
+            // 获取敌人
+            var enemies = map["Enemies"].AsGodotArray<Godot.Collections.Dictionary<string, Variant>>();
+            // 遍历
+            for (int j = 0; j < enemies.Count; j++)
+            {
+                // 获取
+                var enemy = enemies[j];
+                // 实例化
+                var enemyInstance = GD.Load<PackedScene>(enemy["ScenePath"].AsString()).Instantiate<Enemy>();
+                // 添加
+                _enemyContainer.AddChild(enemyInstance);
+                
+                var enemyIndex = enemy["Index"].AsInt32();
+                // _enemyContainer.MoveChild(enemyInstance, enemyIndex);
+                enemyInstance.GlobalPosition = enemy["Position"].AsVector2();
+                enemyInstance.Visible = enemy["Visible"].AsBool();
+                enemyInstance.Initialize();
+            }
+
+            return true;
+        }
+
+        return false;
     }
     
     /// <summary>

@@ -1,6 +1,5 @@
-using System;
-using ClassicRoguelikeCourse.Entites.Characters;
-using ClassicRoguelikeCourse.Entites.Characters.Player;
+using ClassicRoguelikeCourse.Entities.Characters;
+using ClassicRoguelikeCourse.Entities.Characters.Player;
 using ClassicRoguelikeCourse.Entities.PickableObjects.Items;
 using ClassicRoguelikeCourse.Managers;
 using ClassicRoguelikeCourse.Resources.CharacterData.PlayerData;

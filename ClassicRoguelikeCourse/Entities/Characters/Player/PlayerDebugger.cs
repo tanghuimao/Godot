@@ -11,7 +11,7 @@ public partial class PlayerDebugger : Node
     {
         if (Input.IsActionJustPressed("show_player_info"))
         {
-            var player = GetTree().CurrentScene.GetNode<Player>("%Player");
+            var player = GetTree().CurrentScene.GetNode<Entities.Characters.Player.Player>("%Player");
             var data = player.CharacterData as PlayerData;
             GD.Print("------------玩家信息------------");
             GD.Print($"名称: {player.CharacterData.Name}");

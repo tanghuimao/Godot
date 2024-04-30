@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ClassicRoguelikeCourse.Managers.SaveLoadManager;
 using ClassicRoguelikeCourse.Resources.MapData.DungeonData;
 using Godot;
 using Godot.Collections;
@@ -9,7 +10,7 @@ namespace ClassicRoguelikeCourse.Managers.MapManager.MapGenerators.DungeonGenera
 /// <summary>
 /// 地牢地图生成器
 /// </summary>
-public partial class DungeonGenerator : Node, IMapGenerator
+public partial class DungeonGenerator : Node, IMapGenerator, ISavable, ILoadable
 {
     //地牢地图数据
     private DungeonData _dungeonData;
@@ -21,6 +22,8 @@ public partial class DungeonGenerator : Node, IMapGenerator
     private TileMap _tileMap;
     private List<Rect2I> _rooms = new();
 
+    private SaveLoadManager.SaveLoadManager _saveLoadManager;
+
     public void Initialize()
     {
         _dungeonData = GetParent<MapManager>().MapData as DungeonData;
@@ -28,14 +31,62 @@ public partial class DungeonGenerator : Node, IMapGenerator
         _tileSet = GD.Load<TileSet>("res://Resources/TileSets/DungeonTileSet.tres");
         //获取主场景 地图
         _tileMap = GetTree().CurrentScene.GetNode<TileMap>("%TileMap");
+        
+        _saveLoadManager = GetTree().CurrentScene.GetNode<SaveLoadManager.SaveLoadManager>("%SaveLoadManager");
         //设置瓦片集
         _tileMap.TileSet = _tileSet;
         //生成地图
-        GenerateMap();
+        if (!InitializeByLoadData())
+        {
+            GenerateMap();
+        }
     }
 
     public void Update(double delta)
     {
+    }
+    /// <summary>
+    /// 加载地图数据
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public bool InitializeByLoadData()
+    {
+        if (_saveLoadManager.LoadedData == null ||
+            _saveLoadManager.LoadedData.Count == 0 ||
+            !_saveLoadManager.LoadedData.ContainsKey("Maps") ||
+            !_saveLoadManager.LoadedData.ContainsKey("Player") ) return false;
+        var maps = _saveLoadManager.LoadedData["Maps"].AsGodotArray<Godot.Collections.Dictionary<string, Variant>>();
+        for (int i = 0; i < maps.Count; i++)
+        {
+            var map = maps[i];
+            //名称 和 当前保存场景相同
+            if (map["SceneName"].AsString() != GetTree().CurrentScene.Name) continue;
+            
+            //获取地图单元格
+            //地板、墙
+            var floorCells = map["FloorCells"].AsGodotArray<Vector2I>();
+            var wallCells = map["WallCells"].AsGodotArray<Vector2I>();
+
+            //设置地图单元格
+            _tileMap.SetCellsTerrainConnect(
+                (int)TileMapLayer.Default,
+                floorCells,
+                (int)TerrainSet.Default,
+                (int)DungeonTerrain.Floor,
+                false
+            );
+            
+            _tileMap.SetCellsTerrainConnect(
+                (int)TileMapLayer.Default,
+                wallCells,
+                (int)TerrainSet.Default,
+                (int)DungeonTerrain.Wall,
+                false
+            );
+            return true;
+        }
+        return false;
     }
 
     public Vector2I GetPlayerSpawnCell()
@@ -68,7 +119,46 @@ public partial class DungeonGenerator : Node, IMapGenerator
         }
        
     }
+    /// <summary>
+    /// 保存数据
+    /// </summary>
+    /// <returns></returns>
+    public Godot.Collections.Dictionary<string, Variant> GetDataForSave()
+    {
+        //地板、墙
+        var floorCells = new Array<Vector2I>();
+        var wallCells = new Array<Vector2I>();
+        
+        for (int x = 0; x < _dungeonData.MapSize.X; x++)
+        {
+            for (int y = 0; y < _dungeonData.MapSize.Y; y++)
+            {
+                //获取单元格
+                var cell = new Vector2I(x, y);
+                //获取单元格瓦片数据
+                var tileData = _tileMap.GetCellTileData((int)TileMapLayer.Default, cell);
+                //判断地图图层
+                if (tileData.TerrainSet == (int)TerrainSet.Default)
+                {
+                    switch (tileData.Terrain)
+                    {
+                        case (int)DungeonTerrain.Floor:
+                            floorCells.Add(cell);
+                            break;
+                        case (int)DungeonTerrain.Wall:
+                            wallCells.Add(cell);
+                            break;
+                    }
+                }
+            }
+        }
 
+        return new Godot.Collections.Dictionary<string, Variant>
+        {
+            { "FloorCells", floorCells },
+            { "WallCells", wallCells },
+        };
+    }
     /// <summary>
     /// 生成地图
     /// </summary>
@@ -103,7 +193,8 @@ public partial class DungeonGenerator : Node, IMapGenerator
             (int)TileMapLayer.Default,
             allCells,
             (int)TerrainSet.Default,
-            (int)DungeonTerrain.Wall
+            (int)DungeonTerrain.Wall,
+            false
         );
     }
 
@@ -147,7 +238,8 @@ public partial class DungeonGenerator : Node, IMapGenerator
             (int)TileMapLayer.Default,
             allRoomCells,
             (int)TerrainSet.Default,
-            (int)DungeonTerrain.Floor
+            (int)DungeonTerrain.Floor,
+            false
         );
     }
 

@@ -1,5 +1,6 @@
 using System;
 using ClassicRoguelikeCourse.Entites.Characters.Player;
+using ClassicRoguelikeCourse.Entities.Characters.Enemies;
 using Godot;
 
 namespace ClassicRoguelikeCourse.Managers.Fsm.GameState;

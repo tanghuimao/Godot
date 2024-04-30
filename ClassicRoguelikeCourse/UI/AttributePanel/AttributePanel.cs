@@ -1,6 +1,7 @@
 using ClassicRoguelikeCourse.Entites.Characters.Player;
 using ClassicRoguelikeCourse.Resources.CharacterData.PlayerData;
 using Godot;
+using Player = ClassicRoguelikeCourse.Entities.Characters.Player.Player;
 
 namespace ClassicRoguelikeCourse.UI.AttributePanel;
 

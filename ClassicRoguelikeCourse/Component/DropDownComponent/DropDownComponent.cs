@@ -1,5 +1,6 @@
-using ClassicRoguelikeCourse.Entites.Characters;
-using ClassicRoguelikeCourse.Entites.Characters.Player;
+using ClassicRoguelikeCourse.Entities.Characters;
+using ClassicRoguelikeCourse.Entities.Characters.Enemies;
+using ClassicRoguelikeCourse.Entities.Characters.Player;
 using ClassicRoguelikeCourse.Resources.CharacterData.EnemyData;
 using Godot;
 

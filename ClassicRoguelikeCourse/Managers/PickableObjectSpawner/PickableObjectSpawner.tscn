@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqi7tl53prpaj"]
+
+[ext_resource type="Script" path="res://Managers/PickableObjectSpawner/PickableObjectSpawner.cs" id="1_eikc2"]
+
+[node name="PickableObjectSpawner" type="Node"]
+script = ExtResource("1_eikc2")

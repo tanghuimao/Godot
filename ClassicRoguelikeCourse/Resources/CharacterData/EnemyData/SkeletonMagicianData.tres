@@ -19,14 +19,14 @@ script = ExtResource("1_2pvm4")
 DeathDropExperience = 6.0
 DeathDropPickableObjects = {
 ExtResource("1_bp8yn"): 0.0,
-ExtResource("2_dmplf"): 0.0,
+ExtResource("2_dmplf"): 0.3,
 ExtResource("3_fpe7a"): 0.0,
 ExtResource("4_qmat0"): 0.0,
-ExtResource("5_q8vai"): 0.5,
+ExtResource("5_q8vai"): 0.2,
 ExtResource("6_nirvo"): 0.0,
 ExtResource("7_ii5mo"): 0.0,
 ExtResource("8_yj4s6"): 0.5,
-ExtResource("9_ovwpj"): 0.0,
+ExtResource("9_ovwpj"): 0.3,
 ExtResource("2_etf35"): 0.5,
 ExtResource("1_uylco"): 0.5
 }
@@ -40,6 +40,7 @@ StrengthIncrementEffects = {
 "Defend": 1.0
 }
 ConstitutionIncrementEffects = {
+"Defend": 1.0,
 "Health": 3.0,
 "MaxHealth": 3.0
 }

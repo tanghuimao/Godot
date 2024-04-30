@@ -1,21 +1,24 @@
 using System;
 using System.Collections.Generic;
 using ClassicRoguelikeCourse.Component;
+using ClassicRoguelikeCourse.Entites;
+using ClassicRoguelikeCourse.Entites.Characters.Player;
+using ClassicRoguelikeCourse.Entities.Characters.Enemies;
 using ClassicRoguelikeCourse.Managers.CombatManager;
 using ClassicRoguelikeCourse.Managers.MapManager;
+using ClassicRoguelikeCourse.Managers.SaveLoadManager;
 using ClassicRoguelikeCourse.Resources.CharacterData;
-using ClassicRoguelikeCourse.Resources.MapData;
 using Godot;
 
-namespace ClassicRoguelikeCourse.Entites.Characters;
+namespace ClassicRoguelikeCourse.Entities.Characters;
 
 /// <summary>
 /// 角色抽象父类接口
 /// </summary>
-public partial class Character : Node2D, IEntity
+public partial class Character : Node2D, IEntity, ISavable, ILoadable
 {
     //角色数据
-    [Export] private CharacterData _characterData;
+    [Export] protected CharacterData _characterData;
     public  CharacterData CharacterData => _characterData;
     //组件集合
     protected List<IComponent> Components = new ();
@@ -27,10 +30,14 @@ public partial class Character : Node2D, IEntity
     protected bool _isDead;
     public bool IsDead => _isDead;
     
+    // 存档管理器
+    protected  SaveLoadManager _saveLoadManager;
+    
     public virtual void Initialize()
     {
         _mapManager = GetTree().CurrentScene.GetNode<MapManager>("%MapManager");
         _combatManager = GetTree().CurrentScene.GetNode<CombatManager>("%CombatManager");
+        _saveLoadManager = GetTree().CurrentScene.GetNode<SaveLoadManager>("%SaveLoadManager");
         //获取所有子节点
         foreach (var child in GetChildren())
         {
@@ -40,7 +47,10 @@ public partial class Character : Node2D, IEntity
             Components.Add(component);
         }
         //初始化战斗属性
-        InitializeCombatAttributes();
+        if (!InitializeByLoadData())
+        {
+            InitializeCombatAttributes();
+        }
         //订阅事件
         _combatManager.CharacterDead += OnCharacterDead;
     }
@@ -52,6 +62,102 @@ public partial class Character : Node2D, IEntity
         {
             component.Update(delta);
         }
+    }
+    /// <summary>
+    /// 获取保存数据
+    /// </summary>
+    /// <returns></returns>
+    public virtual Godot.Collections.Dictionary<string, Variant> GetDataForSave()
+    {
+        return new Godot.Collections.Dictionary<string, Variant>()
+        {
+            { "Name", _characterData.Name },
+            { "Sight", _characterData.Sight },
+            { "Strength", _characterData.Strength },
+            { "constitution", _characterData.Constitution },
+            { "Agility", _characterData.Agility },
+            { "StrengthIncrementEffects", _characterData.StrengthIncrementEffects },
+            { "ConstitutionIncrementEffects", _characterData.ConstitutionIncrementEffects },
+            { "AgilityIncrementEffects", _characterData.AgilityIncrementEffects },
+            { "Health", _characterData.Health },
+            { "MaxHealth", _characterData.MaxHealth },
+            { "Attack", _characterData.Attack },
+            { "Defend", _characterData.Defend },
+            { "Dodge", _characterData.Dodge },
+            { "CriticalChance", _characterData.CriticalChance },
+        };
+    }
+    
+    /// <summary>
+    /// 初始化战斗属性
+    /// </summary>
+    /// <param name="characterLoadData"></param>
+    protected void InitializeByCharacterLoadData(Godot.Collections.Dictionary<string,Variant> characterLoadData)
+    {
+        _characterData.Name = characterLoadData["Name"].AsString();
+        _characterData.Sight = characterLoadData["Sight"].AsInt32();
+        _characterData.Strength = characterLoadData["Strength"].AsInt32();
+        _characterData.Constitution = characterLoadData["constitution"].AsInt32();
+        _characterData.Agility = characterLoadData["Agility"].AsInt32();
+        _characterData.StrengthIncrementEffects = characterLoadData["StrengthIncrementEffects"].AsGodotDictionary<string, float>();
+        _characterData.ConstitutionIncrementEffects = characterLoadData["ConstitutionIncrementEffects"].AsGodotDictionary<string, float>();
+        _characterData.AgilityIncrementEffects = characterLoadData["AgilityIncrementEffects"].AsGodotDictionary<string, float>();
+        _characterData.Health = characterLoadData["Health"].AsSingle();
+        _characterData.MaxHealth = characterLoadData["MaxHealth"].AsSingle();
+        _characterData.Attack = characterLoadData["Attack"].AsSingle();
+        _characterData.Defend = characterLoadData["Defend"].AsSingle();
+        _characterData.Dodge = characterLoadData["Dodge"].AsSingle();
+        _characterData.CriticalChance = characterLoadData["CriticalChance"].AsSingle();
+    }
+    
+    /// <summary>
+    /// 存档加载数据
+    /// </summary>
+    /// <returns></returns>
+    public bool InitializeByLoadData()
+    {
+        if (_saveLoadManager.LoadedData == null ||
+            _saveLoadManager.LoadedData.Count == 0 ||
+            !_saveLoadManager.LoadedData.ContainsKey("Maps")) return false;
+        //敌人
+        if (this is Enemy)
+        {
+            if (!_saveLoadManager.LoadedData.ContainsKey("Maps")) return false;
+            
+            var maps = _saveLoadManager.LoadedData["Maps"].AsGodotArray<Godot.Collections.Dictionary<string, Variant>>();
+            for (int i = 0; i < maps.Count; i++)
+            {
+                var map = maps[i];
+                //名称 和 当前保存场景相同
+                if (map["SceneName"].AsString() != GetTree().CurrentScene.Name) continue;
+                //获取存档敌人集合
+                var enemies = map["Enemies"].AsGodotArray<Godot.Collections.Dictionary<string, Variant>>();
+                
+                for (int j = 0; j < enemies.Count; j++)
+                {
+                    var enemy = enemies[j];
+                    if (enemy["Index"].AsInt32() == GetIndex())
+                    {
+                        //初始化
+                        InitializeByCharacterLoadData(enemy);
+                        return true;
+                    }
+                }
+                
+            }
+        }
+        //玩家
+        if (this is Player.Player)
+        {
+            if (!_saveLoadManager.LoadedData.ContainsKey("Player")) return false;
+            
+            var player = _saveLoadManager.LoadedData["Player"].AsGodotDictionary<string, Variant>();
+            //初始化
+            InitializeByCharacterLoadData(player);
+            return true;
+        }
+
+        return false;
     }
 
     /// <summary>

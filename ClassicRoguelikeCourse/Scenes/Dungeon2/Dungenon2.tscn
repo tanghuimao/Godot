@@ -1,0 +1,55 @@
+[gd_scene load_steps=11 format=3 uid="uid://bidmgf40c4fgi"]
+
+[ext_resource type="PackedScene" uid="uid://b7alouchlv4m2" path="res://Scenes/Main.tscn" id="1_2qu0q"]
+[ext_resource type="Resource" uid="uid://277w6lvi34em" path="res://Resources/MapData/DungeonData/DungeonData.tres" id="2_rj5o7"]
+[ext_resource type="PackedScene" uid="uid://bq5pa6d2tec1d" path="res://Managers/MapManager/MapGenerators/DungeonGenerator/DungeonGenerator.tscn" id="3_mhtsn"]
+[ext_resource type="PackedScene" uid="uid://bfgob76md1xk4" path="res://Entities/Characters/Enemies/Rat.tscn" id="4_32b3t"]
+[ext_resource type="Script" path="res://Resources/CharacterData/PlayerData/PlayerData.cs" id="4_wdivu"]
+[ext_resource type="PackedScene" uid="uid://du6nppdaqvb40" path="res://Entities/Characters/Enemies/Goblin.tscn" id="5_8noe8"]
+[ext_resource type="PackedScene" uid="uid://b1rwdls70vtqk" path="res://Entities/Characters/Enemies/Ocr.tscn" id="6_yqbbf"]
+[ext_resource type="PackedScene" uid="uid://bnh677va2dieu" path="res://Entities/Characters/Enemies/Skeleton.tscn" id="7_e6ut1"]
+[ext_resource type="PackedScene" uid="uid://bh6oerlp3pr35" path="res://Entities/Characters/Enemies/SkeletonMagician.tscn" id="8_whmp5"]
+
+[sub_resource type="Resource" id="Resource_ve730"]
+resource_local_to_scene = true
+script = ExtResource("4_wdivu")
+Name = "玩家"
+_sight = 6
+_strength = 8
+_constitution = 18
+_agility = 8
+StrengthIncrementEffects = {
+"Attack": 2.0,
+"Defend": 1.0
+}
+ConstitutionIncrementEffects = {
+"Defend": 1.0,
+"Health": 3.0,
+"MaxHealth": 3.0
+}
+AgilityIncrementEffects = {
+"CriticalChance": 0.005,
+"Dodge": 0.01
+}
+
+[node name="Dungenon2" instance=ExtResource("1_2qu0q")]
+
+[node name="MapManager" parent="." index="3"]
+_mapData = ExtResource("2_rj5o7")
+
+[node name="DungeonGenerator" parent="MapManager" index="0" instance=ExtResource("3_mhtsn")]
+
+[node name="EnemyManager" parent="." index="4"]
+_enemyScenes = {
+ExtResource("4_32b3t"): 10.0,
+ExtResource("5_8noe8"): 10.0,
+ExtResource("6_yqbbf"): 10.0,
+ExtResource("7_e6ut1"): 40.0,
+ExtResource("8_whmp5"): 50.0
+}
+
+[node name="StairManager" parent="." index="9"]
+_previousScenePath = "res://Scenes/Dungeon1/Dungenon1.tscn"
+
+[node name="Player" parent="GameViewportContainer/GameSubViewport" index="3"]
+_characterData = SubResource("Resource_ve730")

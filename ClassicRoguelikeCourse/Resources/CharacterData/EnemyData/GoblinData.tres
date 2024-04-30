@@ -20,12 +20,12 @@ DeathDropExperience = 3.0
 DeathDropPickableObjects = {
 ExtResource("1_dgkue"): 0.2,
 ExtResource("2_dkl3c"): 0.5,
-ExtResource("3_57by6"): 0.2,
-ExtResource("4_43h77"): 0.1,
+ExtResource("3_57by6"): 0.1,
+ExtResource("4_43h77"): 0.05,
 ExtResource("5_bb41o"): 0.0,
 ExtResource("6_dvt1d"): 0.0,
 ExtResource("7_pb054"): 0.5,
-ExtResource("8_it1il"): 0.5,
+ExtResource("8_it1il"): 0.2,
 ExtResource("9_s45x0"): 0.1,
 ExtResource("10_ujlug"): 0.0,
 ExtResource("11_jel17"): 0.0
@@ -40,6 +40,7 @@ StrengthIncrementEffects = {
 "Defend": 1.0
 }
 ConstitutionIncrementEffects = {
+"Defend": 1.0,
 "Health": 3.0,
 "MaxHealth": 3.0
 }

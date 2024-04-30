@@ -1,14 +1,16 @@
 using System;
 using ClassicRoguelikeCourse.Entites.Characters.Player;
+using ClassicRoguelikeCourse.Managers.SaveLoadManager;
 using Godot;
 using Godot.Collections;
+using Player = ClassicRoguelikeCourse.Entities.Characters.Player.Player;
 
 namespace ClassicRoguelikeCourse.Managers.StairManager;
 
 /// <summary>
 /// 楼梯管理器
 /// </summary>
-public partial class StairManager : Node, IManager
+public partial class StairManager : Node, IManager, ILoadable
 {
     //上层场景路径
     [Export] private string _previousScenePath;
@@ -32,19 +34,82 @@ public partial class StairManager : Node, IManager
     private Vector2 _upStairPosition;
     private Vector2 _downStairPosition;
 
+    private SaveLoadManager.SaveLoadManager _saveLoadManager;
+
     public void Initialize()
     {
         _mapManager = GetTree().CurrentScene.GetNode<MapManager.MapManager>("%MapManager");
         _inputHandler = GetTree().CurrentScene.GetNode<InputHandler>("%InputHandler");
         _player = GetTree().CurrentScene.GetNode<Player>("%Player");
         _tileMap = GetTree().CurrentScene.GetNode<TileMap>("%TileMap");
-        GenerateUpStair();
-        GenerateDownStair();
+        _saveLoadManager = GetTree().CurrentScene.GetNode<SaveLoadManager.SaveLoadManager>("%SaveLoadManager");
+        
+        if (!InitializeByLoadData())
+        {
+            GenerateUpStair();
+            GenerateDownStair();
+        }
     }
 
     public void Update(double delta)
     {
     }
+
+    /// <summary>
+    /// 存档加载数据
+    /// </summary>
+    /// <returns></returns>
+    public bool InitializeByLoadData()
+    {
+        if (_saveLoadManager.LoadedData == null ||
+            _saveLoadManager.LoadedData.Count == 0 ||
+            !_saveLoadManager.LoadedData.ContainsKey("Maps")) return false;
+
+        var maps = _saveLoadManager.LoadedData["Maps"].AsGodotArray<Dictionary<string, Variant>>();
+        for (int i = 0; i < maps.Count; i++)
+        {
+            var map = maps[i];
+            //名称 和 当前保存场景相同
+            if (map["SceneName"].AsString() != GetTree().CurrentScene.Name) continue;
+            //获取上下楼梯单元格
+            var upStairCell = map["UpStairCell"].AsVector2I();
+            var downStairCell = map["DownStairCell"].AsVector2I();
+            //获取上下楼梯位置
+            _upStairPosition = upStairCell * _mapManager.MapData.CellSize + _mapManager.MapData.CellSize / 2;
+            _downStairPosition = downStairCell * _mapManager.MapData.CellSize + _mapManager.MapData.CellSize / 2;
+
+            //设置楼梯
+            if (upStairCell != Vector2I.Zero)
+            {
+                //设置上层楼梯
+                _tileMap.SetCellsTerrainConnect(
+                    (int)TileMapLayer.Default,
+                    new Array<Vector2I> { upStairCell },
+                    (int)TerrainSet.Stair,
+                    (int)StairTerrain.UpStair,
+                    false
+                );
+            }
+
+            //设置楼梯
+            if (downStairCell != Vector2I.Zero)
+            {
+                //设置上层楼梯
+                _tileMap.SetCellsTerrainConnect(
+                    (int)TileMapLayer.Default,
+                    new Array<Vector2I> { downStairCell },
+                    (int)TerrainSet.Stair,
+                    (int)StairTerrain.DownStair,
+                    false
+                );
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
     /// <summary>
     /// 尝试返回上层场景
     /// </summary>
@@ -56,9 +121,13 @@ public partial class StairManager : Node, IManager
         if (Mathf.IsEqualApprox(_player.GlobalPosition.X, _upStairPosition.X) &&
             Mathf.IsEqualApprox(_player.GlobalPosition.Y, _upStairPosition.Y))
         {
+            //存档
+            _saveLoadManager.Save();
+            //切换场景
             GetTree().ChangeSceneToFile(_previousScenePath);
         }
     }
+
     /// <summary>
     /// 尝试进入下层场景
     /// </summary>
@@ -70,6 +139,9 @@ public partial class StairManager : Node, IManager
         if (Mathf.IsEqualApprox(_player.GlobalPosition.X, _downStairPosition.X) &&
             Mathf.IsEqualApprox(_player.GlobalPosition.Y, _downStairPosition.Y))
         {
+            //存档
+            _saveLoadManager.Save();
+            //切换场景
             GetTree().ChangeSceneToFile(_nextScenePath);
         }
     }
