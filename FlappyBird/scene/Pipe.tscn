@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://cuug3l23bwm37"]
+
+[ext_resource type="Script" path="res://scene/Pipe.cs" id="1_pmal1"]
+[ext_resource type="Texture2D" uid="uid://cmowomrrx75ff" path="res://assest/img/pipe.png" id="1_y5p5v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pib1f"]
+size = Vector2(66, 678)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3r1lg"]
+size = Vector2(66, 849)
+
+[node name="Pipe" type="Node2D"]
+position = Vector2(600, 0)
+script = ExtResource("1_pmal1")
+metadata/_edit_horizontal_guides_ = [700.0]
+
+[node name="StaticBody2DPipeUp" type="StaticBody2D" parent="."]
+scale = Vector2(1.00632, 1)
+
+[node name="PipeUp" type="Sprite2D" parent="StaticBody2DPipeUp"]
+position = Vector2(1.78202e-05, -340)
+scale = Vector2(1, 1.5)
+texture = ExtResource("1_y5p5v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2DPipeUp"]
+position = Vector2(-2.14862e-05, -340)
+shape = SubResource("RectangleShape2D_pib1f")
+
+[node name="StaticBody2DPipeDown" type="StaticBody2D" parent="."]
+position = Vector2(0, 700)
+
+[node name="PipeDown" type="Sprite2D" parent="StaticBody2DPipeDown"]
+position = Vector2(0, 343)
+scale = Vector2(1, 1.5)
+texture = ExtResource("1_y5p5v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2DPipeDown"]
+position = Vector2(0, 339)
+shape = SubResource("RectangleShape2D_pib1f")
+
+[node name="Area2DScore" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, 198)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DScore"]
+position = Vector2(0, 226)
+shape = SubResource("RectangleShape2D_3r1lg")

@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdch1cd2y52vq"]
+
+[ext_resource type="Script" path="res://ui/GameOver.cs" id="1_blgeh"]
+[ext_resource type="Texture2D" uid="uid://j4rq2n1qbda8" path="res://assest/img/gameover.png" id="2_2cxsl"]
+[ext_resource type="FontFile" uid="uid://vj033c4ytog3" path="res://assest/fonts/vonwaon_bitmap_16px.ttf" id="3_u64uc"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_blgeh")
+
+[node name="Container" type="Control" parent="."]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="Sprite2D" parent="Container"]
+position = Vector2(195, 200)
+texture = ExtResource("2_2cxsl")
+region_enabled = true
+region_rect = Rect2(64, 88, 251, 62)
+
+[node name="StartButton" type="Button" parent="Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 390.0
+offset_right = 390.0
+offset_bottom = 422.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_u64uc")
+theme_override_font_sizes/font_size = 24
+text = "重新开始"
+
+[node name="EndButton" type="Button" parent="Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 450.0
+offset_right = 390.0
+offset_bottom = 482.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_u64uc")
+theme_override_font_sizes/font_size = 24
+text = "退出游戏"

@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://cqawfjms6eh32"]
+
+[ext_resource type="Script" path="res://ui/GameStart.cs" id="1_3e67u"]
+[ext_resource type="Texture2D" uid="uid://wufiv1s7jnqe" path="res://assest/img/main.png" id="1_5xnj6"]
+[ext_resource type="Shader" path="res://shader/Scroll.gdshader" id="2_0s36m"]
+[ext_resource type="Texture2D" uid="uid://5we3wfkxaeki" path="res://assest/img/bg.jpg" id="3_2ngvf"]
+[ext_resource type="FontFile" uid="uid://vj033c4ytog3" path="res://assest/fonts/vonwaon_bitmap_16px.ttf" id="3_4vhfr"]
+[ext_resource type="Texture2D" uid="uid://b4jgu626xm2ts" path="res://assest/img/back.png" id="4_2bt5q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dyocl"]
+shader = ExtResource("2_0s36m")
+shader_parameter/speed = 0.05
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7hp7p"]
+shader = ExtResource("2_0s36m")
+shader_parameter/speed = 0.1
+
+[node name="GameStart" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_3e67u")
+
+[node name="BackGround" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_dyocl")
+position = Vector2(195, 422)
+scale = Vector2(2, 2)
+texture = ExtResource("3_2ngvf")
+
+[node name="Floor" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_7hp7p")
+position = Vector2(195, 440)
+scale = Vector2(2, 2)
+texture = ExtResource("4_2bt5q")
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="Sprite2D" parent="Container"]
+position = Vector2(195, 200)
+texture = ExtResource("1_5xnj6")
+
+[node name="StartButton" type="Button" parent="Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 390.0
+offset_right = 390.0
+offset_bottom = 422.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_4vhfr")
+theme_override_font_sizes/font_size = 24
+text = "开始游戏"
+
+[node name="EndButton" type="Button" parent="Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 450.0
+offset_right = 390.0
+offset_bottom = 482.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_4vhfr")
+theme_override_font_sizes/font_size = 24
+text = "退出游戏"

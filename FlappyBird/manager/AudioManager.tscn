@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://cykv7bc5t8any"]
+
+[ext_resource type="Script" path="res://manager/AudioManager.cs" id="1_jcbki"]
+[ext_resource type="AudioStream" uid="uid://b0q3necsyrvn6" path="res://assest/audio/sfx_die.ogg" id="1_ukuxo"]
+[ext_resource type="AudioStream" uid="uid://c3p0qs31618kw" path="res://assest/audio/sfx_hit.ogg" id="2_f67r8"]
+[ext_resource type="AudioStream" uid="uid://cedq36gk73rsm" path="res://assest/audio/sfx_point.ogg" id="3_mbvbe"]
+[ext_resource type="AudioStream" uid="uid://dtnkt0vqidsj7" path="res://assest/audio/sfx_swooshing.ogg" id="4_vudmc"]
+[ext_resource type="AudioStream" uid="uid://cw2k0wev7q1ym" path="res://assest/audio/sfx_wing.ogg" id="5_xqaax"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_jcbki")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="sfx_die" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("1_ukuxo")
+
+[node name="sfx_hit" type="AudioStreamPlayer" parent="SFX"]
+process_mode = 3
+stream = ExtResource("2_f67r8")
+
+[node name="sfx_point" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("3_mbvbe")
+
+[node name="sfx_swooshing" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("4_vudmc")
+
+[node name="sfx_wing" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("5_xqaax")

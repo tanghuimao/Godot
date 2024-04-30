@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://j0y1w6xcqjvv"]
+
+[ext_resource type="Script" path="res://manager/PipeManager.cs" id="1_n33qy"]
+
+[node name="PipeManager" type="Node"]
+script = ExtResource("1_n33qy")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true

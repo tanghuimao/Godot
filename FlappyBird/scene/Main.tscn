@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://oufbeyrdjxl2"]
+
+[ext_resource type="PackedScene" uid="uid://d1c5d0xjwvv0v" path="res://scene/BackGround.tscn" id="1_3gj2h"]
+[ext_resource type="PackedScene" uid="uid://j0y1w6xcqjvv" path="res://manager/PipeManager.tscn" id="3_4g3n5"]
+[ext_resource type="PackedScene" uid="uid://b5at6vde50nh2" path="res://scene/Bird.tscn" id="3_f25kn"]
+[ext_resource type="PackedScene" uid="uid://c5wjc28clfavc" path="res://ui/ScoreWindow.tscn" id="6_l14rs"]
+[ext_resource type="PackedScene" uid="uid://bdch1cd2y52vq" path="res://ui/GameOver.tscn" id="7_ahylh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1v5k7"]
+size = Vector2(1289.25, 116.969)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gepyi"]
+size = Vector2(88.328, 656.513)
+
+[node name="Main" type="Node"]
+
+[node name="BackGround" parent="." instance=ExtResource("1_3gj2h")]
+
+[node name="PipeManager" parent="." instance=ExtResource("3_4g3n5")]
+
+[node name="Bird" parent="." instance=ExtResource("3_f25kn")]
+position = Vector2(195, 422)
+
+[node name="StaticBody2DTop" type="StaticBody2D" parent="."]
+position = Vector2(191, 249)
+scale = Vector2(1.17743, -2.07155)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2DTop"]
+position = Vector2(2.9726, 148.607)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_1v5k7")
+
+[node name="StaticBody2DLeft" type="StaticBody2D" parent="."]
+position = Vector2(191, 249)
+scale = Vector2(1.17743, -2.07155)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2DLeft"]
+position = Vector2(-186, -44)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_gepyi")
+
+[node name="ScoreWindow" parent="." instance=ExtResource("6_l14rs")]
+unique_name_in_owner = true
+
+[node name="GameOver" parent="." instance=ExtResource("7_ahylh")]
+visible = false

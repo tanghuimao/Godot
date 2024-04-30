@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://heso843ftdtu"]
+
+[ext_resource type="Shader" path="res://shader/Scroll.gdshader" id="1_bdjob"]
+[ext_resource type="Texture2D" uid="uid://b4jgu626xm2ts" path="res://assest/img/back.png" id="1_mcamr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6roov"]
+shader = ExtResource("1_bdjob")
+shader_parameter/speed = 0.1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6ap5"]
+size = Vector2(1062, 235)
+
+[node name="Floor" type="Node"]
+
+[node name="Floor" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_6roov")
+position = Vector2(195, 440)
+scale = Vector2(2, 2)
+texture = ExtResource("1_mcamr")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(195, 440)
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 180.25)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_j6ap5")

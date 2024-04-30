@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5wjc28clfavc"]
+
+[ext_resource type="FontFile" uid="uid://vj033c4ytog3" path="res://assest/fonts/vonwaon_bitmap_16px.ttf" id="1_bvxby"]
+[ext_resource type="Script" path="res://ui/ScoreWindow.cs" id="1_gq83k"]
+
+[node name="ScoreWindow" type="Node"]
+script = ExtResource("1_gq83k")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 43.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("1_bvxby")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
