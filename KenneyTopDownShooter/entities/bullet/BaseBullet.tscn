@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://dyk0cxm6yrbav"]
+
+[ext_resource type="PackedScene" uid="uid://bvs8kp8dnt78o" path="res://entities/bullet/Bullet.tscn" id="1_o7pxa"]
+[ext_resource type="Texture2D" uid="uid://bqn7xnytxlqil" path="res://assets/topdownTanks_vector.svg" id="2_ey5st"]
+[ext_resource type="Script" path="res://entities/bullet/BaseBullet.cs" id="2_sjd75"]
+[ext_resource type="Resource" uid="uid://c18tqtjl6lxln" path="res://resources/bullet_data/BulletData.tres" id="3_y738u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1hw55"]
+size = Vector2(8, 14)
+
+[node name="BaseBullet" instance=ExtResource("1_o7pxa")]
+rotation = 1.5708
+script = ExtResource("2_sjd75")
+BulletData = ExtResource("3_y738u")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_ey5st")
+region_enabled = true
+region_rect = Rect2(10, 242, 8, 14)
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_1hw55")
+
+[node name="KillTimer" parent="." index="2"]
+wait_time = 2.0
+one_shot = true
+autostart = true

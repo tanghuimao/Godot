@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c18tqtjl6lxln"]
+
+[ext_resource type="Script" path="res://resources/bullet_data/BulletData.cs" id="1_31q0r"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_31q0r")
+Speed = 10.0

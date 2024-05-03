@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://iq0woum3x3s1"]
+
+[ext_resource type="Script" path="res://entities/characters/Character.cs" id="1_ey1h8"]
+
+[node name="Character" type="CharacterBody2D"]
+script = ExtResource("1_ey1h8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="EndOfGunMarker" type="Marker2D" parent="."]
+
+[node name="AttackCoolDownTimer" type="Timer" parent="."]

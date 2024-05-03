@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b5x8o3jftv8wn"]
+
+[ext_resource type="Script" path="res://resources/character_data/player_data/PlayerData.cs" id="1_3u3un"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_3u3un")

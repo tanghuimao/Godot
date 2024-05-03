@@ -1,0 +1,208 @@
+[gd_scene load_steps=11 format=3 uid="uid://l8ck38rquyfc"]
+
+[ext_resource type="PackedScene" uid="uid://iq0woum3x3s1" path="res://entities/characters/Character.tscn" id="1_bfoec"]
+[ext_resource type="Script" path="res://entities/characters/player/Player.cs" id="1_klms1"]
+[ext_resource type="Resource" uid="uid://b5x8o3jftv8wn" path="res://resources/character_data/player_data/PlayerData.tres" id="3_vvgi2"]
+[ext_resource type="PackedScene" uid="uid://dyk0cxm6yrbav" path="res://entities/bullet/BaseBullet.tscn" id="4_alf8d"]
+[ext_resource type="Texture2D" uid="uid://bqn7xnytxlqil" path="res://assets/topdownTanks_vector.svg" id="5_7e375"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3aitp"]
+load_path = "res://.godot/imported/spritesheet_characters.png-3c0c465fcc2845a959d42c5252927ed4.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gow1m"]
+size = Vector2(37.5, 42)
+
+[sub_resource type="Animation" id="Animation_wg4y3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MuzzleFlash:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_7e375")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MuzzleFlash:region_enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MuzzleFlash:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(337, 277, 20, 25)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MuzzleFlash:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(42, 9)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MuzzleFlash:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MuzzleFlash:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4oo46"]
+resource_name = "muzzle_flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MuzzleFlash:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_7e375")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MuzzleFlash:region_enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MuzzleFlash:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(337, 277, 20, 25)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MuzzleFlash:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(43, 9)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MuzzleFlash:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MuzzleFlash:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.5, 1.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k3gkv"]
+_data = {
+"RESET": SubResource("Animation_wg4y3"),
+"muzzle_flash": SubResource("Animation_4oo46")
+}
+
+[node name="Player" instance=ExtResource("1_bfoec")]
+script = ExtResource("1_klms1")
+CharacterData = ExtResource("3_vvgi2")
+Bullet = ExtResource("4_alf8d")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = SubResource("CompressedTexture2D_3aitp")
+region_enabled = true
+region_rect = Rect2(0, 0, 56, 44)
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-8.75, 0)
+shape = SubResource("RectangleShape2D_gow1m")
+
+[node name="EndOfGunMarker" parent="." index="2"]
+position = Vector2(33, 9)
+
+[node name="GunDirectionMarker" type="Marker2D" parent="." index="3"]
+position = Vector2(39, 9)
+
+[node name="AttackCoolDownTimer" parent="." index="4"]
+wait_time = 0.5
+one_shot = true
+
+[node name="MuzzleFlash" type="Sprite2D" parent="." index="5"]
+visible = false
+position = Vector2(42, 9)
+rotation = -1.5708
+texture = ExtResource("5_7e375")
+region_enabled = true
+region_rect = Rect2(337, 277, 20, 25)
+
+[node name="MuzzleFlashAnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+libraries = {
+"": SubResource("AnimationLibrary_k3gkv")
+}
+autoplay = "muzzle_flash"
