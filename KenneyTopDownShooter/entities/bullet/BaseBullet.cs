@@ -14,6 +14,17 @@ public partial class BaseBullet : Bullet
         {
             QueueFree();
         };
+        // 碰撞检测
+        BodyEntered += OnBodyEntered;
+    }
+
+    private void OnBodyEntered(Node2D body)
+    {
+        if (body is Character character)
+        {
+            character.HandleHit();
+            QueueFree();
+        }
     }
 
     public override void _PhysicsProcess(double delta)

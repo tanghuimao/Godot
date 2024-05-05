@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ce3phhtvuk1hx"]
+
+[ext_resource type="Script" path="res://resources/character_data/enemy_data/EnemyData.cs" id="1_sbbqv"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_sbbqv")
+BaseSpeed = 100
+Health = 100

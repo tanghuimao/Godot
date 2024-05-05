@@ -99,4 +99,14 @@ public partial class Player : Character
         }
         
     }
+
+    public override void HandleHit()
+    {
+        CharacterData.Health -= 20;
+        if (CharacterData.Health <= 0)
+        {
+            QueueFree();
+        }
+        GD.Print($"玩家被击中, health:{CharacterData.Health}");
+    }
 }

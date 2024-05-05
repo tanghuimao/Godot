@@ -1,10 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://l8ck38rquyfc"]
+[gd_scene load_steps=10 format=3 uid="uid://c512cyd77hjkj"]
 
-[ext_resource type="PackedScene" uid="uid://iq0woum3x3s1" path="res://entities/characters/Character.tscn" id="1_bfoec"]
-[ext_resource type="Script" path="res://entities/characters/player/Player.cs" id="1_klms1"]
-[ext_resource type="Resource" uid="uid://b5x8o3jftv8wn" path="res://resources/character_data/player_data/PlayerData.tres" id="3_vvgi2"]
-[ext_resource type="PackedScene" uid="uid://dyk0cxm6yrbav" path="res://entities/bullet/BaseBullet.tscn" id="4_alf8d"]
-[ext_resource type="Texture2D" uid="uid://c835c2foebj0h" path="res://assets/Soldier 1/soldier1_silencer.png" id="4_fpuqg"]
+[ext_resource type="PackedScene" uid="uid://iq0woum3x3s1" path="res://entities/characters/Character.tscn" id="1_b7ejg"]
+[ext_resource type="Script" path="res://entities/characters/enemy/Enemy.cs" id="2_5clhq"]
+[ext_resource type="Resource" uid="uid://ce3phhtvuk1hx" path="res://resources/character_data/enemy_data/EnemyData.tres" id="3_0525c"]
+[ext_resource type="PackedScene" uid="uid://dyk0cxm6yrbav" path="res://entities/bullet/BaseBullet.tscn" id="4_2l0sk"]
+[ext_resource type="Texture2D" uid="uid://dukxkv7r1hh4b" path="res://assets/Survivor 1/survivor1_silencer.png" id="5_r7rqv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gow1m"]
 size = Vector2(37.5, 42)
@@ -166,13 +166,13 @@ _data = {
 "muzzle_flash": SubResource("Animation_4oo46")
 }
 
-[node name="Player" instance=ExtResource("1_bfoec")]
-script = ExtResource("1_klms1")
-CharacterData = ExtResource("3_vvgi2")
-Bullet = ExtResource("4_alf8d")
+[node name="Enemy" instance=ExtResource("1_b7ejg")]
+script = ExtResource("2_5clhq")
+CharacterData = ExtResource("3_0525c")
+Bullet = ExtResource("4_2l0sk")
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("4_fpuqg")
+texture = ExtResource("5_r7rqv")
 region_enabled = true
 region_rect = Rect2(0, 0, 56, 44)
 

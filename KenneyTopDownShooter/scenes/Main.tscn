@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cw7sgfa160d3n"]
+[gd_scene load_steps=7 format=3 uid="uid://cw7sgfa160d3n"]
 
 [ext_resource type="PackedScene" uid="uid://l8ck38rquyfc" path="res://entities/characters/player/Player.tscn" id="1_5cjc8"]
 [ext_resource type="Script" path="res://scenes/Main.cs" id="1_sdqie"]
 [ext_resource type="Script" path="res://resources/character_data/player_data/PlayerData.cs" id="2_tfri1"]
 [ext_resource type="PackedScene" uid="uid://cljsxxvug1j2n" path="res://managers/BulletManager.tscn" id="4_u1jl8"]
+[ext_resource type="PackedScene" uid="uid://c512cyd77hjkj" path="res://entities/characters/enemy/Enemy.tscn" id="5_y0mkn"]
 
 [sub_resource type="Resource" id="Resource_42wmn"]
 resource_local_to_scene = true
@@ -18,6 +19,9 @@ script = ExtResource("1_sdqie")
 unique_name_in_owner = true
 position = Vector2(206, 176)
 CharacterData = SubResource("Resource_42wmn")
+
+[node name="Enemy" parent="." instance=ExtResource("5_y0mkn")]
+position = Vector2(715, 126)
 
 [node name="BulletManager" parent="." instance=ExtResource("4_u1jl8")]
 unique_name_in_owner = true

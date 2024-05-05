@@ -14,4 +14,11 @@ public partial class Character : CharacterBody2D
     /// 子弹
     /// </summary>
     [Export] public PackedScene Bullet;
+
+    /// <summary>
+    /// 角色被击中
+    /// </summary>
+    public virtual void HandleHit()
+    {
+    }
 }
