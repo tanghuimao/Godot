@@ -1,15 +1,40 @@
-[gd_scene load_steps=7 format=3 uid="uid://cw7sgfa160d3n"]
+[gd_scene load_steps=12 format=3 uid="uid://cw7sgfa160d3n"]
 
 [ext_resource type="PackedScene" uid="uid://l8ck38rquyfc" path="res://entities/characters/player/Player.tscn" id="1_5cjc8"]
 [ext_resource type="Script" path="res://scenes/Main.cs" id="1_sdqie"]
 [ext_resource type="Script" path="res://resources/character_data/player_data/PlayerData.cs" id="2_tfri1"]
 [ext_resource type="PackedScene" uid="uid://cljsxxvug1j2n" path="res://managers/BulletManager.tscn" id="4_u1jl8"]
+[ext_resource type="Script" path="res://resources/character_data/enemy_data/EnemyData.cs" id="5_lvhps"]
 [ext_resource type="PackedScene" uid="uid://c512cyd77hjkj" path="res://entities/characters/enemy/Enemy.tscn" id="5_y0mkn"]
 
 [sub_resource type="Resource" id="Resource_42wmn"]
 resource_local_to_scene = true
 script = ExtResource("2_tfri1")
-BaseSpeed = 100
+Speed = 100
+Health = 100
+
+[sub_resource type="Resource" id="Resource_p1sv1"]
+resource_local_to_scene = true
+script = ExtResource("5_lvhps")
+Speed = 100
+Health = 100
+
+[sub_resource type="Resource" id="Resource_akwvp"]
+resource_local_to_scene = true
+script = ExtResource("5_lvhps")
+Speed = 100
+Health = 100
+
+[sub_resource type="Resource" id="Resource_mt51w"]
+resource_local_to_scene = true
+script = ExtResource("5_lvhps")
+Speed = 100
+Health = 100
+
+[sub_resource type="Resource" id="Resource_x13ax"]
+resource_local_to_scene = true
+script = ExtResource("5_lvhps")
+Speed = 100
 Health = 100
 
 [node name="Main" type="Node2D"]
@@ -22,6 +47,19 @@ CharacterData = SubResource("Resource_42wmn")
 
 [node name="Enemy" parent="." instance=ExtResource("5_y0mkn")]
 position = Vector2(715, 126)
+CharacterData = SubResource("Resource_p1sv1")
+
+[node name="Enemy2" parent="." instance=ExtResource("5_y0mkn")]
+position = Vector2(855, 63)
+CharacterData = SubResource("Resource_akwvp")
+
+[node name="Enemy3" parent="." instance=ExtResource("5_y0mkn")]
+position = Vector2(607, 254)
+CharacterData = SubResource("Resource_mt51w")
+
+[node name="Enemy4" parent="." instance=ExtResource("5_y0mkn")]
+position = Vector2(722, 218)
+CharacterData = SubResource("Resource_x13ax")
 
 [node name="BulletManager" parent="." instance=ExtResource("4_u1jl8")]
 unique_name_in_owner = true

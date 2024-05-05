@@ -12,11 +12,14 @@ public partial class Main : Node2D
     {
         _player = GetTree().CurrentScene.GetNode<Player>("%Player");
         _bulletManager = GetTree().CurrentScene.GetNode<BulletManager>("%BulletManager");
-
-        _player.ShootEvent += OnShootEvent;
+        // 监听玩家射击事件
+        _player.PlayerShootEvent += OnPlayerShootEvent;
     }
-
-    private void OnShootEvent(BulletArgs args)
+    /// <summary>
+    /// 玩家射击事件
+    /// </summary>
+    /// <param name="args"></param>
+    private void OnPlayerShootEvent(BulletArgs args)
     {
         _bulletManager.SpawnBullet(args);
     }

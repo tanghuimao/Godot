@@ -5,22 +5,16 @@ using System;
 /// </summary>
 public partial class Player : Character
 {
-    public event Action<BulletArgs> ShootEvent; 
+    public event Action<BulletArgs> PlayerShootEvent;
+
+    private Weapon _weapon;
     
-    //枪口标记
-    private Marker2D _endOfGunMarker;
-    //枪口方向标记
-    private Marker2D _gunDirectionMarker;
-    //攻击冷却时间
-    private Timer _attackCoolDownTimer;
-    //枪口火光
-    private AnimationPlayer _muzzleFlashAnimationPlayer;
     public override void _Ready()
     {
-        _endOfGunMarker = GetNode<Marker2D>("EndOfGunMarker");
-        _gunDirectionMarker = GetNode<Marker2D>("GunDirectionMarker");
-        _attackCoolDownTimer = GetNode<Timer>("AttackCoolDownTimer");
-        _muzzleFlashAnimationPlayer = GetNode<AnimationPlayer>("MuzzleFlashAnimationPlayer");
+        _weapon = GetNode<Weapon>("Weapon");
+        _weapon.WeaponShootEvent += OnWeaponShootEvent;
+        Hit += OnPlayerHit;
+        Died += OnPlayerDied;
     }
 
     /// <summary>
@@ -40,7 +34,7 @@ public partial class Player : Character
         // 射击
         if (@event.IsActionPressed("shoot"))
         {
-            Shoot();
+            _weapon.Shoot();
         }
     }
 
@@ -69,7 +63,7 @@ public partial class Player : Character
         //归一化
         movementDirection = movementDirection.Normalized();
         //设置速度
-        Velocity = movementDirection * CharacterData.BaseSpeed;
+        Velocity = movementDirection * CharacterData.Speed;
         //移动
         MoveAndSlide();
         //朝向 鼠标方向
@@ -78,35 +72,28 @@ public partial class Player : Character
     /// <summary>
     /// 射击
     /// </summary>
-    private void Shoot()
+    private void OnWeaponShootEvent(BulletArgs args)
     {
-        //攻击冷却后才可以射击
-        if (_attackCoolDownTimer.IsStopped())
-        {
-            //枪口火光
-            _muzzleFlashAnimationPlayer.Play("muzzle_flash");
-            //生成子弹
-            ShootEvent?.Invoke(new BulletArgs
-            {
-                Bullet = Bullet.Instantiate<Bullet>(), //生成子弹
-                Position = _endOfGunMarker.GlobalPosition, //子弹位置
-                Direction = (_gunDirectionMarker.GlobalPosition - _endOfGunMarker.GlobalPosition).Normalized() //子弹方向
-            });
-            //攻击冷却
-            _attackCoolDownTimer.Start();
-            
-            
-        }
-        
+        //触发事件
+        PlayerShootEvent?.Invoke(args);
     }
-
-    public override void HandleHit()
+    /// <summary>
+    /// 玩家被击中
+    /// </summary>
+    private void OnPlayerHit()
     {
-        CharacterData.Health -= 20;
+        CharacterData.SetHealth(20);
         if (CharacterData.Health <= 0)
         {
-            QueueFree();
+            OnDied();
         }
         GD.Print($"玩家被击中, health:{CharacterData.Health}");
+    }
+    /// <summary>
+    /// 死亡
+    /// </summary>
+    private void OnPlayerDied()
+    {
+        QueueFree();
     }
 }

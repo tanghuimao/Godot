@@ -5,13 +5,26 @@ using System;
 /// </summary>
 public partial class Enemy : Character
 {
-    public override void HandleHit()
+    public override void _Ready()
     {
-        CharacterData.Health -= 20;
+        Hit += OnEnemyHit;
+        Died += OnEnemyDied;
+    }
+    
+    private void OnEnemyHit()
+    {
+        CharacterData.SetHealth(20);
         if (CharacterData.Health <= 0)
         {
-            QueueFree();
+            OnDied();
         }
         GD.Print($"敌人被击中, health:{CharacterData.Health}");
+    }
+    /// <summary>
+    /// 死亡
+    /// </summary>
+    private void OnEnemyDied()
+    {
+        QueueFree();
     }
 }
