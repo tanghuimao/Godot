@@ -32,7 +32,7 @@ public partial class Bullet : Area2D
     {
         if (body is Character character)
         {
-            character.OnHit();
+            character.OnHit(this);
             QueueFree();
         }
     }

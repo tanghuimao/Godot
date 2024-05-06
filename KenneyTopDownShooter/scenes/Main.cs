@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using KenneyTopDownShooter.common;
+
 /// <summary>
 /// 主场景
 /// </summary>
@@ -12,14 +14,14 @@ public partial class Main : Node2D
     {
         _player = GetTree().CurrentScene.GetNode<Player>("%Player");
         _bulletManager = GetTree().CurrentScene.GetNode<BulletManager>("%BulletManager");
-        // 监听玩家射击事件
-        _player.PlayerShootEvent += OnPlayerShootEvent;
+        // 射击事件
+        GlobalEvent.BulletFiredEvent += OnBulletFiredEvent;
     }
     /// <summary>
-    /// 玩家射击事件
+    /// 射击事件
     /// </summary>
     /// <param name="args"></param>
-    private void OnPlayerShootEvent(BulletArgs args)
+    private void OnBulletFiredEvent(BulletArgs args)
     {
         _bulletManager.SpawnBullet(args);
     }

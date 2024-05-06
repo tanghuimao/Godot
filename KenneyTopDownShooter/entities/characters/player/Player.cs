@@ -1,18 +1,18 @@
 using Godot;
 using System;
+using KenneyTopDownShooter.common;
+
 /// <summary>
 /// 玩家
 /// </summary>
 public partial class Player : Character
 {
-    public event Action<BulletArgs> PlayerShootEvent;
 
     private Weapon _weapon;
     
     public override void _Ready()
     {
         _weapon = GetNode<Weapon>("Weapon");
-        _weapon.WeaponShootEvent += OnWeaponShootEvent;
         Hit += OnPlayerHit;
         Died += OnPlayerDied;
     }
@@ -43,25 +43,26 @@ public partial class Player : Character
     /// </summary>
     private void Move()
     {
-        var movementDirection = Vector2.Zero;
-        if (Input.IsActionPressed("move_left"))
-        {
-            movementDirection.X = -1;
-        }
-        if (Input.IsActionPressed("move_right"))
-        {
-            movementDirection.X = 1;
-        }
-        if (Input.IsActionPressed("move_up"))
-        {
-            movementDirection.Y = -1;
-        }
-        if (Input.IsActionPressed("move_down"))
-        {
-            movementDirection.Y = 1;
-        }
-        //归一化
-        movementDirection = movementDirection.Normalized();
+        var movementDirection = Input.GetVector("move_left","move_right", "move_up", "move_down");
+        // var movementDirection = Vector2.Zero;
+        // if (Input.IsActionPressed("move_left"))
+        // {
+        //     movementDirection.X = -1;
+        // }
+        // if (Input.IsActionPressed("move_right"))
+        // {
+        //     movementDirection.X = 1;
+        // }
+        // if (Input.IsActionPressed("move_up"))
+        // {
+        //     movementDirection.Y = -1;
+        // }
+        // if (Input.IsActionPressed("move_down"))
+        // {
+        //     movementDirection.Y = 1;
+        // }
+        // //归一化
+        // movementDirection = movementDirection.Normalized();
         //设置速度
         Velocity = movementDirection * CharacterData.Speed;
         //移动
@@ -75,14 +76,14 @@ public partial class Player : Character
     private void OnWeaponShootEvent(BulletArgs args)
     {
         //触发事件
-        PlayerShootEvent?.Invoke(args);
+        GlobalEvent.OnBulletFiredEvent(args);
     }
     /// <summary>
     /// 玩家被击中
     /// </summary>
-    private void OnPlayerHit()
+    private void OnPlayerHit(Bullet bullet)
     {
-        CharacterData.SetHealth(20);
+        CharacterData.SetHealth(bullet.BulletData.Damage);
         if (CharacterData.Health <= 0)
         {
             OnDied();

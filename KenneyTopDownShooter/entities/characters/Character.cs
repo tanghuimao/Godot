@@ -8,7 +8,7 @@ public partial class Character : CharacterBody2D
     /// <summary>
     /// 角色被击中
     /// </summary>
-    public event  Action Hit;
+    public event  Action<Bullet> Hit;
     /// <summary>
     /// 角色死亡
     /// </summary>
@@ -19,9 +19,9 @@ public partial class Character : CharacterBody2D
     /// </summary>
     [Export] public CharacterData CharacterData;
     
-    public virtual void OnHit()
+    public virtual void OnHit(Bullet bullet)
     {
-        Hit?.Invoke();
+        Hit?.Invoke(bullet);
     }
 
     public virtual void OnDied()

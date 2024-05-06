@@ -1,5 +1,7 @@
 using System;
 using Godot;
+using KenneyTopDownShooter.common;
+
 public partial class Weapon : Node
 {
     public event Action<BulletArgs> WeaponShootEvent;
@@ -35,7 +37,7 @@ public partial class Weapon : Node
         {
             MuzzleFlashAnimationPlayer.Play(WeaponData.MuzzleFlashName);
             // 发射子弹
-            WeaponShootEvent?.Invoke(new BulletArgs
+            GlobalEvent.OnBulletFiredEvent(new BulletArgs
             {
                 Bullet = WeaponData.Bullet.Instantiate<Bullet>(), //生成子弹
                 Position = BulletSpawnMarker.GlobalPosition, //子弹位置

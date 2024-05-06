@@ -1,12 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://c512cyd77hjkj"]
+[gd_scene load_steps=11 format=3 uid="uid://c512cyd77hjkj"]
 
 [ext_resource type="PackedScene" uid="uid://iq0woum3x3s1" path="res://entities/characters/Character.tscn" id="1_b7ejg"]
 [ext_resource type="Script" path="res://entities/characters/enemy/Enemy.cs" id="2_5clhq"]
 [ext_resource type="Resource" uid="uid://ce3phhtvuk1hx" path="res://resources/character_data/enemy_data/EnemyData.tres" id="3_0525c"]
+[ext_resource type="PackedScene" uid="uid://bvs8kp8dnt78o" path="res://entities/bullet/Bullet.tscn" id="5_46c0f"]
 [ext_resource type="Texture2D" uid="uid://dukxkv7r1hh4b" path="res://assets/Survivor 1/survivor1_silencer.png" id="5_r7rqv"]
+[ext_resource type="Script" path="res://resources/weapon_data/WeaponData.cs" id="6_y30i0"]
+[ext_resource type="Script" path="res://entities/characters/enemy/AI.cs" id="7_tcqf0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gow1m"]
 size = Vector2(37.5, 42)
+
+[sub_resource type="Resource" id="Resource_sntik"]
+resource_local_to_scene = true
+script = ExtResource("6_y30i0")
+Name = "机枪"
+MuzzleFlashName = "muzzle_flash"
+Bullet = ExtResource("5_46c0f")
+BulletCount = 30
+ShootSpeed = 10
+ShootInterval = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tnr4o"]
+radius = 191.003
 
 [node name="Enemy" instance=ExtResource("1_b7ejg")]
 script = ExtResource("2_5clhq")
@@ -23,3 +39,12 @@ shape = SubResource("RectangleShape2D_gow1m")
 
 [node name="Weapon" parent="." index="2"]
 position = Vector2(15, 9)
+WeaponData = SubResource("Resource_sntik")
+
+[node name="AI" type="Node2D" parent="." index="3"]
+script = ExtResource("7_tcqf0")
+
+[node name="DirectionZoneArea2D" type="Area2D" parent="AI" index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AI/DirectionZoneArea2D" index="0"]
+shape = SubResource("CircleShape2D_tnr4o")

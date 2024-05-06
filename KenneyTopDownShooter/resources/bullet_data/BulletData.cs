@@ -7,4 +7,5 @@ namespace KenneyTopDownShooter.resources.bullet_data;
 public partial class BulletData : Resource
 {
     [Export] public float Speed { get; set; } = 10;
+    [Export] public int Damage { get; set; } = 10;
 }
