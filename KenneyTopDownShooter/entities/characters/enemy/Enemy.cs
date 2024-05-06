@@ -14,11 +14,44 @@ public partial class Enemy : Character
         _weapon = GetNode<Weapon>("Weapon");
         _ai = GetNode<AI>("AI");
         //初始化
-        _ai.Init(this, _weapon);
+        _ai.Initialize(this, _weapon);
         Hit += OnEnemyHit;
         Died += OnEnemyDied;
     }
+
+    public override void _ExitTree()
+    {
+        Hit -= OnEnemyHit;
+        Died -= OnEnemyDied;
+    }
+
+    /// <summary>
+    /// 旋转到指定位置
+    /// </summary>
+    /// <param name="targetLocation"></param>
+    public float RotateToTarget(Vector2 targetLocation)
+    {
+        var angle = GlobalPosition.DirectionTo(targetLocation).Angle();
+        Rotation = Mathf.Lerp(Rotation, angle, 0.1f);
+        return angle;
+    }
     
+    /// <summary>
+    /// 移动到指定位置
+    /// </summary>
+    /// <param name="targetLocation"></param>
+    public void MoveToTarget(Vector2 targetLocation)
+    {
+        // 计算速度
+        Velocity = GlobalPosition.DirectionTo(targetLocation).Normalized() * CharacterData.Speed;
+        // 移动
+        MoveAndSlide();
+    }
+
+    /// <summary>
+    /// 击中
+    /// </summary>
+    /// <param name="bullet"></param>
     private void OnEnemyHit(Bullet bullet)
     {
         CharacterData.SetHealth(bullet.BulletData.Damage);

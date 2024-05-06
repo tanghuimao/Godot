@@ -17,6 +17,12 @@ public partial class Player : Character
         Died += OnPlayerDied;
     }
 
+    public override void _ExitTree()
+    {
+        Hit -= OnPlayerHit;
+        Died -= OnPlayerDied;
+    }
+    
     /// <summary>
     /// 帧循环
     /// </summary>
@@ -69,14 +75,6 @@ public partial class Player : Character
         MoveAndSlide();
         //朝向 鼠标方向
         LookAt(GetGlobalMousePosition());
-    }
-    /// <summary>
-    /// 射击
-    /// </summary>
-    private void OnWeaponShootEvent(BulletArgs args)
-    {
-        //触发事件
-        GlobalEvent.OnBulletFiredEvent(args);
     }
     /// <summary>
     /// 玩家被击中

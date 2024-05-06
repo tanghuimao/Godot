@@ -4,7 +4,6 @@ using KenneyTopDownShooter.common;
 
 public partial class Weapon : Node
 {
-    public event Action<BulletArgs> WeaponShootEvent;
     /// <summary>
     /// 武器数据
     /// </summary>
@@ -37,8 +36,9 @@ public partial class Weapon : Node
         {
             MuzzleFlashAnimationPlayer.Play(WeaponData.MuzzleFlashName);
             // 发射子弹
-            GlobalEvent.OnBulletFiredEvent(new BulletArgs
+            GlobalEvent.OnBulletFiredEvent(new BulletSpawn
             {
+                Character = GetParent<Character>(),
                 Bullet = WeaponData.Bullet.Instantiate<Bullet>(), //生成子弹
                 Position = BulletSpawnMarker.GlobalPosition, //子弹位置
                 Direction = (GunDirectionMarker.GlobalPosition - BulletSpawnMarker.GlobalPosition).Normalized() //子弹方向

@@ -6,7 +6,7 @@ using System;
 public partial class BulletManager : Node
 {
     //生成子弹
-    public void SpawnBullet(BulletArgs args)
+    public void SpawnBullet(BulletSpawn args)
     {
         //添加子节点
         AddChild(args.Bullet);
@@ -14,13 +14,17 @@ public partial class BulletManager : Node
         args.Bullet.GlobalPosition = args.Position;
         //设置方向
         args.Bullet.SetDirection(args.Direction);
+        //设置来源
+        args.Bullet.SetOrigin(args.Character);
     }
 }
 /// <summary>
-/// 子弹参数
+/// 子弹生成参数
 /// </summary>
-public class BulletArgs
+public class BulletSpawn
 {   
+    //生成子弹角色
+    public Character Character { get; set; }
     //子弹实体
     public Bullet Bullet { get; set; }
     //位置

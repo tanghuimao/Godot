@@ -12,6 +12,8 @@ public partial class Main : Node2D
     
     public override void _Ready()
     {
+        // 随机数
+        GD.Randomize();
         _player = GetTree().CurrentScene.GetNode<Player>("%Player");
         _bulletManager = GetTree().CurrentScene.GetNode<BulletManager>("%BulletManager");
         // 射击事件
@@ -21,7 +23,7 @@ public partial class Main : Node2D
     /// 射击事件
     /// </summary>
     /// <param name="args"></param>
-    private void OnBulletFiredEvent(BulletArgs args)
+    private void OnBulletFiredEvent(BulletSpawn args)
     {
         _bulletManager.SpawnBullet(args);
     }

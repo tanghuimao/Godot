@@ -38,7 +38,7 @@ position = Vector2(-8.75, 0)
 shape = SubResource("RectangleShape2D_gow1m")
 
 [node name="Weapon" parent="." index="2"]
-position = Vector2(15, 9)
+position = Vector2(16, 9)
 WeaponData = SubResource("Resource_sntik")
 
 [node name="AI" type="Node2D" parent="." index="3"]
@@ -48,3 +48,7 @@ script = ExtResource("7_tcqf0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AI/DirectionZoneArea2D" index="0"]
 shape = SubResource("CircleShape2D_tnr4o")
+
+[node name="PatrolTimer" type="Timer" parent="AI" index="1"]
+wait_time = 3.0
+one_shot = true

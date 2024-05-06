@@ -1,12 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://l8ck38rquyfc"]
+[gd_scene load_steps=9 format=3 uid="uid://l8ck38rquyfc"]
 
 [ext_resource type="PackedScene" uid="uid://iq0woum3x3s1" path="res://entities/characters/Character.tscn" id="1_bfoec"]
 [ext_resource type="Script" path="res://entities/characters/player/Player.cs" id="1_klms1"]
 [ext_resource type="Resource" uid="uid://b5x8o3jftv8wn" path="res://resources/character_data/player_data/PlayerData.tres" id="3_vvgi2"]
 [ext_resource type="Texture2D" uid="uid://c835c2foebj0h" path="res://assets/Soldier 1/soldier1_silencer.png" id="4_27mus"]
+[ext_resource type="PackedScene" uid="uid://bvs8kp8dnt78o" path="res://entities/bullet/Bullet.tscn" id="5_0ka5u"]
+[ext_resource type="Script" path="res://resources/weapon_data/WeaponData.cs" id="6_quytq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gow1m"]
 size = Vector2(37.5, 44)
+
+[sub_resource type="Resource" id="Resource_bycyg"]
+resource_local_to_scene = true
+script = ExtResource("6_quytq")
+Name = "机枪"
+MuzzleFlashName = "muzzle_flash"
+Bullet = ExtResource("5_0ka5u")
+BulletCount = 30
+ShootSpeed = 10
+ShootInterval = 0.2
 
 [node name="Player" instance=ExtResource("1_bfoec")]
 script = ExtResource("1_klms1")
@@ -23,3 +35,4 @@ shape = SubResource("RectangleShape2D_gow1m")
 
 [node name="Weapon" parent="." index="2"]
 position = Vector2(16, 9)
+WeaponData = SubResource("Resource_bycyg")

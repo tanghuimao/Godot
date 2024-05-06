@@ -11,26 +11,32 @@ public partial class Bullet : Area2D
     /// 子弹数据
     /// </summary>
     [Export] public BulletData BulletData;
-    
+
     /// <summary>
     /// 移动方向
     /// </summary>
-    private  Vector2 _direction = Vector2.Zero;
+    private Vector2 _direction = Vector2.Zero;
+    /// <summary>
+    /// 角色
+    /// </summary>
+    private Character _character;
 
     public override void _Ready()
     {
-        // 子弹死亡计时器
-        GetNode<Timer>("KillTimer").Timeout += () =>
-        {
-            QueueFree();
-        };
+        // 子弹退出屏幕
+        GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D").ScreenExited += QueueFree;
         // 碰撞检测
         BodyEntered += OnBodyEntered;
     }
 
+    public override void _ExitTree()
+    {
+        BodyEntered -= OnBodyEntered;
+    }
+
     private void OnBodyEntered(Node2D body)
     {
-        if (body is Character character)
+        if (body is Character character && character != _character)
         {
             character.OnHit(this);
             QueueFree();
@@ -44,7 +50,7 @@ public partial class Bullet : Area2D
             GlobalPosition += _direction * BulletData.Speed;
         }
     }
-    
+
     /// <summary>
     /// 设置子弹方向
     /// </summary>
@@ -54,5 +60,14 @@ public partial class Bullet : Area2D
         _direction = direction;
         //设置角度
         Rotation += direction.Angle();
+    }
+    
+    /// <summary>
+    /// 设置子弹来源
+    /// </summary>
+    /// <param name="character"></param>
+    public void SetOrigin(Character character)
+    {
+        _character = character;
     }
 }

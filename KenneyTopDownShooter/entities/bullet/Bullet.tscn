@@ -20,6 +20,6 @@ region_rect = Rect2(106, 0, 12, 30)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hbw2k")
 
-[node name="KillTimer" type="Timer" parent="."]
-wait_time = 2.0
-autostart = true
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(6.55651e-07, 2.38419e-07)
+scale = Vector2(0.9, 0.4)
