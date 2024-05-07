@@ -24,30 +24,7 @@ public partial class Enemy : Character
         Hit -= OnEnemyHit;
         Died -= OnEnemyDied;
     }
-
-    /// <summary>
-    /// 旋转到指定位置
-    /// </summary>
-    /// <param name="targetLocation"></param>
-    public float RotateToTarget(Vector2 targetLocation)
-    {
-        var angle = GlobalPosition.DirectionTo(targetLocation).Angle();
-        Rotation = Mathf.Lerp(Rotation, angle, 0.1f);
-        return angle;
-    }
     
-    /// <summary>
-    /// 移动到指定位置
-    /// </summary>
-    /// <param name="targetLocation"></param>
-    public void MoveToTarget(Vector2 targetLocation)
-    {
-        // 计算速度
-        Velocity = GlobalPosition.DirectionTo(targetLocation).Normalized() * CharacterData.Speed;
-        // 移动
-        MoveAndSlide();
-    }
-
     /// <summary>
     /// 击中
     /// </summary>

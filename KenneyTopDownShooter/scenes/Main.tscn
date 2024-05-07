@@ -31,9 +31,5 @@ CharacterData = SubResource("Resource_42wmn")
 position = Vector2(715, 126)
 CharacterData = SubResource("Resource_p1sv1")
 
-[node name="Enemy2" parent="." instance=ExtResource("5_y0mkn")]
-position = Vector2(654, 149)
-CharacterData = SubResource("Resource_p1sv1")
-
 [node name="BulletManager" parent="." instance=ExtResource("4_u1jl8")]
 unique_name_in_owner = true
