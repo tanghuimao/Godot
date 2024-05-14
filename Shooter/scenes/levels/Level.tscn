@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8ne0ln3qdga4"]
+
+[ext_resource type="Script" path="res://scenes/levels/Level.cs" id="1_2qm07"]
+[ext_resource type="PackedScene" uid="uid://ca0gsg3xgugc4" path="res://ui/UI.tscn" id="3_6b2ac"]
+[ext_resource type="PackedScene" uid="uid://brhgywbfxp2bb" path="res://scenes/character/player/Player.tscn" id="3_31vqj"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_2qm07")
+
+[node name="Decals" type="Node2D" parent="."]
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Infestation" type="Node2D" parent="."]
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Projectiles" type="Node2D" parent="."]
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("3_31vqj")]
+z_index = 2
+position = Vector2(1060, 1518)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.6, 0.6)
+rotation_smoothing_enabled = true
+
+[node name="Lights" type="Node2D" parent="."]
+
+[node name="UI" parent="." instance=ExtResource("3_6b2ac")]

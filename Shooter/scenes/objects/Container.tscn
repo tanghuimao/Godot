@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cejpcsjw6dg81"]
+
+[ext_resource type="Script" path="res://scenes/objects/Container.cs" id="1_5jx7v"]
+
+[node name="Container" type="StaticBody2D" groups=["Container", "Entity"]]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_5jx7v")
+
+[node name="BaseSprite" type="Sprite2D" parent="."]
+
+[node name="LidSprite" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="SpawnPosition" type="Node2D" parent="."]

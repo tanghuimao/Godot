@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://co5q438weavdc"]
+
+[ext_resource type="Texture2D" uid="uid://bcr7hjuets84t" path="res://assets/graphics/enemies/scout.png" id="1_nd4d5"]
+[ext_resource type="Script" path="res://scenes/character/enemies/Scout.cs" id="1_wnp4t"]
+[ext_resource type="Shader" path="res://scenes/character/enemies/Drone.gdshader" id="2_664pu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uyyjd"]
+shader = ExtResource("2_664pu")
+shader_parameter/color = Color(0.588235, 0.917647, 0.909804, 1)
+shader_parameter/progress = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g7ny7"]
+radius = 50.0899
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gn0im"]
+radius = 653.049
+
+[node name="Scout" type="CharacterBody2D" groups=["Entity", "Scout"]]
+collision_layer = 2
+collision_mask = 15
+script = ExtResource("1_wnp4t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_uyyjd")
+position = Vector2(-0.902107, -0.610329)
+rotation = 1.5708
+texture = ExtResource("1_nd4d5")
+offset = Vector2(27.6103, -42.9021)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_g7ny7")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_gn0im")
+
+[node name="LaserSpawnPositions" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="LaserSpawnPositions"]
+position = Vector2(126, -26)
+
+[node name="Marker2D2" type="Marker2D" parent="LaserSpawnPositions"]
+position = Vector2(136, 11)
+
+[node name="TimerNode" type="Node" parent="."]
+
+[node name="LaserCoolDownTimer" type="Timer" parent="TimerNode"]
+one_shot = true
+
+[node name="HitTimer" type="Timer" parent="TimerNode"]
+wait_time = 0.2
+one_shot = true

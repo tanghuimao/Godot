@@ -1,0 +1,102 @@
+[gd_scene load_steps=7 format=3 uid="uid://ca0gsg3xgugc4"]
+
+[ext_resource type="Script" path="res://ui/UI.cs" id="1_5nvx2"]
+[ext_resource type="Texture2D" uid="uid://kd5jp54vut5t" path="res://assets/graphics/ui/bullet.png" id="1_ckj00"]
+[ext_resource type="Theme" uid="uid://dur7dwyfg47ob" path="res://ui/Theme.tres" id="2_4wxwj"]
+[ext_resource type="Texture2D" uid="uid://dlsqe1fydy35x" path="res://assets/graphics/ui/grenade.png" id="2_qkgd4"]
+[ext_resource type="Texture2D" uid="uid://byxltrmi42gvr" path="res://assets/graphics/ui/progress_bar/bg.png" id="4_c3yvb"]
+[ext_resource type="Texture2D" uid="uid://smleehcqqy1v" path="res://assets/graphics/ui/progress_bar/progress.png" id="5_bo6y1"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_5nvx2")
+
+[node name="LaserControl" type="Control" parent="."]
+modulate = Color(0.345098, 1, 1, 1)
+layout_mode = 3
+anchor_left = 0.02
+anchor_top = 0.91
+anchor_right = 0.036
+anchor_bottom = 1.0
+offset_left = 0.960001
+offset_top = -40.16
+offset_right = 40.96
+offset_bottom = -0.160034
+grow_vertical = 0
+theme = ExtResource("2_4wxwj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LaserControl"]
+custom_minimum_size = Vector2(57, 82)
+layout_mode = 0
+offset_right = 57.0
+offset_bottom = 82.0
+
+[node name="Label" type="Label" parent="LaserControl/VBoxContainer"]
+layout_mode = 2
+text = "999
+"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="LaserControl/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_ckj00")
+expand_mode = 4
+
+[node name="GrenadeControl" type="Control" parent="."]
+modulate = Color(0.345098, 1, 1, 1)
+layout_mode = 3
+anchor_left = 0.02
+anchor_top = 0.91
+anchor_right = 0.05
+anchor_bottom = 1.0
+offset_left = 76.96
+offset_top = -40.16
+offset_right = 114.4
+offset_bottom = 6.0
+grow_vertical = 0
+theme = ExtResource("2_4wxwj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GrenadeControl"]
+custom_minimum_size = Vector2(72, 98)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GrenadeControl/VBoxContainer"]
+layout_mode = 2
+text = "999
+"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="GrenadeControl/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_qkgd4")
+expand_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -40.0
+offset_right = 150.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="MarginContainer"]
+layout_mode = 2
+value = 50.0
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("4_c3yvb")
+texture_progress = ExtResource("5_bo6y1")
