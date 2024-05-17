@@ -1,0 +1,68 @@
+[gd_resource type="Resource" script_class="Inventory" load_steps=18 format=3 uid="uid://6dxrtslc8dmq"]
+
+[ext_resource type="Script" path="res://Resources/InventorySlot.cs" id="1_5ghgu"]
+[ext_resource type="Script" path="res://Resources/Inventory.cs" id="1_7n6fy"]
+
+[sub_resource type="Resource" id="Resource_56g8t"]
+script = ExtResource("1_5ghgu")
+MaxAmount = 10
+
+[sub_resource type="Resource" id="Resource_nbov5"]
+script = ExtResource("1_5ghgu")
+MaxAmount = 10
+
+[sub_resource type="Resource" id="Resource_fooww"]
+script = ExtResource("1_5ghgu")
+MaxAmount = 10
+
+[sub_resource type="Resource" id="Resource_x1n7w"]
+script = ExtResource("1_5ghgu")
+MaxAmount = 10
+
+[sub_resource type="Resource" id="Resource_hwdv2"]
+script = ExtResource("1_5ghgu")
+MaxAmount = 10
+
+[sub_resource type="Resource" id="Resource_gxde6"]
+script = ExtResource("1_5ghgu")
+MaxAmount = 10
+
+[sub_resource type="Resource" id="Resource_8l6yd"]
+script = ExtResource("1_5ghgu")
+MaxAmount = 10
+
+[sub_resource type="Resource" id="Resource_yof5u"]
+script = ExtResource("1_5ghgu")
+MaxAmount = 10
+
+[sub_resource type="Resource" id="Resource_kcofi"]
+script = ExtResource("1_5ghgu")
+MaxAmount = 10
+
+[sub_resource type="Resource" id="Resource_pfsel"]
+script = ExtResource("1_5ghgu")
+MaxAmount = 10
+
+[sub_resource type="Resource" id="Resource_pyowk"]
+script = ExtResource("1_5ghgu")
+MaxAmount = 10
+
+[sub_resource type="Resource" id="Resource_ndwh3"]
+script = ExtResource("1_5ghgu")
+MaxAmount = 10
+
+[sub_resource type="Resource" id="Resource_gx8tn"]
+script = ExtResource("1_5ghgu")
+MaxAmount = 10
+
+[sub_resource type="Resource" id="Resource_ewti5"]
+script = ExtResource("1_5ghgu")
+MaxAmount = 10
+
+[sub_resource type="Resource" id="Resource_jbbp2"]
+script = ExtResource("1_5ghgu")
+MaxAmount = 10
+
+[resource]
+script = ExtResource("1_7n6fy")
+Slots = [SubResource("Resource_56g8t"), SubResource("Resource_nbov5"), SubResource("Resource_fooww"), SubResource("Resource_x1n7w"), SubResource("Resource_hwdv2"), SubResource("Resource_gxde6"), SubResource("Resource_8l6yd"), SubResource("Resource_yof5u"), SubResource("Resource_kcofi"), SubResource("Resource_pfsel"), SubResource("Resource_pyowk"), SubResource("Resource_ndwh3"), SubResource("Resource_gx8tn"), SubResource("Resource_ewti5"), SubResource("Resource_jbbp2")]

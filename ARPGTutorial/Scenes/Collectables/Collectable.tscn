@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://tiassfjy23jp"]
+
+[ext_resource type="Script" path="res://Scenes/Collectables/Collectable.cs" id="1_nccvg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jflyt"]
+
+[node name="Collectable" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_nccvg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jflyt")

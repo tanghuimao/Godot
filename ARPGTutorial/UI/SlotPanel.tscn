@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://oyppsh7lrq7h"]
+
+[ext_resource type="Script" path="res://UI/SlotPanel.cs" id="1_1nltc"]
+[ext_resource type="Texture2D" uid="uid://d2dbs3iyvqqdn" path="res://Assets/UI/FacesetBox.png" id="1_wkpj1"]
+
+[node name="SlotPanel" type="Button"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(24, 24)
+offset_right = 20.0
+offset_bottom = 20.0
+script = ExtResource("1_1nltc")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(12, 12)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_wkpj1")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 0
+offset_right = 20.0
+offset_bottom = 20.0

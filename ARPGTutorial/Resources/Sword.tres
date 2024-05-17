@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://bqenwqq1s4jtn"]
+
+[ext_resource type="Script" path="res://Resources/InventoryItem.cs" id="1_kd47m"]
+[ext_resource type="Texture2D" uid="uid://cti5w84mmjvs0" path="res://Assets/Items/Weapons/Sword/Sprite.png" id="1_vcw44"]
+
+[resource]
+script = ExtResource("1_kd47m")
+Id = 2
+Name = "剑"
+Texture = ExtResource("1_vcw44")

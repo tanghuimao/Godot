@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsq3ppsgeccul"]
+
+[ext_resource type="Script" path="res://UI/ItemPanel.cs" id="1_5fyxo"]
+[ext_resource type="FontFile" uid="uid://cweq3dwg1kmbm" path="res://Assets/UI/Fonts/NormalFont.ttf" id="2_rygtg"]
+
+[node name="ItemPanel" type="Panel"]
+script = ExtResource("1_5fyxo")
+
+[node name="Item" type="Sprite2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 1
+offset_left = -2.0
+offset_top = -1.0
+offset_right = 10.0
+offset_bottom = 11.0
+theme_override_colors/font_color = Color(0.99558, 0.99558, 0.99558, 1)
+theme_override_colors/font_shadow_color = Color(0.0177324, 0.0177324, 0.0177324, 1)
+theme_override_fonts/font = ExtResource("2_rygtg")
+theme_override_font_sizes/font_size = 8
+text = "99"
+horizontal_alignment = 2

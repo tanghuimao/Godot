@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bufwygnxqdn57"]
+
+[ext_resource type="Script" path="res://UI/HealthControl.cs" id="1_y5842"]
+
+[node name="HeathContainer" type="HBoxContainer"]
+layout_direction = 3
+theme_override_constants/separation = 2
+script = ExtResource("1_y5842")
